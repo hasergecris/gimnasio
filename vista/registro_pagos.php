@@ -26,13 +26,16 @@
                 <label for="validationDefault02" class="form-label texto">Valor:</label>
                 <input type="text" class="form-control" id="validationDefault02"  required>
               </div>
-              <div class="container-fluid mt-3">
-		<h2>Ejemplo Tempus Dominus con Bootstrap</h2>
-		<div class="form-group">
-			<label for="fecha">Fecha</label>
-			<input type="text" class="form-control datetimepicker-input" id="fecha" data-toggle="datetimepicker" data-target="#fecha" />
-		</div>
-	</div>
+
+              <div class="form-group col-md-6">
+                <label for="fecha" class="texto">Desde:</label>
+                <input type="date" class="form-control datetimepicker-input" id="fecha" data-toggle="datetimepicker" data-target="#fecha" />
+              </div>
+             
+              <div class="form-group col-md-6">
+                <label for="fecha" class="texto">Hasta:</label>
+                <input type="date" class="form-control datetimepicker-input" id="fecha" data-toggle="datetimepicker" data-target="#fecha" />
+              </div>
              
             
               <div class="col-12 d-flex justify-content-end">
