@@ -1,6 +1,7 @@
 
 <?php 
   require("cabecera.php");  
+  require("dashboard.php")
 ?>
 
 

@@ -1,9 +1,10 @@
 
 <?php 
   require("cabecera.php");  
+  require("dashboard.php")
 ?>
 
-<div id="registro_usuario">
+<div id="registro_usuario" class="fondo">
   <div class="container">
     <div class="row">
       <div class="col-12">

@@ -1,7 +1,8 @@
-
 <?php 
   require("cabecera.php");  
+  require("dashboard.php")
 ?>
+
 
 
 <div id="registro_usuario">

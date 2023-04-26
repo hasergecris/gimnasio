@@ -1,5 +1,6 @@
 <?php 
   require("cabecera.php");  
+  require("dashboard.php")
 ?>
 
 <div id="tabla_usuarios">
