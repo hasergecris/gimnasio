@@ -12,6 +12,7 @@
             <h2 class="titulo text-center"> INGRESO</h2>
           </div>
           <div class="card-body contenido">
+          <form method="post" action="controladores/autentica.php" name="ingresoadm">
             <div class="mb-3 row d-block">
               <label class="col-sm-12 col-form-label texto">Documento:</label>
               <div class="col-sm-12">
@@ -30,6 +31,7 @@
                 <button type="submit" class="btn btn-lg btn-success mb-3 boton_general">Enviár</button>
               </div>
             </div>
+          </form>
           </div>
         </div>
       </div>
