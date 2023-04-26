@@ -41,12 +41,17 @@
               Registro de Pagos
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../controladores/logout.php">
+              Cerrar sesion
+            </a>
+          </li>
         </div>
       </nav>
   
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           
-        
+      
       <!-- </main>
       </div>
     </div>
