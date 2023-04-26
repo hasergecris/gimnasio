@@ -27,7 +27,7 @@
             </div>
             <div class="card-footer">
               <div class="col-12 d-flex justify-content-center">
-                <button type="submit" class="btn btn-success mb-3 boton_general">Enviár</button>
+                <button type="submit" class="btn btn-lg btn-success mb-3 boton_general">Enviár</button>
               </div>
             </div>
           </div>
