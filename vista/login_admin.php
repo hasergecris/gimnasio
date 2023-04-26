@@ -27,7 +27,7 @@
             </div>
             <div class="card-footer">
               <div class="col-12 d-flex justify-content-center">
-                <a href="./lista_usuario.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a>
+                <a href="./dashboard.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a>
               </div>
             </div>
           </div>

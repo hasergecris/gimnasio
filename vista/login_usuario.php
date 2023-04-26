@@ -4,7 +4,7 @@
   require("dashboard.php")
 ?>
 
-<div id="registro_usuario" class="fondo">
+<div id="ingreso_cliente">
   <div class="container">
     <div class="row">
       <div class="col-12">

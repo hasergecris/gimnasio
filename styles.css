@@ -1,8 +1,9 @@
 body {
     font-family:'Montserrat', sans-serif !important;
-   background-color: #c6c6c6;
-   
+    background: rgba(226,226,226,1);
   }
+
+   
     
   .fondo {
     background-image: url(./images/fondo.jpg);
@@ -15,6 +16,13 @@ body {
 
   }
 
+  
+.foto {
+  border: 2px solid #fff;
+  border-radius: 100%;
+  width: 8rem;
+  height: 8rem;
+}
 
 
 
@@ -33,13 +41,33 @@ body {
 
 
 #registro_usuario {
+  padding: 5% 25% !important;
+  
+}
+
+#ingreso_cliente {
     padding: 3% 12% !important;
-   
   }
 
+#sidebarMenu {
+  background-color: rgba(175, 182, 1, 0.3) !important; 
+  color: rgba(175, 182, 1, 0.3);
+  box-shadow:
+  inset 0 -3em 3em rgba(0,0,0,0.1),
+        0 0  0 2px rgb(255,255,255),
+        0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
 
 #tabla_usuarios {
-  padding: 8% 15%;
+  padding: 8% 5%;
+  background-color: rgba(175, 182, 1, 0.3); 
+  color: rgba(175, 182, 1, 0.3);
+  box-shadow:
+  inset 0 -3em 3em rgba(0,0,0,0.1),
+        0 0  0 2px rgb(255,255,255),
+        0.3em 0.3em 1em rgba(0,0,0,0.3);
+  margin-top: 3rem;
+  border-radius: 10px;
 }
 
 .card_registro {
@@ -55,8 +83,8 @@ body {
 }
 
 .texto {
-    color: #fff;
-    font-weight: 700 !important;
+    color: #212529;
+    font-weight: 500 !important;
     font-size: 1.3rem !important;
 }
 
@@ -66,12 +94,15 @@ body {
     font-weight: 900;
     font-size: 3rem;
     line-height: 1;
+    text-shadow: 5px -5px 7px #362410;
+
   }
   
   .titulo_general {
     font-weight: 900;
     font-size:  3rem;
-    text-shadow: 5px -5px 7px #CE7E29;
+    color: #fff !important;
+    text-shadow: 5px -5px 7px #362410;
 }
 
 
@@ -93,6 +124,7 @@ body {
 
 .boton_agregar {
   font-weight: 700;
+  border: 1px solid #212529;
 }
 
 .boton_general {
@@ -181,7 +213,9 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #2470dc;
+  color: #fff;
+  background: #212529;
+  font-weight: 700;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -232,7 +266,15 @@ body {
   color:#fff !important;
   font-size: 2rem !important;
 }
-   
+
+.icono_usuario {
+  color: #fff;
+  font-size: 5rem;
+  display: flex;
+  padding-top: 15%;
+  justify-content: center;
+  align-items: center;
+}
 
 .bd-placeholder-img {
   font-size: 1.125rem;
