@@ -5,7 +5,7 @@
 ?>
 
 
-<div id="registro_usuario">
+<div id="ingreso_clientes">
   <div class="container">
     <div class="row">
       <div class="col-12">

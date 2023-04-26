@@ -15,13 +15,13 @@
           <div class="card-body contenido">
           <form method="post" action="controladores/autentica.php" name="ingresoadm">
             <div class="mb-3 row d-block">
-              <label class="col-sm-12 col-form-label texto">Documento:</label>
+              <label class="col-sm-12 col-form-label texto1">Documento:</label>
               <div class="col-sm-12">
                 <input type="text"  class="form-control" name="documento" id="documento">
               </div>
             </div>
               <div class="mb-3 row d-block">
-                <label for="inputPassword" class="col-sm-12 col-form-label texto">Contraseña</label>
+                <label for="inputPassword" class="col-sm-12 col-form-label texto1">Contraseña</label>
                 <div class="col-sm-12">
                   <input type="password" class="form-control" name="contrasenia" id="contrasenia">
                 </div>
@@ -29,8 +29,12 @@
             </div>
             <div class="card-footer">
               <div class="col-12 d-flex justify-content-center">
+<<<<<<< HEAD
                 <!-- <a href="./lista_usuario.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a> -->
                 <button type="submit" class="btn btn-lg btn-success mb-3 boton_general">Ingresar</button>
+=======
+                <a href="./dashboard.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a>
+>>>>>>> 55c748a3ee529c3d3dcdff26f9d05cf51ce11424
               </div>
             </div>
           </form>

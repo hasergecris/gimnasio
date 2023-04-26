@@ -5,7 +5,7 @@
 
 
 
-<div id="registro_usuario">
+<div id="ingreso_cliente">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -15,9 +15,15 @@
           </div>
           <div class="card-body">
             <form class="row g-3">
-              <div class="col-md-6">
-                <label for="validationDefault01" class="form-label texto">Nombres:</label>
-                <input type="text" class="form-control" id="validationDefault01"  required>
+              <div class="col-12 d-flex justify-content-between align-items-center">
+                <div class="col-md-8">
+                  <label for="validationDefault01" class="form-label texto">Nombres:</label>
+                  <input type="text" class="form-control" id="validationDefault01"  required>
+                </div>
+                <div class="col-md-4 foto">
+                <i class="fas fa-user icono_usuario"></i>
+                </div>
+
               </div>
               <div class="col-md-12">
                 <label for="validationDefault02" class="form-label texto">Apellidos:</label>
