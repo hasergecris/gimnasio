@@ -88,6 +88,12 @@ body {
     font-size: 1.3rem !important;
 }
 
+.texto1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
 .titulo {
     color: #fff;
     padding-top: 5% !important;
@@ -283,6 +289,36 @@ body {
   -moz-user-select: none;
   user-select: none;
 }
+
+
+.alert {
+  background-color: #ffc107;
+  color: #222;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  animation: alert 10s linear forwards;
+}
+
+/* ALERTA CONTADOR */
+@keyframes alert {
+  0% {
+    transform: translateY(-100%);
+  }
+  
+  90% {
+    transform: translateY(0);
+  }
+  
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+
+
+/* MEDIAQUERIES */
 
 @media (min-width: 768px) {
   .sidebar {

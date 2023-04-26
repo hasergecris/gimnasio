@@ -14,13 +14,13 @@
           <div class="card-body contenido">
           <form method="post" action="controladores/autentica.php" name="ingresoadm">
             <div class="mb-3 row d-block">
-              <label class="col-sm-12 col-form-label texto">Documento:</label>
+              <label class="col-sm-12 col-form-label texto1">Documento:</label>
               <div class="col-sm-12">
                 <input type="text"  class="form-control" id="documento">
               </div>
             </div>
               <div class="mb-3 row d-block">
-                <label for="inputPassword" class="col-sm-12 col-form-label texto">Contraseña</label>
+                <label for="inputPassword" class="col-sm-12 col-form-label texto1">Contraseña</label>
                 <div class="col-sm-12">
                   <input type="password" class="form-control" id="contrasenia">
                 </div>
