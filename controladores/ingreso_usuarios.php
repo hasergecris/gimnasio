@@ -3,14 +3,13 @@
  
  $documento = $_POST['documento'];
 
-    $sql = "SELECT pago_periodo_fin, pago_usu_id FROM pagos WHERE pago_usu_id = '"  . $documento ."' ";
+    echo$sql = "SELECT pago_periodo_fin, pago_usu_id FROM pagos WHERE pago_usu_id = '"  . $documento ."' ";
     $query=mysqli_query($con,$sql);
     $counter=mysqli_num_rows($query);
     $fila[]=mysqli_fetch_assoc($query);
 
     $fecha_fin = $fila[0]['pago_periodo_fin'];
-    
-    echo"<script>ingresos_clientes();</script>"
+    echo"<script>ingresos_clientes(".$fecha_fin.");</script>"
 
 ?>
 
