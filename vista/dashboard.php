@@ -20,7 +20,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link active" href="./login_usuario.php">
+            <a class="nav-link" href="./login_usuario.php">
               Ingreso de Usuarios
             </a>
           </li>

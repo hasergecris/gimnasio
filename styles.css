@@ -22,6 +22,7 @@ body {
   border-radius: 100%;
   width: 8rem;
   height: 8rem;
+  cursor: pointer;
 }
 
 
@@ -46,7 +47,7 @@ body {
 }
 
 #ingreso_cliente {
-    padding: 3% 12% !important;
+    padding: 1% 12% 0% !important;
   }
 
 #sidebarMenu {
@@ -113,7 +114,7 @@ body {
 
 
 .contenido {
-    padding: 4% 9% !important;
+    padding: 2% 9% 0%  !important;
 }
 
 .form-control {
@@ -271,6 +272,7 @@ body {
 .icono_noti {
   color:#fff !important;
   font-size: 2rem !important;
+  cursor: pointer;
 }
 
 .icono_usuario {
@@ -315,6 +317,45 @@ body {
     transform: translateY(-100%);
   }
 }
+
+/* MODAL */
+
+.titulo_modal {
+  color: #212529;
+  font-weight: 700;
+}
+
+.texto_modal {
+  color: #212529;
+  font-weight: 500;
+}
+
+.modal-dialog {
+  margin-top: 10%;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+.contador_dias {
+  border-radius: 50%;
+  width: 9rem;
+  height: 9rem;
+  border: 2px solid #212529;
+}
+
+#contador {
+  color: #212529;
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1;
+}
+.boton_modal {
+  font-weight: 500;
+}
+
+
 
 
 

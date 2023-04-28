@@ -1,8 +1,8 @@
 
 <?php 
   require("cabecera.php");  
-  
 ?>
+  
 
 <div id="registro_usuario" class="fondo">
   <div class="container">
@@ -29,12 +29,8 @@
             </div>
             <div class="card-footer">
               <div class="col-12 d-flex justify-content-center">
-<<<<<<< HEAD
                 <!-- <a href="./lista_usuario.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a> -->
                 <button type="submit" class="btn btn-lg btn-success mb-3 boton_general">Ingresar</button>
-=======
-                <a href="./dashboard.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a>
->>>>>>> 55c748a3ee529c3d3dcdff26f9d05cf51ce11424
               </div>
             </div>
           </form>

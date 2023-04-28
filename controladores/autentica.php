@@ -1,5 +1,5 @@
 <?php
-include('../modelos/conexion.php');
+include('../modelo/conexion.php');
 
 session_start(); // Iniciando sesion
 $error=''; // Variable para almacenar el mensaje de error
