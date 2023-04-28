@@ -35,7 +35,7 @@
               </div>
               
               <div class="col-md-6">
-                <label for="validationDefault03" class="form-label texto">CORREO:</label>
+                <label for="validationDefault03" class="form-label texto">Correo:</label>
                 <input type="email" class="form-control" id="validationDefault03" required>
               </div>
               <div class="col-md-6">

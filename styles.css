@@ -321,38 +321,52 @@ body {
 /* MODAL */
 
 .titulo_modal {
-  color: #212529;
-  font-weight: 700;
+  color: #dc3545;
+  font-weight: 900;
 }
 
 .texto_modal {
-  color: #212529;
-  font-weight: 500;
+  color: #dc3545;
+  font-weight: 700;
+}
+
+.texto_dias {
+  color: #dc3545;
+  font-weight: 700;
+  padding-top: 3%;
 }
 
 .modal-dialog {
   margin-top: 10%;
-}
+ }
 
 .modal-content {
   border-radius: 10px;
 }
+  
 
 .contador_dias {
   border-radius: 50%;
   width: 9rem;
   height: 9rem;
-  border: 2px solid #212529;
+  border: 5px solid #dc3545;
 }
 
 #contador {
-  color: #212529;
+  color: #dc3545;
   font-weight: 900;
   font-size: 4rem;
   line-height: 1;
 }
+
 .boton_modal {
   font-weight: 500;
+}
+
+
+.dia {
+  font-weight: 700;
+  color: #dc3545;
 }
 
 

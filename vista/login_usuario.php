@@ -46,7 +46,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body flex-column">
-        <h1 class="d-flex justify-content-center titulo_modal">¡¡¡ATENCIÓN!!!</h1>
+        <h1 class="d-flex justify-content-center titulo_modal">¡¡¡ ATENCIÓN !!!</h1>
         <h4 class="texto_modal text-center">Al usuario le quedan </h4>
         <div class="caja-contador d-flex justify-content-center">
           <div class="contador_dias flex-column d-flex justify-content-center align-items-center">
@@ -56,20 +56,50 @@
         </div>
         <div class="texto_dias text-center"> para que termine su suscripción</div>
       </div>
-          
-
-
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger boton_modal">Entendido</button>
+        <button type="button" class="btn btn-danger boton_modal" data-bs-dismiss="modal">Entendido</button>
       </div>
     </div>
   </div>
 </div>
+          
 
 
 
 
- 
+
+
+<script>
+    function ingresos_clientes(documento) {
+        alert("mamá estoy triunfando"); 
+    //     // Establecer la fecha de finalización del contador
+    // var fechaFinalizacion = new Date("2023-05-27").getTime();
+
+    // // Actualizar el contador cada segundo
+    // var x = setInterval(function() {
+    
+    // // Obtiene la fecha actual 
+    // var fechaActual = new Date().getTime();
+        
+    // // Calcula la diferencia de tiempo entre la fecha final y la fecha actual
+    // var tiempoRestante = fechaFinalizacion - fechaActual;
+
+    // // Calcula los días, horas, minutos y segundos restantes
+    // var dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+        
+    // // Actualiza el contenido del contador en el HTML
+    // document.getElementById("contador").innerHTML = dias;
+        
+    // // Si el contador ha terminado, para la función del intervalo
+    // if (tiempoRestante < 0) {
+    //     clearInterval(x);
+    //     document.getElementById("contador").innerHTML = "Su mensualidad termino";
+    // }
+    // }, 1000);
+}
+</script>
+
+
 
                   
 
