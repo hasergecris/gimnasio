@@ -1,9 +1,8 @@
 
 <?php 
-  require("cabecera.php");  
   require("dashboard.php");
-
 ?>
+
 
 <div id="ingreso_cliente">
   <div class="container">

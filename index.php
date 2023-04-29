@@ -1,9 +1,9 @@
 <?php
+// require() establece que el codigo del archivo es requerido
+    require_once "controladores/plantilla.controlador.php";
 
-require_once "vista/login_admin.php";
-
-    $conexion = Conexion::conectar();
- 
+    $plantilla = new ControladorPlantilla();
+    $plantilla -> ctrTraerPlantilla();
  ?>
 
 

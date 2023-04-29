@@ -1,6 +1,5 @@
 
 <?php 
-  require("cabecera.php");  
   require("dashboard.php")
 ?>
 
@@ -46,7 +45,7 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div>
   </div>
-</div>
+</div> -->
 
