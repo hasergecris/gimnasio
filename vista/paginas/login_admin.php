@@ -23,8 +23,7 @@
             </div>
             <div class="card-footer">
               <div class="col-12 d-flex justify-content-center">
-                <!-- <a href="./lista_usuario.php" class="btn btn-lg btn-success mb-3 boton_general"> Enviar</a> -->
-                <a href="index.php?pagina=dashboard" class="btn btn-lg btn-success mb-3 boton_general">Ingresar</a>
+                <a href="index.php?pagina=registro_usuario" class="btn btn-lg btn-success mb-3 boton_general">Ingresar</a>
               </div>
             </div>
           </form>
@@ -34,13 +33,3 @@
     </div>
   
 </div>
-
-
-
-
-                  
-
-   
-
-    
- 

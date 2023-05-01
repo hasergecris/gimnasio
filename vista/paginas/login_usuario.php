@@ -14,14 +14,16 @@
           </div>
           <div class="card-body contenido">
             <form action="../controladores/ingreso_usuarios.php" method="POST">
-              <div class="mb-3 row d-block">
-                    <label class="mb-3 col-sm-12 col-form-label texto">Ingresa tu numero de documento:</label>
-                    <div class="col-sm-12">
-                      <input type="text"  class="form-control"id="documento" name="documento">
-                    </div>
+              <div class="mb-2 row d-block">
+                <label class="mb-1 col-sm-12 col-form-label texto">Ingresa tu numero de documento:</label>
+                <div class="col-sm-12">
+                  <div class="input-group mb-1">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user "></i></span>
+                    <input type="text"  class="form-control control_ingreso"id="documento" name="documento">
+                  </div>
                 </div>
-           
               </div>
+           
               <div class="card-footer">
                 <div class="col-12 d-flex justify-content-center">
                   <button type="submit" class="btn btn-lg btn-success mb-3 boton_general" data-bs-toggle="modal" data-bs-target="#exampleModal">Ingresar</button>
