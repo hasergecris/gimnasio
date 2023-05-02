@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-04-2023 a las 23:42:06
+-- Tiempo de generación: 03-05-2023 a las 00:23:40
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -48,8 +48,16 @@ CREATE TABLE `pagos` (
   `pago_usu_id` varchar(10) NOT NULL,
   `pago_periodo_ini` date NOT NULL,
   `pago_periodo_fin` date NOT NULL,
-  `pago_confirma` varchar(2) NOT NULL
+  `pago_confirma` varchar(2) NOT NULL,
+  `pago_dias_restantes` varchar(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pagos`
+--
+
+INSERT INTO `pagos` (`pago_id`, `pago_usu_id`, `pago_periodo_ini`, `pago_periodo_fin`, `pago_confirma`, `pago_dias_restantes`) VALUES
+(1, '12121212', '2023-04-28', '2023-05-28', '1', '');
 
 -- --------------------------------------------------------
 
@@ -81,11 +89,24 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `usuarios` (
-  `usu_id` int(11) NOT NULL,
-  `usu_nom` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL,
+  `usu_nombre` varchar(100) NOT NULL,
   `usu_rol` varchar(2) NOT NULL,
-  `usu_pas` varchar(100) NOT NULL
+  `usu_pas` varchar(100) NOT NULL,
+  `usu_documento` varchar(20) NOT NULL,
+  `usu_correo` varchar(50) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `usu_nombre`, `usu_rol`, `usu_pas`, `usu_documento`, `usu_correo`, `fecha`) VALUES
+(2, 'Christian Vega', '1', 'Qwerty123*', '1032410251', 'hasergecris9@gmail.com', '2023-05-02 16:31:06'),
+(3, 'Sergio Vega', '2', '', '111111111', 'vega79073@gmail.com', '2023-05-02 18:59:41'),
+(4, 'Hasbleidy Poveda', '2', '', '1023877403', 'hasbleidy03@gmail.comk', '2023-05-02 18:58:34'),
+(5, 'Jose Ramirez', '1', 'Qwerty123*', '1073711329', 'jose@yopmail.com', '2023-05-02 20:54:53');
 
 --
 -- Índices para tablas volcadas
@@ -107,7 +128,7 @@ ALTER TABLE `roles`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`usu_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -117,7 +138,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `pago_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pago_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -129,7 +150,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
