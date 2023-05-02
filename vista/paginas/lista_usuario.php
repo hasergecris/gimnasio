@@ -1,5 +1,16 @@
 <?php 
-  require("dashboard.php")
+  require("dashboard.php");
+
+  if(isset($_SESSION["validarIngreso"])) {
+      if( $_SESSION["validarIngreso"] != "ok") {
+              
+              echo '<script> window.location = "index.php?pagina=registro_usuario" </script>';
+
+        return;
+      }
+  }
+
+  $usuarios = ControladorFormularios::ctrSeleccionarRegistros();
 ?>
 
 
@@ -9,39 +20,36 @@
   <table class="table table-dark table-hover">
     <thead>
       <tr>
-        <th class="text-center">ID</th>
+        <th>NUMERO</th>
         <th>NOMBRES</th>
-        <th>APELLIDOS</th>
         <th>DOCUMENTO</th>
         <th>CORREO</th>
-        <th> ROL</th>
+        <th>ROL</th>
+        <th>FECHA </th>
+        <th>ACCIONES</th>
       </tr>
     </thead>
+
     <tbody>
-      <tr>
-        <th class="text-center">3</th>
-        <td>Christian Camilo</td>
-        <td>Vega Morales</td>
-        <td>22222222222</td>
-        <td>askjdkjas@yopmail.com </td>
-        <td>Administrador</td>
-      </tr>
-      <tr>
-        <th class="text-center">23</th>
-        <td>Christian Camilo</td>
-        <td>Vega Morales</td>
-        <td>22222222222</td>
-        <td>askjdkjas@yopmail.com</td>
-        <td>Administrador</td>
-      </tr>
-      <tr>
-        <th class="text-center">2</th>
-        <td>Christian Camilo</td>
-        <td>Vega Morales</td>
-        <td>22222222222</td>
-        <td>askjdkjas@yopmail.com</td>
-        <td>Administrador</td>
-      </tr>
+      <?php
+        foreach($usuarios as $key => $value):?>
+          <tr>
+            <td class="text-center"><?php echo ($key+1);?> </td>
+            <td><?php echo $value["usu_nombre"]?> </td>
+            <td><?php echo $value["usu_documento"]?></td>
+            <td><?php echo $value["usu_correo"]?></td>
+            <td class="text-center"><?php echo $value["usu_rol"]?></td>
+            <td><?php echo $value["fecha"]?></td>
+            <td>
+              <div class="btn-group">
+                <botton class="btn btn-warning"><i class="fas fa-pencil-alt"></i></botton>
+                <botton class="btn btn-danger"><i class="fas fa-trash-alt"></i></botton>
+              </div>
+            </td>
+          </tr>
+      <?php endforeach ?>
+
+      
     </tbody>
   </table>
 </div>

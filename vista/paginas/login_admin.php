@@ -11,21 +11,26 @@
             <div class="mb-3 row d-block">
               <label class="col-sm-12 col-form-label texto1">Documento:</label>
               <div class="col-sm-12">
-                <input type="text"  class="form-control" name="documento" id="documento">
+                <input type="text"  class="form-control" name="ingresoDocumento" id="documento">
               </div>
             </div>
               <div class="mb-3 row d-block">
                 <label for="inputPassword" class="col-sm-12 col-form-label texto1">Contraseña</label>
                 <div class="col-sm-12">
-                  <input type="password" class="form-control" name="contrasenia" id="contrasenia">
+                  <input type="password" class="form-control" name="contrasenia" id="ingresoContrasenia">
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <div class="col-12 d-flex justify-content-center">
+
+            <?php
+
+                $ingreso = new ControladorFormularios();
+                $ingreso -> ctrIngreso();
+
+            ?>
+             <div class="col-12 d-flex justify-content-center">
                 <a href="index.php?pagina=registro_usuario" class="btn btn-lg btn-success mb-3 boton_general">Ingresar</a>
               </div>
-            </div>
           </form>
           </div>
         </div>
@@ -33,3 +38,8 @@
     </div>
   
 </div>
+
+
+
+
+             

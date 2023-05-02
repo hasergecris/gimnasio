@@ -31,10 +31,12 @@
                 </div>
                 <div class=" col-md-4 caja-contador d-flex justify-content-end">
                   <div class="foto  d-flex justify-content-center align-items-center">
-                    <i class="fas fa-user icono_usuario"></i>
+                  <!-- <input type="file" class="input_foto d-none"> -->
+                  <i class="fas fa-user icono_usuario"></i>
                   </div>
                 </div>
               </div>
+             
                       
               <div class="col-md-12">
                 <label for="num_documento" class="form-label texto">Numero de documento:</label>
@@ -63,8 +65,6 @@
               
               <?php
 
-                // $registro = new ControladorFormularios();
-                // $registro -> ctrRegistroUsuarios();
 
                 $registro = ControladorFormularios::ctrRegistroUsuarios();
 
@@ -83,11 +83,6 @@
                   }
                 ?>
 
-
-
-
-
-
               <div class="col-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-lg btn-primary boton_general">Enviar</button>
               </div>
@@ -99,5 +94,10 @@
   </div>
 </div>
 
+
+
+
+
+              
 
 
