@@ -133,6 +133,9 @@ body {
   border-radius: 10px !important;
 }
 
+#admin_contrasenia {
+  display: none;
+}
 /* botones */
 
 .boton_agregar {

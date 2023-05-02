@@ -2,6 +2,18 @@
   require("dashboard.php")
 ?>
 
+<script>
+  function cargarRol(rol) {
+      if( rol == 1 ){
+        document.getElementById("admin_contrasenia").style.display = "block";
+      } else {
+        document.getElementById("admin_contrasenia").style.display = "none";
+      }
+    }             
+</script>
+  
+
+
 <div id="ingreso_cliente">
   <div class="container">
     <div class="row">
@@ -14,7 +26,7 @@
             <form method="post" class="row">
               <div class="col-12 d-flex justify-content-between align-items-center">
                 <div class="col-md-8">
-                  <label for="nombres" class="form-label texto">Nombres:</label>
+                  <label for="nombres" class="form-label texto">Nombre Completo:</label>
                   <input type="text" class="form-control" id="nombres" name="registroNombre">
                 </div>
                 <div class=" col-md-4 caja-contador d-flex justify-content-end">
@@ -35,12 +47,19 @@
               </div>
 
               <div class="col-md-6">
-                <label for="validationDefault04" class="form-label texto">Rol</label>
-                <select class="form-select" id="validationDefault04">
-                  <option selected disabled value="">Administrador</option>
-                  <option>Cliente</option>
+                <label for="validacion_rol" class="form-label texto">Rol</label>
+                <select class="form-select" name="validacion_rol" id="validacion_rol" onchange="cargarRol(this.value);">
+                  <option selected value="">Seleccionar.... </option>
+                  <option  value="1">Administrador</option>
+                  <option  value="2">Cliente</option>
                 </select>
               </div>
+
+              <div class="col-md-6 mb-4" id="admin_contrasenia">
+                <label for="contrasenia" class="form-label texto">Contraseña:</label>
+                <input type="pasword" class="form-control" id="contrasenia" name="contrasenia">
+              </div>
+
               
               <?php
 

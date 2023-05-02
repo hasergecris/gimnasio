@@ -31,8 +31,6 @@
           $_GET["pagina"]== "dashboard" ||
           $_GET["pagina"]== "salir"
           ) {
-
-
             include "paginas/".$_GET["pagina"].".php";
           
           }else {
@@ -59,6 +57,8 @@
 
 </body>
 </html>
+
+
 
 
 
