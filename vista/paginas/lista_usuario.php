@@ -48,7 +48,7 @@
             <td><?php echo $value["fecha"]?></td>
             <td>
               <div class="btn-group">
-                <a href="index.php?pagina=editar&id=<?php echo $value["id"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                <a href="index.php?pagina=editar_usuarios&id=<?php echo $value["id"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                 <a href="index.php?pagina=editar" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
               </div>
             </td>

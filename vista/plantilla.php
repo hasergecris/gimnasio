@@ -33,6 +33,7 @@
           $_GET["pagina"]== "registro_pagos" ||
           $_GET["pagina"]== "registro_usuario" ||
           $_GET["pagina"]== "dashboard" ||
+          $_GET["pagina"]== "editar_usuarios" ||
           $_GET["pagina"]== "salir"
           ) {
             include "paginas/".$_GET["pagina"].".php";
