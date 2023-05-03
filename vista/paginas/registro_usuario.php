@@ -65,7 +65,7 @@
               
               <?php
 
-
+// METODO ESTATICO
                 $registro = ControladorFormularios::ctrRegistroUsuarios();
 
                 if($registro == "ok") {

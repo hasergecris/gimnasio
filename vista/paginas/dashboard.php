@@ -1,3 +1,5 @@
+
+
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 texto" href="index.php?pagina=login_admin">FORCAGYM</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +21,16 @@
 
           <?php if(isset($_GET["pagina"])):?>
 
+            <?php if($_GET["pagina"] == "lista_usuario"):?>
+              <li class="nav-item">
+                <a class="nav-link active" href="index.php?pagina=lista_usuario">Lista Usuarios</a>
+              </li>
+              <?php else:?>
+                <li class="nav-item">
+                  <a class="nav-link" href="index.php?pagina=lista_usuario">Lista Usuarios</a>
+                </li>
+            <?php endif?>
+
             <?php if($_GET["pagina"] == "registro_usuario"):?>
               <li class="nav-item">
                 <a class="nav-link active" href="index.php?pagina=registro_usuario">Registro de Usuarios</a>
@@ -39,15 +51,7 @@
               </li>
             <?php endif?>
 
-            <?php if($_GET["pagina"] == "lista_usuario"):?>
-              <li class="nav-item">
-                <a class="nav-link active" href="index.php?pagina=lista_usuario">Lista Usuarios</a>
-              </li>
-              <?php else:?>
-                <li class="nav-item">
-                  <a class="nav-link" href="index.php?pagina=lista_usuario">Lista Usuarios</a>
-                </li>
-            <?php endif?>
+          
 
             <?php if($_GET["pagina"] == "lista_pagos"):?>
               <li class="nav-item">
@@ -80,6 +84,10 @@
             <?php endif?>
 
             <?php else:?>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="index.php?pagina=lista_usuario">Lista Usuarios</a>
+              </li>
 
               <li class="nav-item">
                 <a class="nav-link active" href="index.php?pagina=registro_usuario">Registro de Usuarios</a>
@@ -89,9 +97,6 @@
                 <a class="nav-link" href="index.php?pagina=login_usuario">Ingreso de Usuarios</a>
               </li>
             
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?pagina=lista_usuario">Lista Usuarios</a>
-              </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="index.php?pagina=lista_pagos">Lista de Pagos</a>

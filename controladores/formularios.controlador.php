@@ -1,4 +1,5 @@
 <?php
+
   class ControladorFormularios {
 
     // REGISTRO
@@ -14,7 +15,7 @@
                         "usu_correo"=>$_POST["registroCorreo"]
                        );
 
-                $respuesta = ModeloFormularios::mdlRegistroUsuarios($tabla,$datos);
+                $respuesta = ModeloFormularios::mdlRegistroUsuarios( $tabla, $datos );
 
                 return $respuesta;
             }
@@ -23,22 +24,25 @@
     // LISTAR REGISTROS
 
     static public function ctrSeleccionarRegistros(){
+
       $tabla = "usuarios";
-      $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, null, null);
+
+      $respuesta = ModeloFormularios::mdlSeleccionarRegistros( $tabla, null, null );
 
       return $respuesta;
     }
 
-    // INGRESO
+    // INGRESO ADMIN
 
     public function ctrIngreso(){
+
       if(isset($_POST["ingresoDocumento"])) {
 
         $tabla = "usuarios";
         $item = "usu_documento";
         $valor = $_POST["ingresoDocumento"];
 
-        $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
+        $respuesta = ModeloFormularios::mdlSeleccionarRegistros( $tabla, $item, $valor );
 
         if($respuesta["usu_documento"] ==  $_POST["ingresoDocumento"] && $respuesta["usu_pas"] == $_POST["ingresoContrasenia"] ) {
 
@@ -47,13 +51,13 @@
           echo 
           '<script>
               if(window.history.replaceState) {
-                
                 window.history.replaceState(null,null,window.location.href);
               }
-              window.location = "index.php?pagina=registro_usuario";
+              window.location = "index.php?pagina=lista_usuario";
             </script>';
+                
 
-        }else {
+        } else {
           echo 
           '<script>
               if(window.history.replaceState) {
@@ -62,9 +66,12 @@
               }
             </script>';
               
-            echo '<div class="alert alert-danger">Eror al ingresar al sistema, el documento ola contraseña no coinciden</div>';
+            echo '<div class="alert alert-danger">Error al ingresar al sistema, el documento o la contraseña no coínciden</div>';
 
           }
+
+        // echo '<pre>'; print_r($respuesta); echo '</pre>';
+
       }
 
     }

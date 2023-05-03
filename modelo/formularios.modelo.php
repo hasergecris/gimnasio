@@ -2,7 +2,7 @@
  require_once "conexion.php";
 
 
- class ModeloFormularios{
+ class ModeloFormularios {
 
     // REGISTRO USUARIOS
     static public function  mdlRegistroUsuarios($tabla, $datos){
@@ -42,7 +42,7 @@
         }else {
             $stmt = Conexion::conectar() -> prepare("SELECT *,DATE_FORMAT(fecha,'%d/%m/%Y') AS fecha FROM $tabla WHERE $item = :$item ORDER BY id DESC");
             
-            $stmt -> bindParam(".",$item, $valor, PDO::PARAM_STR);
+            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
            
             $stmt ->execute(); 
             

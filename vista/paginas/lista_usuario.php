@@ -1,14 +1,20 @@
 <?php 
   require("dashboard.php");
 
-  if(isset($_SESSION["validarIngreso"])) {
-      if( $_SESSION["validarIngreso"] != "ok") {
-              
-              echo '<script> window.location = "index.php?pagina=registro_usuario" </script>';
+//   if(isset($_SESSION["validarIngreso"])) {
+    
+//     echo '<script> window.location = "index.php?pagina=login_admin" </script>';
+//     return;
+    
+    
+// }else {
+//     if( $_SESSION["validarIngreso"] != "ok") {
 
-        return;
-      }
-  }
+//     echo '<script> window.location = "index.php?pagina=login_admin" </script>';
+//       return;
+//     }
+//   }
+   
 
   $usuarios = ControladorFormularios::ctrSeleccionarRegistros();
 ?>
@@ -34,7 +40,7 @@
       <?php
         foreach($usuarios as $key => $value):?>
           <tr>
-            <td class="text-center"><?php echo ($key+1);?> </td>
+            <td class="text-center"><?php echo ($key+1);?></td>
             <td><?php echo $value["usu_nombre"]?> </td>
             <td><?php echo $value["usu_documento"]?></td>
             <td><?php echo $value["usu_correo"]?></td>
@@ -42,8 +48,8 @@
             <td><?php echo $value["fecha"]?></td>
             <td>
               <div class="btn-group">
-                <botton class="btn btn-warning"><i class="fas fa-pencil-alt"></i></botton>
-                <botton class="btn btn-danger"><i class="fas fa-trash-alt"></i></botton>
+                <a href="index.php?pagina=editar&id=<?php echo $value["id"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                <a href="index.php?pagina=editar" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
               </div>
             </td>
           </tr>
@@ -53,4 +59,8 @@
     </tbody>
   </table>
 </div>
+
+
+
+
 
