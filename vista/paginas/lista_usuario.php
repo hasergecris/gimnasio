@@ -14,10 +14,10 @@
 //       return;
 //     }
 //   }
-   
 
-  $usuarios = ControladorFormularios::ctrSeleccionarRegistros();
+  $usuarios = ControladorFormularios::ctrSeleccionarRegistros( null, null);
 ?>
+   
 
 
 <div id="tabla_usuarios">
