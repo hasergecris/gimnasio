@@ -16,6 +16,9 @@
 //   }
 
   $usuarios = ControladorFormularios::ctrSeleccionarRegistros( null, null);
+
+  $actualizar = new ControladorFormularios();
+  $actualizar -> ctrActualizarRegistro();
 ?>
    
 
