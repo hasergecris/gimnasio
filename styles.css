@@ -16,11 +16,37 @@ body {
 
 
 .foto {
-  border: 2px solid #fff;
-  border-radius: 100%;
-  width: 7rem;
-  height: 7rem;
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.video {
+  max-width: 100%;
+  display: none;
+}
+.canvas, .photo {
+  display: none;
+}
+.boton-captura {
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 32px);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
   cursor: pointer;
+}
+.boton-captura:focus {
+  outline: none;
+}
+.icono-usuario {
+  color: #999;
 }
 
 
