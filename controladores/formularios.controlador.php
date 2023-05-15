@@ -94,6 +94,7 @@ class ControladorFormularios
       $tabla = "usuarios";
 
       $datos = array(
+        "id" => $_POST["idUsuario"],
         "usu_nombre" => $_POST["actualizarNombre"],
         "usu_rol" => $_POST["validacion_rol"],
         "usu_pas" => $password,
@@ -101,9 +102,19 @@ class ControladorFormularios
         "usu_correo" => $_POST["actualizarCorreo"]
       );
 
-      $respuesta = ModeloFormularios::mdlRegistroUsuarios($tabla, $datos);
+      $respuesta = ModeloFormularios::mdlActualizarRegistro($tabla, $datos);
 
-      return $respuesta;
+      if ( $respuesta ==" ok"){
+        echo
+        '<script>
+              if(window.history.replaceState) {
+                
+                window.history.replaceState(null,null,window.location.href);
+              }
+            </script>';
+
+        echo '<div class="alert alert-success">La información del Usuario a sido actualizada.</div>'; 
+      }
     }
   }
 }

@@ -108,7 +108,7 @@ require("dashboard.php")
 
               <div class="col-md-6 mb-4" id="admin_contrasenia">
                 <label for="contrasenia" class="form-label texto">Contraseña:</label>
-                <input type="pasword" class="form-control" id="contrasenia" name="contrasenia">
+                <input type="password" class="form-control" id="contrasenia" name="contrasenia">
               </div>
 
 

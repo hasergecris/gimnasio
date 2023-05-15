@@ -22,12 +22,12 @@ if (isset($_GET["id"])) {
 }
 
 // echo $usuario["usu_rol"];
-if ($usuario["usu_rol"] == 1) {
-  // echo $usuario["usu_rol"];
-  echo '<script>cargarRol(' . $usuario["usu_rol"] . ');</script>';
-} else {
-  echo ("pailas");
-}
+// if ($usuario["usu_rol"] == 1) {
+//   // echo $usuario["usu_rol"];
+//   echo '<script>cargarRol(' . $usuario["usu_rol"] . ');</script>';
+// } else {
+//   echo ("pailas");
+// }
 
 
 ?>
@@ -61,10 +61,8 @@ if ($usuario["usu_rol"] == 1) {
                   <input type="pasword" class="form-control" placeholder="Escriba su contraseña" id="actualizarContrasenia" name="actualizarContrasenia">
                 </div>
 
-                <input type="hidden" class="form-control" placeholder="Escriba su contraseña" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario["usu_pas"] ?>">
-
-
-
+                <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario["usu_pas"] ?>">
+                <input type="hidden" class="form-control"  id="idUsuario" name="idUsuario" value="<?php echo $usuario["id"] ?>">
 
 
                 <div class="col-12 d-flex justify-content-end">
