@@ -56,7 +56,7 @@ class ModeloFormularios
     static public function  mdlActualizarRegistro($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usu_nombre =:usu_nombre, usu_rol=:us_rol, usu_pas=:usu_pas, usu_documnento=_usu_documento, usu_correo=:usu_correo");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET usu_nombre =:usu_nombre, usu_rol=:us_rol, usu_documnento=_usu_documento, usu_correo=:usu_correo,usu_pas=:usu_pas  WHERE  id = :id");
 
 
         $stmt->bindParam(":usu_nombre", $datos["usu_nombre"], PDO::PARAM_STR);
@@ -65,6 +65,7 @@ class ModeloFormularios
         $stmt->bindParam(":usu_documento", $datos["usu_documento"], PDO::PARAM_STR);
         $stmt->bindParam(":usu_correo", $datos["usu_correo"], PDO::PARAM_STR);
         $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
 
         if ($stmt->execute()) {
 

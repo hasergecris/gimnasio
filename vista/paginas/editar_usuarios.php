@@ -54,7 +54,7 @@ if (isset($_GET["id"])) {
                 </div>
 
                 <div class="col-md-12 mb-4">
-                  <input type="email" class="form-control" id="correo" name="actualizarCorreo" value="<?php echo $usuario["usu_correo"] ?>">
+                  <input type="email" class="form-control" placeholder="Escriba su correo" id="correo" name="actualizarCorreo" value="<?php echo $usuario["usu_correo"] ?>">
                 </div>
 
                 <div class="col-md-12 mb-4" id="admin_contrasenia">
@@ -62,7 +62,7 @@ if (isset($_GET["id"])) {
                 </div>
 
                 <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario["usu_pas"] ?>">
-                <input type="hidden" class="form-control"  id="idUsuario" name="idUsuario" value="<?php echo $usuario["id"] ?>">
+                <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario["id"] ?>">
 
 
                 <div class="col-12 d-flex justify-content-end">
