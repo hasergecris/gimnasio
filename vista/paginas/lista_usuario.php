@@ -52,7 +52,7 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
 
               <form method="post">
                 <input type="hidden" name="eliminarRegistro" value=" <?php echo $value["id"]; ?>">
-                <button type="submit" class="btn btn-danger data-toggle="modal" data-target="#confirmDeleteModal""><i class="fas fa-trash-alt"></i></button>
+                <button type="submit" class="btn btn-danger"><i class=" fas fa-trash-alt"></i></button>
 
                 <?php
                 $eliminar = new  ControladorFormularios();
@@ -60,30 +60,12 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
                 ?>
               </form>
             </div>
-
-            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este usuario?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </td>
 
+
         </tr>
+
+
 
       <?php endforeach ?>
 
@@ -91,29 +73,3 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
   </table>
 
 </div>
-
-<script>
-  $(document).ready(function() {
-    // Agregar evento al botón de eliminar del modal
-    $('#confirmDeleteBtn').click(function() {
-      // Ejecutar la eliminación del usuario
-      eliminarUsuario();
-    });
-  });
-
-  function eliminarUsuario() {
-    // Aquí puedes agregar el código existente para eliminar el usuario
-    // Puedes llamar a la función ctrEliminarRegistro() como lo estás haciendo actualmente
-    // Solo asegúrate de que el código de redirección se ejecute solo si la eliminación es exitosa
-  }
-</script>     
-
-
-
-
-
-
-
-
-
-
