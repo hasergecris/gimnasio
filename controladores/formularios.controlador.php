@@ -1,7 +1,7 @@
 <?php
 
-class ControladorFormularios
-{
+class ControladorFormularios {
+
 
   // REGISTRO
   static public function ctrRegistroUsuarios()
@@ -79,7 +79,7 @@ class ControladorFormularios
 
   // ACTUALIZAR USUARIO
 
-  public function ctrActualizarRegistro()
+  static public function ctrActualizarRegistro()
   {
 
     if (isset($_POST["actualizarNombre"])) {
@@ -87,34 +87,52 @@ class ControladorFormularios
       if ($_POST["actualizarContrasenia"] != "") {
         $password = $_POST["actualizarcontrasenia"];
       } else {
+
         $password = $_POST["contraseniaActual"];
       }
-
 
       $tabla = "usuarios";
 
       $datos = array(
         "id" => $_POST["idUsuario"],
         "usu_nombre" => $_POST["actualizarNombre"],
-        "usu_rol" => $_POST["validacion_rol"],
-        "usu_pas" => $password,
         "usu_documento" => $_POST["actualizarDocumento"],
-        "usu_correo" => $_POST["actualizarCorreo"]
+        "usu_correo" => $_POST["actualizarCorreo"],
+        "usu_pas" => $password
       );
 
       $respuesta = ModeloFormularios::mdlActualizarRegistro($tabla, $datos);
 
-      if ( $respuesta ==" ok"){
-        echo
-        '<script>
-              if(window.history.replaceState) {
-                
-                window.history.replaceState(null,null,window.location.href);
-              }
-            </script>';
-
-        echo '<div class="alert alert-success">La información del Usuario a sido actualizada.</div>'; 
-      }
+      return $respuesta;
     }
   }
+
+  // ELIMINAR REGIDTRO 
+
+ public function ctrEliminarRegistro(){
+
+  if (isset($_POST["eliminarRegistro"])) {
+    $tabla = "usuarios";
+    $valor = $_POST["eliminarRegistro"] ;
+
+  
+
+    $respuesta = ModeloFormularios::mdlEliminarRegistro($tabla, $valor);
+
+    if ($respuesta== "ok"){
+      echo
+        '<script>
+              if(window.history.replaceState) {
+                window.history.replaceState(null,null,window.location.href);
+              }
+              window.location = "index.php?pagina=lista_usuario";
+            </script>';
+    }
+ 
+  }
+ }
+  
+
 }
+
+?>

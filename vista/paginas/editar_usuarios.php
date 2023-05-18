@@ -59,10 +59,31 @@ if (isset($_GET["id"])) {
 
                 <div class="col-md-12 mb-4" id="admin_contrasenia">
                   <input type="pasword" class="form-control" placeholder="Escriba su contraseña" id="actualizarContrasenia" name="actualizarContrasenia">
+                  <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario["usu_pas"] ?>">
                 </div>
-
-                <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario["usu_pas"] ?>">
                 <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario["id"] ?>">
+
+                <?php
+                $actualizar = ControladorFormularios::ctrActualizarRegistro();
+
+                if ($actualizar == " ok") {
+                  echo
+                  '<script>
+                      if(window.history.replaceState) {
+                        window.history.replaceState(null,null,window.location.href);
+                      }
+                    </script>';
+
+
+                  echo '<div class="alert alert-success">La información del Usuario a sido actualizada.</div>';
+
+                  '<script>
+                        setTimeout(fuction(){
+                          window.location = "index.php?pagina=lista_usuario";
+                        },3000);
+                    </script>';
+                }
+                ?>
 
 
                 <div class="col-12 d-flex justify-content-end">
