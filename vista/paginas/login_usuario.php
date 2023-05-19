@@ -1,6 +1,5 @@
-
-<?php 
-  require("dashboard.php");
+<?php
+require("dashboard.php");
 ?>
 
 
@@ -10,7 +9,7 @@
       <div class="col-12">
         <div class="card card_login">
           <div class="card-header">
-            <h2 class="titulo text-center"> INGRESO</h2>
+            <h2 class="titulo text-center"> INGRESO CLIENTE</h2>
           </div>
           <div class="card-body contenido">
             <form action="../controladores/ingreso_usuarios.php" method="POST">
@@ -19,22 +18,22 @@
                 <div class="col-sm-12">
                   <div class="input-group mb-1">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-user "></i></span>
-                    <input type="text"  class="form-control control_ingreso"id="documento" name="documento">
+                    <input type="text" class="form-control control_ingreso" id="documento" name="documento">
                   </div>
                 </div>
               </div>
-           
+
               <div class="card-footer">
                 <div class="col-12 d-flex justify-content-center">
                   <button type="submit" class="btn btn-lg btn-success mb-3 boton_general" data-bs-toggle="modal" data-bs-target="#exampleModal">Ingresar</button>
                 </div>
             </form>
 
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
 
 
@@ -63,7 +62,7 @@
     </div>
   </div>
 </div>
-          
+
 
 
 
@@ -71,40 +70,31 @@
 
 
 <script>
-    function ingresos_clientes(documento) {
-        alert("mamá estoy triunfando"); 
+  function ingresos_clientes(documento) {
+    alert("mamá estoy triunfando");
     //     // Establecer la fecha de finalización del contador
     // var fechaFinalizacion = new Date("2023-05-27").getTime();
 
     // // Actualizar el contador cada segundo
     // var x = setInterval(function() {
-    
+
     // // Obtiene la fecha actual 
     // var fechaActual = new Date().getTime();
-        
+
     // // Calcula la diferencia de tiempo entre la fecha final y la fecha actual
     // var tiempoRestante = fechaFinalizacion - fechaActual;
 
     // // Calcula los días, horas, minutos y segundos restantes
     // var dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
-        
+
     // // Actualiza el contenido del contador en el HTML
     // document.getElementById("contador").innerHTML = dias;
-        
+
     // // Si el contador ha terminado, para la función del intervalo
     // if (tiempoRestante < 0) {
     //     clearInterval(x);
     //     document.getElementById("contador").innerHTML = "Su mensualidad termino";
     // }
     // }, 1000);
-}
+  }
 </script>
-
-
-
-                  
-
-   
-
-    
- 
