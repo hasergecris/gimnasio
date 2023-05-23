@@ -1,12 +1,9 @@
 <?php
-
-class ControladorFormularios {
-
-
+class ControladorFormularios
+{
   // REGISTRO
   static public function ctrRegistroUsuarios()
   {
-
     if (isset($_POST["registroNombre"])) {
       $tabla = "usuarios";
 
@@ -25,69 +22,53 @@ class ControladorFormularios {
   }
 
   // LISTAR REGISTROS
-
-  static public function ctrSeleccionarRegistros($item, $valor)
+  static public function ctrSeleccionarRegistros($item = null, $valor = null, $filtro = "")
   {
-
     $tabla = "usuarios";
-
-    $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
-
+    $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor, $filtro);
     return $respuesta;
   }
 
   // INGRESO ADMIN
-
   public function ctrIngreso()
   {
-
     if (isset($_POST["ingresoDocumento"])) {
-
       $tabla = "usuarios";
       $item = "usu_documento";
       $valor = $_POST["ingresoDocumento"];
 
       $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
 
-      if ($respuesta["usu_documento"] ==  $_POST["ingresoDocumento"] && $respuesta["usu_pas"] == $_POST["ingresoContrasenia"]) {
-
+      if ($respuesta && $respuesta["usu_pas"] == $_POST["ingresoContrasenia"]) {
         $_SESSION["validarIngreso"] = "ok";
 
         echo
         '<script>
-              if(window.history.replaceState) {
-                window.history.replaceState(null,null,window.location.href);
-              }
-              window.location = "index.php?pagina=lista_usuario";
-            </script>';
+          if(window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+          }
+          window.location = "index.php?pagina=lista_usuario";
+        </script>';
       } else {
         echo
         '<script>
-              if(window.history.replaceState) {
-                
-                window.history.replaceState(null,null,window.location.href);
-              }
-            </script>';
+          if(window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+          }
+        </script>';
 
-        echo '<div class="alert alert-danger">Error al ingresar al sistema, el documento o la contraseña no coínciden</div>';
+        echo '<div class="alert alert-danger">Error al ingresar al sistema, el documento o la contraseña no coinciden</div>';
       }
-
-      // echo '<pre>'; print_r($respuesta); echo '</pre>';
-
     }
   }
 
   // ACTUALIZAR USUARIO
-
   static public function ctrActualizarRegistro()
   {
-
     if (isset($_POST["actualizarNombre"])) {
-
       if ($_POST["actualizarContrasenia"] != "") {
-        $password = $_POST["actualizarcontrasenia"];
+        $password = $_POST["actualizarContrasenia"];
       } else {
-
         $password = $_POST["contraseniaActual"];
       }
 
@@ -107,30 +88,24 @@ class ControladorFormularios {
     }
   }
 
-  // ELIMINAR REGIDTRO 
+  // ELIMINAR REGISTRO
+  public function ctrEliminarRegistro()
+  {
+    if (isset($_POST["eliminarRegistro"])) {
+      $tabla = "usuarios";
+      $valor = $_POST["eliminarRegistro"];
 
- public function ctrEliminarRegistro(){
+      $respuesta = ModeloFormularios::mdlEliminarRegistro($tabla, $valor);
 
-  if (isset($_POST["eliminarRegistro"])) {
-    $tabla = "usuarios";
-    $valor = $_POST["eliminarRegistro"] ;
-
-  
-
-    $respuesta = ModeloFormularios::mdlEliminarRegistro($tabla, $valor);
-
-    if ($respuesta== "ok"){
-      echo
+      if ($respuesta == "ok") {
+        echo
         '<script>
-              if(window.history.replaceState) {
-                window.history.replaceState(null,null,window.location.href);
-              }
-              window.location = "index.php?pagina=lista_usuario";
-            </script>';
+          if(window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+          }
+          window.location = "index.php?pagina=lista_usuario";
+        </script>';
+      }
     }
- 
   }
- }
-  
-
 }

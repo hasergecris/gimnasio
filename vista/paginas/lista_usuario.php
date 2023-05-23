@@ -38,11 +38,11 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
       <?php
       foreach ($usuarios as $key => $value) : ?>
         <tr>
-          <td class="text-center"><?php echo ($key + 1); ?></td>
-          <td><?php echo $value["usu_nombre"] ?> </td>
-          <td><?php echo $value["usu_documento"] ?></td>
-          <td><?php echo $value["usu_correo"] ?></td>
-          <td class="text-center"><?php echo $value["usu_rol"] ?></td>
+            <td class="text-center"><?php echo ($key + 1); ?></td>
+            <td><?php echo $value["usu_nombre"] ?> </td>
+            <td><?php echo $value["usu_documento"] ?></td>
+            <td><?php echo $value["usu_correo"] ?></td>
+            <td class="text-center"><?php echo $value["usu_rol"] ?></td>
           <td><?php echo $value["fecha"] ?></td>
           <td class="d-flex">
             <div class="btn-group">
