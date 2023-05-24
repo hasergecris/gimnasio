@@ -59,4 +59,3 @@ if (!empty($fecha_fin)) {
             });
         </script>';
 }
-?>
