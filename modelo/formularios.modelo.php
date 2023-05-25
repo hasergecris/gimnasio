@@ -21,8 +21,35 @@ class ModeloFormularios
     }
   }
 
+  // REGISTRO DE PAGOS
+  static public function mdlRegistroPagos($tabla, $datos)
+  {
+    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(documento, valor, usu_nombre, desde, hasta) VALUES (:documento, :valor, :usu_nombre, :desde, :hasta)");
+
+    $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+    $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
+
+    // Consultar el nombre de usuario desde la tabla "usuarios"
+    $stmtUsuarios = Conexion::conectar()->prepare("SELECT usu_nombre FROM usuarios WHERE usu_documento = :documento");
+    $stmtUsuarios->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+    $stmtUsuarios->execute();
+    $resultadoUsuarios = $stmtUsuarios->fetch();
+
+    $nombreUsuario = $resultadoUsuarios["usu_nombre"];
+
+    $stmt->bindParam(":usu_nombre", $nombreUsuario, PDO::PARAM_STR);
+    $stmt->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
+    $stmt->bindParam(":hasta", $datos["hasta"], PDO::PARAM_STR);
+
+    if ($stmt->execute()) {
+      return "ok";
+    } else {
+      print_r(Conexion::conectar()->errorInfo());
+    }
+  }
+
   // LISTAR REGISTROS
-  static public function mdlSeleccionarRegistros($tabla, $item, $valor, $filtro = "")
+  static public function mdlSeleccionarRegistros($tabla, $item, $valor)
   {
     $query = "SELECT *, DATE_FORMAT(fecha, '%d/%m/%Y') AS fecha FROM $tabla";
 
@@ -30,7 +57,7 @@ class ModeloFormularios
       $query .= " WHERE $item = :$item";
     }
 
-    $query .= " $filtro ORDER BY id DESC";
+    $query .= " ORDER BY usu_nombre ASC";
 
     $stmt = Conexion::conectar()->prepare($query);
 
