@@ -21,30 +21,7 @@ class ControladorFormularios
     }
   }
 
-  //REGISTRO PAGOS
-
-  public static function ctrRegistroPagos()
-  {
-    if (isset($_POST["documento"])) {
-      $tabla = "pagos";
-
-      $datos = array(
-        "documento" => $_POST["documento"],
-        "valor" => $_POST["valor"],
-        "usu_nombre" => $_POST["registroNombre"],
-        "desde" => $_POST["desde"],
-        "hasta" => $_POST["hasta"]
-      );
-
-      $respuesta = ModeloFormularios::mdlRegistroPagos($tabla, $datos);
-
-      return $respuesta;
-    }
-  }
-
-
-
-  // LISTAR REGISTROS
+// LISTAR REGISTROS
   static public function ctrSeleccionarRegistros($item, $valor)
   {
     $tabla = "usuarios";
