@@ -1,6 +1,7 @@
-<?php 
-  require("dashboard.php")
-  
+<?php
+require("dashboard.php");
+
+$pagos = ControladorFormularios::ctrSeleccionarRegistros(null, null, "pagos");
 ?>
 
 <div id="tabla_pagos">
@@ -9,35 +10,25 @@
   <table class="table table-dark table-hover">
     <thead>
       <tr>
-        <th>NUMERO</th>
-        <th>CLIENTE</th>
+        <th>DOCUMENTO</th>
         <th>VALOR</th>
+        <th>NOMBRE</th>
         <th>DESDE</th>
         <th>HASTA</th>
       </tr>
     </thead>
 
     <tbody>
-      <?php foreach ($pagos as $key => $value) : ?>
+      <?php
+      foreach ($pagos as $key => $value) : ?>
         <tr>
-          <td class="text-center"><?php echo ($key + 1); ?></td>
-          <td><?php echo $value["cliente"]; ?></td>
+          <td><?php echo $value["documento"]; ?></td>
           <td><?php echo $value["valor"]; ?></td>
+          <td><?php echo $value["usu_nombre"]; ?></td>
           <td><?php echo $value["desde"]; ?></td>
           <td><?php echo $value["hasta"]; ?></td>
         </tr>
-      <?php endforeach; ?>
+      <?php endforeach ?>
     </tbody>
   </table>
 </div>
-
-   
-
-
-
-
-      
-   
-
-
-  

@@ -1,7 +1,6 @@
 <?php
 require("dashboard.php");
 
-$usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
 ?>
 
 <div id="ingreso_clientes">
@@ -18,7 +17,7 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
                 <label for="documento" class="form-label texto">Numero de documento:</label>
                 <input type="text" class="form-control" id="documento" name="documento" required>
               </div>
-              
+
               <div class="col-md-6">
                 <label for="valor" class="form-label texto">Valor:</label>
                 <input type="text" class="form-control" id="valor" name="valor" required>
@@ -26,7 +25,7 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
 
               <div class="col-md-12">
                 <label for="nombre" class="form-label texto">Nombre Usuario:</label>
-                <input type="text" class="form-control" id="nombre" name="usu_nombre" required>
+                <input type="text" class="form-control" id="nombre" name="registroNombre" required>
               </div>
 
               <div class="form-group col-md-6">
@@ -38,6 +37,25 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
                 <label for="hasta" class="texto">Hasta:</label>
                 <input type="date" class="form-control" id="hasta" name="hasta" required>
               </div>
+
+              <?php
+
+              // METODO ESTATICO
+
+              $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
+              if ($usuarios == "ok") {
+
+                echo
+                '<script>
+                    if(window.history.replaceState) {
+                      
+                      window.history.replaceState(null,null,window.location.href);
+                    }
+                  </script>';
+
+                echo '<div class="alert alert-success">El usuario ha sido registrado</div>';
+              }
+              ?>
 
               <div class="col-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-lg btn-primary boton_general">Guardar</button>
