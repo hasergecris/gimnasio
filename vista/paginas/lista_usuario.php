@@ -15,7 +15,7 @@ require("dashboard.php");
 //     }
 //   }
 
-$usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
+$usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
 ?>
 
 <div id="tabla_usuarios">

@@ -1,5 +1,8 @@
 <?php
 require("dashboard.php");
+
+$pagos = ControladorPagos::ctrSeleccionarPagos();
+
 ?>
 
 <div id="lista_pagos">
@@ -31,7 +34,7 @@ require("dashboard.php");
                     <td><?php echo $pago["desde"]; ?></td>
                     <td><?php echo $pago["hasta"]; ?></td>
                     <td>
-                      <a href="#" class="btn btn-info btn-sm btnEditarPago" data-toggle="modal" data-target="#modalEditarPago" data-id="<?php echo $pago["id"]; ?>" data-documento="<?php echo $pago["documento"]; ?>" data-valor="<?php echo $pago["valor"]; ?>" data-nombre="<?php echo $pago["usu_nombre"]; ?>" data-desde="<?php echo $pago["desde"]; ?>" data-hasta="<?php echo $pago["hasta"]; ?>">
+                      <a href="#" class="btn btn-warning btn-sm btnEditarPago" data-toggle="modal" data-target="#modalEditarPago" data-id="<?php echo $pago["id"]; ?>" data-documento="<?php echo $pago["documento"]; ?>" data-valor="<?php echo $pago["valor"]; ?>" data-nombre="<?php echo $pago["usu_nombre"]; ?>" data-desde="<?php echo $pago["desde"]; ?>" data-hasta="<?php echo $pago["hasta"]; ?>">
                         <i class="fas fa-pencil-alt"></i>
                       </a>
                       <button class="btn btn-danger btn-sm btnEliminarPago" data-id="<?php echo $pago["id"]; ?>" data-toggle="modal" data-target="#modalEliminarPago">

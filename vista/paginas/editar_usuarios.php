@@ -16,19 +16,11 @@ if (isset($_GET["id"])) {
   $item = "id";
   $valor = $_GET["id"];
 
-  $usuario = ControladorFormularios::ctrSeleccionarRegistros($item, $valor);
+  $usuario = ControladorFormularios::ctrSeleccionarRegistro($item, $valor);
 
-  // print_r($usuario);
+  //  print_r($usuario);
+  // echo $usuario[0]["usu_nombre"];
 }
-
-// echo $usuario["usu_rol"];
-// if ($usuario["usu_rol"] == 1) {
-//   // echo $usuario["usu_rol"];
-//   echo '<script>cargarRol(' . $usuario["usu_rol"] . ');</script>';
-// } else {
-//   echo ("pailas");
-// }
-
 
 ?>
 
@@ -45,23 +37,23 @@ if (isset($_GET["id"])) {
             <form method="post" class="row">
               <div class="col-12">
                 <div class="col-md-12 mb-4">
-                  <input type="text" class="form-control" placeholder="Escriba su nombre" id="nombres" name="actualizarNombre" value="<?php echo $usuario["usu_nombre"] ?>">
+                  <input type="text" class="form-control" placeholder="Escriba su nombre" id="nombres" name="actualizarNombre" value="<?php echo $usuario[0]["usu_nombre"]; ?>">
                 </div>
 
 
                 <div class="col-md-12 mb-4">
-                  <input type="text" class="form-control" placeholder="Escriba su documento" id="num_documento" name="actualizarDocumento" value="<?php echo $usuario["usu_documento"] ?>" aria-describedby="inputGroupPrepend2">
+                  <input type="text" class="form-control" placeholder="Escriba su documento" id="num_documento" name="actualizarDocumento" value="<?php echo $usuario[0]["usu_documento"] ?>" aria-describedby="inputGroupPrepend2">
                 </div>
 
                 <div class="col-md-12 mb-4">
-                  <input type="email" class="form-control" placeholder="Escriba su correo" id="correo" name="actualizarCorreo" value="<?php echo $usuario["usu_correo"] ?>">
+                  <input type="email" class="form-control" placeholder="Escriba su correo" id="correo" name="actualizarCorreo" value="<?php echo $usuario[0]["usu_correo"] ?>">
                 </div>
 
                 <div class="col-md-12 mb-4" id="admin_contrasenia">
                   <input type="pasword" class="form-control" placeholder="Escriba su contraseña" id="actualizarContrasenia" name="actualizarContrasenia">
-                  <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario["usu_pas"] ?>">
+                  <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario[0]["usu_pas"] ?>">
                 </div>
-                <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario["id"] ?>">
+                <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario[0]["id"] ?>">
 
                 <?php
                 $actualizar = ControladorFormularios::ctrActualizarRegistro();

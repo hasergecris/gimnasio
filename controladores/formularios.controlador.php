@@ -22,7 +22,7 @@ class ControladorFormularios
   }
 
 // LISTAR REGISTROS
-  static public function ctrSeleccionarRegistros($item, $valor)
+  static public function ctrSeleccionarRegistro($item, $valor)
   {
     $tabla = "usuarios";
     $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);

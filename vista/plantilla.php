@@ -46,7 +46,9 @@ session_start();
   } else {
     include "paginas/login_admin.php";
   }
+  
   ?>
+  
 
 
 

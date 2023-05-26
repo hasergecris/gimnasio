@@ -115,7 +115,7 @@ require("dashboard.php")
               <?php
 
               // METODO ESTATICO
-              $registro = ControladorFormularios::ctrRegistroUsuarios();
+              $registro = formularioControlador::ctrRegistroUsuarios();
 
               if ($registro == "ok") {
 
