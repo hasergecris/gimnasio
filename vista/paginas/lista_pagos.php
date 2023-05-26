@@ -1,3 +1,7 @@
+<?php
+require("dashboard.php");
+?>
+
 <div id="lista_pagos">
   <div class="container">
     <div class="row">
@@ -71,11 +75,11 @@
           </div>
           <div class="form-group">
             <label for="editarDesde">Desde</label>
-            <input type="text" class="form-control" id="editarDesde" name="actualizarDesde">
+            <input type="date" class="form-control" id="editarDesde" name="actualizarDesde">
           </div>
           <div class="form-group">
             <label for="editarHasta">Hasta</label>
-            <input type="text" class="form-control" id="editarHasta" name="actualizarHasta">
+            <input type="date" class="form-control" id="editarHasta" name="actualizarHasta">
           </div>
           <input type="hidden" id="idPago" name="idPago">
           <button type="submit" class="btn btn-primary">Guardar Cambios</button>
