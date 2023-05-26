@@ -6,11 +6,12 @@ class ModeloPagos
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
-    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre, desde, hasta) VALUES (:documento, :valor, :usu_nombre, :desde, :hasta)");
+    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta)");
 
     $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
     $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
     $stmt->bindParam(":usu_nombre", $datos["usu_nombre"], PDO::PARAM_STR);
+    $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
     $stmt->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
     $stmt->bindParam(":hasta", $datos["hasta"], PDO::PARAM_STR);
 
@@ -38,6 +39,7 @@ class ModeloPagos
     $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
     $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
     $stmt->bindParam(":usu_nombre", $datos["usu_nombre"], PDO::PARAM_STR);
+    $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
     $stmt->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
     $stmt->bindParam(":hasta", $datos["hasta"], PDO::PARAM_STR);
     $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);

@@ -11,6 +11,7 @@ class ControladorPagos
         "documento" => $_POST["documento"],
         "valor" => $_POST["valor"],
         "usu_nombre" => $_POST["registroNombre"],
+        "duracion" => $_POST["duracion"],
         "desde" => $_POST["desde"],
         "hasta" => $_POST["hasta"]
       );
@@ -40,6 +41,7 @@ class ControladorPagos
         "documento" => $_POST["actualizarDocumento"],
         "valor" => $_POST["actualizarValor"],
         "usu_nombre" => $_POST["actualizarNombre"],
+        "duracion" => $_POST["actualizaDuracion"],
         "desde" => $_POST["actualizarDesde"],
         "hasta" => $_POST["actualizarHasta"]
       );

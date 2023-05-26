@@ -23,9 +23,14 @@ require("dashboard.php");
                 <input type="text" class="form-control" id="valor" name="valor" required>
               </div>
 
-              <div class="col-md-12">
+              <div class="col-md-8">
                 <label for="nombre" class="form-label texto">Nombre Usuario:</label>
                 <input type="text" class="form-control" id="nombre" name="registroNombre" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="nombre" class="form-label texto">Duración:</label>
+                <input type="text" class="form-control" id="duracion" name="duracion" required>
               </div>
 
               <div class="form-group col-md-6">
@@ -42,7 +47,7 @@ require("dashboard.php");
 
               // METODO ESTATICO
 
-              $usuarios = ControladorFormularios::ctrSeleccionarRegistros(null, null);
+              $usuarios = ControladorPagos::ctrRegistroPagos();
               if ($usuarios == "ok") {
 
                 echo
