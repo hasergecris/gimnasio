@@ -26,36 +26,42 @@ if (isset($_GET["id"])) {
           <div class="card-body">
             <form method="post" class="row">
               <div class="col-12">
+                <div class="d-flex">
+                  <div class="col-md-6 mb-3">
+                    <label for="desde" class="texto">Documento:</label>
+                    <input type="text" class="form-control" placeholder="Escriba su documento" id="num_documento" name="actualizarDocumento" value="<?php echo $usuario[0]["documento"] ?>">
+                  </div>
 
-                <div class="col-md-6 mb-3">
-                  <input type="text" class="form-control" placeholder="Escriba su documento" id="num_documento" name="actualizarDocumento" value="<?php echo $usuario[0]["documento"] ?>">
+                  <div class="col-md-6 mb-3">
+                    <label for="desde" class="texto">Valor:</label>
+                    <input type="text" class="form-control" placeholder="Escriba el valor a pagar" id="actualizarvalor" name="actualizarValor" value="<?php echo $usuario[0]["valor"] ?>">
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="col-md-9 mb-3">
+                    <label for="desde" class="texto">Nombre Usuario:</label>
+                    <input type="text" class="form-control" placeholder="Escriba su nombre" id="actualizarNombre" name="actualizarNombre" value="<?php echo $usuario[0]["usu_nombre"]; ?>">
+                  </div>
+
+
+                  <div class="col-md-2 mb-3">
+                    <label for="desde" class="texto">Duracion:</label>
+                    <input type="text" class="form-control" placeholder="Escriba los dias de duracion del pago" id="actualizarDuracion" name="actualizarDuracion" value="<?php echo $usuario[0]["duracion"] ?>">
+                  </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
-                  <input type="text" class="form-control" placeholder="Escriba el valor a pagar" id="actualizarvalor" name="actualizarValor" value="<?php echo $usuario[0]["valor"] ?>">
+                <div class="d-flex">
+                  <div class="form-group col-md-6">
+                    <label for="desde" class="texto">Desde:</label>
+                    <input type="date" class="form-control" id="actualizarDesde" name="actualizarDesde" value="<?php echo $usuario[0]["desde"] ?>">
+                  </div>
+
+
+                  <div class="form-group col-md-6">
+                    <label for="hasta" class="texto">Hasta:</label>
+                    <input type="date" class="form-control" id="actualizarHasta" name="actualizarHasta" value="<?php echo $usuario[0]["hasta"] ?>">
+                  </div>
                 </div>
-
-                <div class="col-md-9 mb-3">
-                  <input type="text" class="form-control" placeholder="Escriba su nombre" id="actualizarNombre" name="actualizarNombre" value="<?php echo $usuario[0]["usu_nombre"]; ?>">
-                </div>
-
-
-                <div class="col-md-2 mb-3">
-                  <input type="text" class="form-control" placeholder="Escriba los dias de duracion del pago" id="actualizarDuracion" name="actualizarDuracion" value="<?php echo $usuario[0]["duracion"] ?>">
-                </div>
-
-
-                <div class="form-group col-md-6">
-                  <label for="desde" class="texto">Desde:</label>
-                  <input type="date" class="form-control" id="actualizarDesde" name="actualizarDesde" value="<?php echo $usuario[0]["desde"] ?>">
-                </div>
-
-
-                <div class="form-group col-md-6">
-                  <label for="hasta" class="texto">Hasta:</label>
-                  <input type="date" class="form-control" id="actualizarHasta" name="actualizarHasta" value="<?php echo $usuario[0]["hasta"] ?>">
-                </div>
-
 
 
                 <?php

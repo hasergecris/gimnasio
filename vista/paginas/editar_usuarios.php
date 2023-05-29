@@ -67,11 +67,11 @@ if (isset($_GET["id"])) {
                     </script>';
 
 
-                  echo '<div class="alert alert-success">La información del Usuario a sido actualizada.</div>';
+                  echo '<div class="alert alert-success">La información del Usuario <br>' . $usuario[0]["usu_nombre"] .  ' <br>a sido actualizada.</div>';
 
                   '<script>
                         setTimeout(fuction(){
-                          window.location = "index.php?pagina=lista_usuario";
+                          window.location = "index.php?pagina=editar_usuario";
                         },3000);
                     </script>';
                 }

@@ -9,7 +9,7 @@
             <h2 class="titulo text-center"> INGRESO CLIENTE</h2>
           </div>
           <div class="card-body contenido">
-            <form action="../controladores/ingreso_usuarios.php" method="POST">
+            <form method="POST" name="ingresoUsuarios">
               <div class="mb-2 row d-block">
                 <label class="mb-1 col-sm-12 col-form-label texto">Ingresa tu número de documento:</label>
                 <div class="col-sm-12">
@@ -19,6 +19,16 @@
                   </div>
                 </div>
               </div>
+
+              <?php
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // METODO NO ESTATICO
+                $ingreso = new ControladorPagos();
+                $ingreso->ctrIngresoUsuarios();
+              }
+              ?>
+
+
 
               <div class="card-footer">
                 <div class="col-12 d-flex justify-content-center">

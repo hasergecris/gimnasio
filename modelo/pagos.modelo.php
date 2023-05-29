@@ -3,6 +3,17 @@ require_once "conexion.php";
 
 class ModeloPagos
 {
+
+  // SELECCIONAR PAGOS POR DOCUMENTO
+  static public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
+  {
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE documento = :documento");
+    $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+  }
+
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
