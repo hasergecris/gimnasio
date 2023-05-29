@@ -20,6 +20,7 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
                   <th>Documento</th>
                   <th>Valor</th>
                   <th>Nombre</th>
+                  <th>Duración</th>
                   <th>Desde</th>
                   <th>Hasta</th>
                   <th>Acciones</th>
@@ -31,15 +32,25 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
                     <td><?php echo $pago["documento"]; ?></td>
                     <td><?php echo $pago["valor"]; ?></td>
                     <td><?php echo $pago["usu_nombre"]; ?></td>
+                    <td><?php echo $pago["duracion"]; ?></td>
                     <td><?php echo $pago["desde"]; ?></td>
                     <td><?php echo $pago["hasta"]; ?></td>
-                    <td>
-                      <a href="#" class="btn btn-warning btn-sm btnEditarPago" data-toggle="modal" data-target="#modalEditarPago" data-id="<?php echo $pago["id"]; ?>" data-documento="<?php echo $pago["documento"]; ?>" data-valor="<?php echo $pago["valor"]; ?>" data-nombre="<?php echo $pago["usu_nombre"]; ?>" data-desde="<?php echo $pago["desde"]; ?>" data-hasta="<?php echo $pago["hasta"]; ?>">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <button class="btn btn-danger btn-sm btnEliminarPago" data-id="<?php echo $pago["id"]; ?>" data-toggle="modal" data-target="#modalEliminarPago">
-                        <i class="fas fa-trash"></i>
-                      </button>
+                    <td class="d-flex">
+                      <div class="btn-group">
+                        <div class="px-1">
+                          <a href="index.php?pagina=editar_pagos&id=<?php echo $pago["id"]; ?>" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                        </div>
+
+                        <form method="post">
+                          <input type="hidden" name="eliminarRegistro" value=" <?php echo $pago["id"]; ?>">
+                          <button type="submit" class="btn btn-danger"><i class=" fas fa-trash-alt"></i></button>
+
+                          <?php
+                          $eliminar = new  ControladorPagos();
+                          $eliminar->ctrEliminarPago();
+                          ?>
+                        </form>
+                      </div>
                     </td>
                   </tr>
                 <?php endforeach; ?>

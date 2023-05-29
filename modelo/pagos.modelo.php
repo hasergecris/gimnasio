@@ -34,7 +34,7 @@ class ModeloPagos
   // ACTUALIZAR PAGO
   static public function mdlActualizarPago($tabla, $datos)
   {
-    $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET documento = :documento, valor = :valor, usu_nombre = :usu_nombre, desde = :desde, hasta = :hasta WHERE id = :id");
+    $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET documento = :documento, valor = :valor, usu_nombre = :usu_nombre, duracion = :duracion, desde = :desde, hasta = :hasta WHERE id = :id");
 
     $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
     $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);

@@ -36,6 +36,7 @@ session_start();
       $_GET["pagina"] == "registro_usuario" ||
       $_GET["pagina"] == "dashboard" ||
       $_GET["pagina"] == "editar_usuarios" ||
+      $_GET["pagina"] == "editar_pagos" ||
       $_GET["pagina"] == "salir"
     ) {
       include "paginas/" . $_GET["pagina"] . ".php";
@@ -46,9 +47,9 @@ session_start();
   } else {
     include "paginas/login_admin.php";
   }
-  
+
   ?>
-  
+
 
 
 

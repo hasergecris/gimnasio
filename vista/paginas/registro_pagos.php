@@ -1,9 +1,8 @@
 <?php
 require("dashboard.php");
-
 ?>
 
-<div id="ingreso_clientes">
+<div id="ingreso_cliente">
   <div class="container">
     <div class="row">
       <div class="col-12">

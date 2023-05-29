@@ -37,11 +37,11 @@ class ControladorPagos
       $tabla = "pagos";
 
       $datos = array(
-        "id" => $_POST["idPago"],
+        "id" => $_POST["idUsuario"],
         "documento" => $_POST["actualizarDocumento"],
         "valor" => $_POST["actualizarValor"],
         "usu_nombre" => $_POST["actualizarNombre"],
-        "duracion" => $_POST["actualizaDuracion"],
+        "duracion" => $_POST["actualizarDuracion"],
         "desde" => $_POST["actualizarDesde"],
         "hasta" => $_POST["actualizarHasta"]
       );
