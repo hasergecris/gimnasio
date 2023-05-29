@@ -67,10 +67,9 @@ class ControladorPagos
           if(window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
           }
-          window.location = "index.php?pagina=listar_pagos";
+          window.location = "index.php?pagina=lista_pagos";
         </script>';
       }
     }
   }
 }
-?>

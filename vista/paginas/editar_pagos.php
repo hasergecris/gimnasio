@@ -45,10 +45,8 @@ if (isset($_GET["id"])) {
                 </div>
 
 
-
-
                 <div class="form-group col-md-6">
-                  <label for="desde" class="texto">Hasta:</label>
+                  <label for="desde" class="texto">Desde:</label>
                   <input type="date" class="form-control" id="actualizarDesde" name="actualizarDesde" value="<?php echo $usuario[0]["desde"] ?>">
                 </div>
 
@@ -63,22 +61,22 @@ if (isset($_GET["id"])) {
                 <?php
                 $actualizar = ControladorPagos::ctrActualizarPago();
 
-                if ($actualizar == " ok") {
+                if ($actualizar == "ok") {
                   echo
                   '<script>
-                        if(window.history.replaceState) {
-                          window.history.replaceState(null,null,window.location.href);
-                        }
-                      </script>';
+                      if(window.history.replaceState) {
+                        window.history.replaceState(null,null,window.location.href);
+                      }
+                    </script>';
 
 
-                  echo '<div class="alert alert-success">La información del Usuario a sido actualizada.</div>';
+                  echo '<div class="alert alert-success">La información de pago al usuario' . $actualizar . 'a sido actualizada.</div>';
 
                   '<script>
-                          setTimeout(fuction(){
-                            window.location = "index.php?pagina=lista_usuario";
-                          },3000);
-                      </script>';
+                      setTimeout(fuction(){
+                        window.location = "index.php?pagina=lista_usuario";
+                      },3000);
+                  </script>';
                 }
                 ?>
 

@@ -42,7 +42,7 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
                         </div>
 
                         <form method="post">
-                          <input type="hidden" name="eliminarRegistro" value=" <?php echo $pago["id"]; ?>">
+                          <input type="hidden" name="eliminarPago" value=" <?php echo $pago["id"]; ?>">
                           <button type="submit" class="btn btn-danger"><i class=" fas fa-trash-alt"></i></button>
 
                           <?php
@@ -125,36 +125,14 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
 </div>
 
 <script>
-  // Obtener datos del pago a editar
-  $(".btnEditarPago").click(function() {
-    $("#editarDocumento").val($(this).data("documento"));
-    $("#editarValor").val($(this).data("valor"));
-    $("#editarNombre").val($(this).data("nombre"));
-    $("#editarDesde").val($(this).data("desde"));
-    $("#editarHasta").val($(this).data("hasta"));
-    $("#idPago").val($(this).data("id"));
-  });
+ 
 
   // Obtener id del pago a eliminar
   $(".btnEliminarPago").click(function() {
     $("#eliminarPago").val($(this).data("id"));
   });
 
-  // Enviar formulario de edición
-  $("#formEditarPago").submit(function(e) {
-    e.preventDefault();
-    var url = "actualizar_pago.php";
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: $(this).serialize(),
-      success: function(data) {
-        $("#modalEditarPago").modal("hide");
-        location.reload();
-      }
-    });
-  });
-
+  
   // Enviar formulario de eliminación
   $("#formEliminarPago").submit(function(e) {
     e.preventDefault();

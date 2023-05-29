@@ -57,7 +57,7 @@ require("dashboard.php");
                     }
                   </script>';
 
-                echo '<div class="alert alert-success">El usuario ha sido registrado</div>';
+                echo '<div class="alert alert-success">El pago del usuario  ha sido registrado</div>';
               }
               ?>
 
