@@ -70,11 +70,11 @@ if (isset($_GET["id"])) {
                     </script>';
 
 
-                  echo '<div class="alert alert-success">La información de pago al usuario' . $actualizar . 'a sido actualizada.</div>';
+                  echo '<div class="alert alert-success">La información de pago al usuario <br>' . $usuario[0]["usu_nombre"] . '<br> a sido actualizada.</div>';
 
                   '<script>
                       setTimeout(fuction(){
-                        window.location = "index.php?pagina=lista_usuario";
+                        window.location = "index.php?pagina=lista_pagos";
                       },3000);
                   </script>';
                 }
