@@ -1,44 +1,19 @@
 <?php
 class ControladorPagos
 {
-   // INGRESO DE USUARIOS
-   public static function ctrIngresoUsuarios()
-   {
-     if (isset($_POST["documento"])) {
-       $documento = $_POST["documento"];
-       $tabla = "pagos";
-       $pagos = ModeloPagos::mdlSeleccionarPagosPorDocumento($tabla, $documento);
- 
-       if (!empty($pagos)) {
-         $ultimoPago = end($pagos);
-         $hasta = new DateTime($ultimoPago["hasta"]);
-         $hoy = new DateTime();
- 
-         if ($hasta >= $hoy) {
-           $diasRestantes = $hasta->diff($hoy)->days;
-           // Mostrar el modal con los días restantes al usuario
-           echo '<script>
-                   document.getElementById("contador").innerHTML = ' . $diasRestantes . ';
-                   $("#exampleModal").modal("show");
-                 </script>';
-         } else {
-           // El último pago ha vencido
-           echo '<script>
-                   document.getElementById("contador").innerHTML = "Su mensualidad ha terminado";
-                   $("#exampleModal").modal("show");
-                 </script>';
-         }
-       } else {
-         // No se encontraron pagos para el usuario
-         echo '<script>
-                 document.getElementById("contador").innerHTML = "Usuario no encontrado";
-                 $("#exampleModal").modal("show");
-               </script>';
-       }
-     }
-   }
+ static  public function ctrIngresoUsuarios()
+  {
+    if (isset($_POST["documento"])) {
+      $tabla = "ingreso_clientes";
+      $documento = $_POST["documento"];
 
-   // REGISTRO PAGOS
+      $respuesta = ModeloPagos::mdlSeleccionarPagosPorDocumento($tabla, $documento);
+
+      return$respuesta;
+    }
+  }
+
+  // REGISTRO PAGOS
   public static function ctrRegistroPagos()
   {
     if (isset($_POST["documento"])) {

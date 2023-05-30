@@ -128,6 +128,12 @@ require("dashboard.php")
                     </script>';
 
                 echo '<div class="alert alert-success">El usuario ha sido registrado</div>';
+
+                '<script>
+                    setTimeout(fuction(){
+                      window.location = "index.php?pagina=lista_usuario";
+                    },3000);
+                  </script>';
               }
               ?>
 

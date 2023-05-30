@@ -7,24 +7,34 @@ class ModeloPagos
   // SELECCIONAR PAGOS POR DOCUMENTO
   static public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
   {
-    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE documento = :documento");
-    $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
+    $hoy = date("Y-m-d");
+
+    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ing_idUsuario, ing_fecha) VALUES (:ing_idUsuario,:ing_fecha )");
+    $stmt->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+    $stmt->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
+
     $stmt->execute();
 
-    return $stmt->fetchAll();
+    return $stmt;
   }
 
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
-    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta)");
+    $hasta = date($datos["hasta"]);  
+    $desde = date($datos["desde"]);
+    $fecha_alerta_terminacion =  date("y-m-d", strtotime($hasta . "- 2 days"));
+
+
+    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta,fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta, :fecha_alerta_terminacion)");
 
     $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
     $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
     $stmt->bindParam(":usu_nombre", $datos["usu_nombre"], PDO::PARAM_STR);
     $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
-    $stmt->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
-    $stmt->bindParam(":hasta", $datos["hasta"], PDO::PARAM_STR);
+    $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);
+    $stmt->bindParam(":hasta", $hasta, PDO::PARAM_STR);
+    $stmt->bindParam(":fecha_alerta_terminacion", $fecha_alerta_terminacion, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
       return "ok";

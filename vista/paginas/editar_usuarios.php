@@ -25,7 +25,7 @@ if (isset($_GET["id"])) {
 ?>
 
 
-<div id="ingreso_cliente">
+<div id="editar_usuarios">
   <div class="container">
     <div class="row">
       <div class="col-12">
