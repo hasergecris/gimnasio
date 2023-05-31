@@ -21,7 +21,7 @@ class ControladorFormularios
     }
   }
 
-// LISTAR REGISTROS
+  // LISTAR REGISTROS
   static public function ctrSeleccionarRegistro($item, $valor)
   {
     $tabla = "usuarios";
@@ -34,34 +34,33 @@ class ControladorFormularios
   {
     if (isset($_POST["ingresoDocumento"])) {
       $tabla = "usuarios";
-      $item = "usu_documento";
-      $valor = $_POST["ingresoDocumento"];
+      $documento = $_POST["ingresoDocumento"];
+      $contrasenia = $_POST["ingresoContrasenia"];
 
-      $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
+      $respuesta = ModeloFormularios::mdlAutenticarUsuario($tabla, $documento, $contrasenia);
 
-      if ($respuesta && $respuesta["usu_pas"] == $_POST["ingresoContrasenia"]) {
+      if ($respuesta) {
         $_SESSION["validarIngreso"] = "ok";
 
         echo
         '<script>
-          if(window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-          }
-          window.location = "index.php?pagina=lista_usuario";
-        </script>';
+         if(window.history.replaceState) {
+           window.history.replaceState(null, null, window.location.href);
+         }
+         window.location = "index.php?pagina=lista_usuario";
+       </script>';
       } else {
         echo
         '<script>
-          if(window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-          }
-        </script>';
+         if(window.history.replaceState) {
+           window.history.replaceState(null, null, window.location.href);
+         }
+       </script>';
 
         echo '<div class="alert alert-danger">Error al ingresar al sistema, el documento o la contraseña no coinciden</div>';
       }
     }
   }
-
   // ACTUALIZAR USUARIO
   static public function ctrActualizarRegistro()
   {

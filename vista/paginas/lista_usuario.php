@@ -1,19 +1,7 @@
 <?php
 require("dashboard.php");
 
-//   if(isset($_SESSION["validarIngreso"])) {
 
-//     echo '<script> window.location = "index.php?pagina=login_admin" </script>';
-//     return;
-
-
-// }else {
-//     if( $_SESSION["validarIngreso"] != "ok") {
-
-//     echo '<script> window.location = "index.php?pagina=login_admin" </script>';
-//       return;
-//     }
-//   }
 
 $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
 ?>
@@ -38,11 +26,11 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
       <?php
       foreach ($usuarios as $key => $value) : ?>
         <tr>
-            <td class="text-center"><?php echo ($key + 1); ?></td>
-            <td><?php echo $value["usu_nombre"] ?> </td>
-            <td><?php echo $value["usu_documento"] ?></td>
-            <td><?php echo $value["usu_correo"] ?></td>
-            <td class="text-center"><?php echo $value["usu_rol"] ?></td>
+          <td class="text-center"><?php echo ($key + 1); ?></td>
+          <td><?php echo $value["usu_nombre"] ?> </td>
+          <td><?php echo $value["usu_documento"] ?></td>
+          <td><?php echo $value["usu_correo"] ?></td>
+          <td class="text-center"><?php echo $value["usu_rol"] ?></td>
           <td><?php echo $value["fecha"] ?></td>
           <td class="d-flex">
             <div class="btn-group">

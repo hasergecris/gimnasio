@@ -21,8 +21,29 @@ class ModeloFormularios
     }
   }
 
-  
-  
+
+  // AUTENTICACIÓN DE USUARIO
+  static public function mdlAutenticarUsuario($tabla, $documento, $contrasenia)
+  {
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE usu_documento = :usu_documento");
+
+    $stmt->bindParam(":usu_documento", $documento, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($contrasenia == $usuario['usu_pas']) {
+      // Autenticación exitosa
+      return $usuario;
+    } else {
+      // Autenticación fallida
+      return false;
+    }
+  }
+
+
+
 
   // LISTAR REGISTROS
   static public function mdlSeleccionarRegistros($tabla, $item, $valor)

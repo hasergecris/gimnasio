@@ -26,21 +26,44 @@ require("dashboard.php");
 
               $respuesta = ControladorPagos::ctrIngresoUsuarios();
 
-              if ($respuesta == "ok") {
-                echo
-                '<script>
-                    if(window.history.replaceState) {
-                      
-                      window.history.replaceState(null,null,window.location.href);
-                    }
-                  </script>';
+              $respuesta[0];
 
-                echo '<div class="alert alert-success">El pago del usuario ha sido registrado</div>';
-                '<script>
-                  setTimeout(fuction(){
-                    window.location = "index.php?pagina=lista_pagos";
-                  },3000);
-                </script>';
+              print_r($respuesta[2]);
+
+              if ($respuesta[0]) {
+
+
+                if ($respuesta[1] == "true") {
+                  echo
+                  '<script>
+                      if(window.history.replaceState) {
+                        
+                        window.history.replaceState(null,null,window.location.href);
+                      }
+                    </script>';
+
+                  echo '<div class="alert alert-danger">AL USUARIO LE QUEDAN' . $respuesta[2] . ' DIAS</div>';
+                  '<script>
+                    setTimeout(fuction(){
+                      window.location = "index.php?pagina=lista_pagos";
+                    },3000);
+                  </script>';
+                } else {
+                  echo
+                  '<script>
+                      if(window.history.replaceState) {
+                        
+                        window.history.replaceState(null,null,window.location.href);
+                      }
+                    </script>';
+
+                  echo '<div class="alert alert-success">INGRESO EXITOSO</div>';
+                  '<script>
+                    setTimeout(fuction(){
+                      window.location = "index.php?pagina=lista_pagos";
+                    },3000);
+                  </script>';
+                }
               }
               ?>
 

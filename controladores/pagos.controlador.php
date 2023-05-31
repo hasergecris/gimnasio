@@ -1,6 +1,7 @@
 <?php
 class ControladorPagos
 {
+  //INGRESO USUARIO
  static  public function ctrIngresoUsuarios()
   {
     if (isset($_POST["documento"])) {

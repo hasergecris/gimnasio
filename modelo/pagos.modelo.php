@@ -15,13 +15,43 @@ class ModeloPagos
 
     $stmt->execute();
 
-    return $stmt;
+
+
+    $alerta = Conexion::conectar()->prepare("SELECT * FROM  pagos WHERE $hoy >= fecha_alerta_terminacion");
+    $alerta->execute();
+
+
+    $datosIngreso = $alerta->fetch(PDO::FETCH_ASSOC);
+    $fecha_final = $datosIngreso["hasta"];
+    if ($alerta) {
+      $ingreso = "true";
+    } else {
+      $ingreso = "false";
+    }
+
+    // ingresasr dias restantes
+    $date1 = new DateTime($hoy);
+    $date2 = new DateTime($fecha_final);
+    $diff = $date1->diff($date2);
+    // will output 2 days
+   
+
+
+    $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE  documento = :documento");
+
+    $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
+    $stmt->bindParam(":dias_restantes", $hoy, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+
+    return  array($stmt, $ingreso, $diff);
   }
 
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
-    $hasta = date($datos["hasta"]);  
+    $hasta = date($datos["hasta"]);
     $desde = date($datos["desde"]);
     $fecha_alerta_terminacion =  date("y-m-d", strtotime($hasta . "- 2 days"));
 

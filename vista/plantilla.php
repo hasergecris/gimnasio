@@ -28,6 +28,7 @@ session_start();
 
   <?php
   if (isset($_GET["pagina"])) {
+    
     if (
       $_GET["pagina"] == "login_usuario" ||
       $_GET["pagina"] == "login_admin" ||
