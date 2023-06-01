@@ -28,26 +28,43 @@ require("dashboard.php");
 
               $respuesta[0];
 
-              print_r($respuesta[2]);
 
               if ($respuesta[0]) {
 
 
                 if ($respuesta[1] == "true") {
-                  echo
-                  '<script>
+                  if ($respuesta[2] == 0) {
+                    echo
+                    '<script>
+                    if(window.history.replaceState) {
+                      
+                      window.history.replaceState(null,null,window.location.href);
+                    }
+                  </script>';
+
+                    echo '<div class="alert alert-danger"> !!! ATENCION !!! <br> POR FAVOR RENUEVE SU PAGO </div>';
+                    '<script>
+                      setTimeout(fuction(){
+                        window.location = "index.php?pagina=lista_pagos";
+                      },5000);
+                    </script>';
+                  } else {
+
+                    echo
+                    '<script>
                       if(window.history.replaceState) {
                         
                         window.history.replaceState(null,null,window.location.href);
                       }
                     </script>';
 
-                  echo '<div class="alert alert-danger">AL USUARIO LE QUEDAN' . $respuesta[2] . ' DIAS</div>';
-                  '<script>
+                    echo '<div class="alert alert-danger">AL USUARIO LE QUEDAN' . $respuesta[2] . ' DIAS</div>';
+                    '<script>
                     setTimeout(fuction(){
                       window.location = "index.php?pagina=lista_pagos";
                     },3000);
                   </script>';
+                  }
                 } else {
                   echo
                   '<script>

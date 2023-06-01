@@ -9,15 +9,25 @@ class ModeloPagos
   {
     $hoy = date("Y-m-d");
 
-    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ing_idUsuario, ing_fecha) VALUES (:ing_idUsuario,:ing_fecha )");
-    $stmt->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
-    $stmt->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
 
-    $stmt->execute();
+// ESTA CONSULTA HACE SELECIIONAR EL ULTIMO PAGON PARA COMPROBAR
+   $filtro = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento=:ing_idUsuario ORDER BY campo_fecha DESC LIMIT 1;");
+
+   $filtro->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+   $filtro->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
+   $filtro->execute();
+
+   $datos_filtro = $filtro->fetch(PDO::FETCH_ASSOC);
+   $id_ultimo_pago = $datos_filtro["id"];
+
+// ESTA CONSULTA COMPRUEBA LOS DIAS FALTANTES 
+    $alerta = Conexion::conectar()->prepare("SELECT * FROM  pagos WHERE id = :ultimo_pago and (fecha_alerta_terminacion <= :ing_fecha and documento=:ing_idUsuario  and ( :ing_fecha >= desde and :ing_fecha <= hasta))");
 
 
+    $alerta->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+    $alerta->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
+    $alerta->bindParam(":ultimo_pago", $id_ultimo_pago, PDO::PARAM_STR);
 
-    $alerta = Conexion::conectar()->prepare("SELECT * FROM  pagos WHERE $hoy >= fecha_alerta_terminacion");
     $alerta->execute();
 
 
@@ -32,9 +42,22 @@ class ModeloPagos
     // ingresasr dias restantes
     $date1 = new DateTime($hoy);
     $date2 = new DateTime($fecha_final);
+
     $diff = $date1->diff($date2);
+
     // will output 2 days
-   
+    $fechaString = $diff->format('%d');
+
+
+    if ($fechaString != 0) {
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ing_idUsuario, ing_fecha) VALUES (:ing_idUsuario,:ing_fecha )");
+      $stmt->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+      $stmt->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
+
+      $stmt->execute();
+    }
+
+
 
 
     $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE  documento = :documento");
@@ -45,8 +68,9 @@ class ModeloPagos
     $stmt->execute();
 
 
-    return  array($stmt, $ingreso, $diff);
+    return  array($stmt, $ingreso, $fechaString);
   }
+
 
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
