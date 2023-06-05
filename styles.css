@@ -41,9 +41,11 @@ body {
   font-size: 45px;
   cursor: pointer;
 }
+
 .boton-captura:focus {
   outline: none;
 }
+
 .icono-usuario {
   color: #999;
 }
@@ -82,7 +84,7 @@ body {
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
-#tabla_usuarios {
+.tabla_usuarios {
   padding: 8% 5%;
   background-color: rgba(175, 182, 1, 0.3);
   color: rgba(175, 182, 1, 0.3);

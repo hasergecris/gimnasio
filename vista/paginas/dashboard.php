@@ -44,6 +44,7 @@ if (!isset($_SESSION["validarIngreso"])) {
               <li class="nav-item">
                 <a class="nav-link" href="index.php?pagina=registro_usuario">Registro de Usuarios</a>
               </li>
+              
             <?php endif ?>
 
             <?php if ($_GET["pagina"] == "login_usuario") : ?>

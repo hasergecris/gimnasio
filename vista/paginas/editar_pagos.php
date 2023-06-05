@@ -24,8 +24,8 @@ if (isset($_GET["id"])) {
             <h2 class="titulo text-center">EDITAR PAGOS</h2>
           </div>
           <div class="card-body">
-            <form method="post" class="row">
-              <div class="col-12">
+            <form method="post" class="row d-flex">
+              <div class="col-12 jusdtify-content-between">
                 <div class="d-flex">
                   <div class="col-md-6 mb-3">
                     <label for="desde" class="texto">Documento:</label>
@@ -44,14 +44,14 @@ if (isset($_GET["id"])) {
                   </div>
 
 
-                  <div class="col-md-2 mb-3">
+                  <div class="col-md-3 mb-3 mx-4">
                     <label for="desde" class="texto">Duracion:</label>
                     <input type="text" class="form-control" placeholder="Escriba los dias de duracion del pago" id="actualizarDuracion" name="actualizarDuracion" value="<?php echo $usuario[0]["duracion"] ?>">
                   </div>
                 </div>
 
                 <div class="d-flex">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6 mb-3">
                     <label for="desde" class="texto">Desde:</label>
                     <input type="date" class="form-control" id="actualizarDesde" name="actualizarDesde" value="<?php echo $usuario[0]["desde"] ?>">
                   </div>

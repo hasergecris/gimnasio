@@ -52,24 +52,26 @@ require("dashboard.php")
               $registro = ControladorFormularios::ctrRegistroUsuarios();
 
               if ($registro == "ok") {
-
                 echo
                 '<script>
-                        if(window.history.replaceState) {
-                          
-                          window.history.replaceState(null,null,window.location.href);
-                        }
-                      </script>';
+                  if(window.history.replaceState) {
+                    window.history.replaceState(null,null,window.location.href);
+                  }
+                </script>';
 
                 echo '<div class="alert alert-success">El usuario ha sido registrado</div>';
 
+                echo
                 '<script>
-                      setTimeout(fuction(){
-                        window.location = "index.php?pagina=lista_usuario";
-                      },3000);
-                    </script>';
+                  setTimeout(function(){
+                    window.location = "index.php?pagina=lista_usuario";
+                  }, 3000);
+                </script>';
+              } elseif (!empty($registro)) {
+                echo '<div class="alert alert-danger">' . $registro . '</div>';
               }
               ?>
+
 
               <div class="col-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-lg btn-primary boton_general">Enviar</button>

@@ -6,7 +6,7 @@ require("dashboard.php");
 $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
 ?>
 
-<div id="tabla_usuarios">
+<div class="tabla_usuarios">
   <h1 class="titulo_general text-center">LISTA DE USUARIOS</h1>
 
   <table class="table table-dark table-hover">
