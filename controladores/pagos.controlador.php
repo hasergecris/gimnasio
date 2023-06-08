@@ -2,7 +2,7 @@
 class ControladorPagos
 {
   //INGRESO USUARIO
- static  public function ctrIngresoUsuarios()
+  static  public function ctrIngresoUsuarios()
   {
     if (isset($_POST["documento"])) {
       $tabla = "ingreso_clientes";
@@ -10,27 +10,51 @@ class ControladorPagos
 
       $respuesta = ModeloPagos::mdlSeleccionarPagosPorDocumento($tabla, $documento);
 
-      return$respuesta;
+      return $respuesta;
     }
   }
 
-  // REGISTRO PAGOS
+  // SELECCIONAR PAGOS POR DOCUMENTO
+  public static function ctrSeleccionarPagosPorDocumento()
+  {
+    if (isset($_POST["documento"])) {
+      $documento = $_POST["documento"];
+      $respuesta = ModeloPagos::mdlSeleccionarPagosPorDocumento("pagos", $documento);
+
+      if ($respuesta[1]) {
+        $mensaje = "La suscripción está vigente. Quedan " . $respuesta[2] . " días.";
+      } else {
+        $mensaje = "La suscripción ha finalizado.";
+      }
+
+      echo json_encode($mensaje);
+    }
+  }
+
+  // REGISTRO DE PAGO
   public static function ctrRegistroPagos()
   {
     if (isset($_POST["documento"])) {
       $tabla = "pagos";
-
       $datos = array(
         "documento" => $_POST["documento"],
         "valor" => $_POST["valor"],
-        "usu_nombre" => $_POST["registroNombre"],
+        "usu_nombre" => $_POST["usu_nombre"],
         "duracion" => $_POST["duracion"],
         "desde" => $_POST["desde"],
         "hasta" => $_POST["hasta"]
       );
 
-      $respuesta = ModeloPagos::mdlRegistroPagos($tabla, $datos);
+      // Comprobar si existen pagos vigentes para el mismo documento
+      $pagosVigentes = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE documento = :documento AND hasta >= CURDATE()");
+      $pagosVigentes->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+      $pagosVigentes->execute();
 
+      if ($pagosVigentes->rowCount() > 0) {
+        return "No se puede registrar el pago. Aún hay una suscripción vigente para este documento.";
+      }
+
+      $respuesta = ModeloPagos::mdlRegistroPagos($tabla, $datos);
       return $respuesta;
     }
   }
