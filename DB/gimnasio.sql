@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2023 a las 22:18:31
+-- Tiempo de generación: 08-06-2023 a las 17:38:08
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -42,7 +42,47 @@ INSERT INTO `ingreso_clientes` (`id`, `ing_idUsuario`, `ing_fecha`) VALUES
 (1, 22222222, '2023-05-30'),
 (2, 22222222, '2023-05-30'),
 (3, 22222222, '2023-05-30'),
-(4, 22222222, '2023-05-30');
+(4, 22222222, '2023-05-30'),
+(5, 22222222, '2023-05-31'),
+(6, 22222222, '2023-05-31'),
+(7, 22222222, '2023-05-31'),
+(8, 1023877403, '2023-05-31'),
+(9, 1212121212, '2023-05-31'),
+(10, 22222222, '2023-05-31'),
+(11, 22222222, '2023-05-31'),
+(12, 22222222, '2023-05-31'),
+(13, 22222222, '2023-05-31'),
+(14, 22222222, '2023-05-31'),
+(15, 22222222, '2023-05-31'),
+(16, 22222222, '2023-05-31'),
+(17, 1023877403, '2023-06-01'),
+(18, 22222222, '2023-06-01'),
+(19, 22222222, '2023-06-01'),
+(20, 22222222, '2023-06-01'),
+(21, 22222222, '2023-06-01'),
+(22, 22222222, '2023-06-01'),
+(23, 22222222, '2023-06-01'),
+(24, 22222222, '2023-06-01'),
+(25, 22222222, '2023-06-01'),
+(26, 22222222, '2023-06-01'),
+(27, 22222222, '2023-06-01'),
+(28, 22222222, '2023-06-01'),
+(29, 22222222, '2023-06-01'),
+(30, 22222222, '2023-06-01'),
+(31, 22222222, '2023-06-01'),
+(32, 22222222, '2023-06-01'),
+(33, 22222222, '2023-06-01'),
+(34, 22222222, '2023-06-01'),
+(35, 22222222, '2023-06-01'),
+(36, 22222222, '2023-06-01'),
+(37, 22222222, '2023-06-01'),
+(38, 22222222, '2023-06-01'),
+(39, 1016588978, '2023-06-01'),
+(40, 1016588978, '2023-06-01'),
+(41, 1016588978, '2023-06-01'),
+(42, 1016588978, '2023-06-01'),
+(43, 1016588978, '2023-06-01'),
+(44, 1212121212, '2023-06-01');
 
 -- --------------------------------------------------------
 
@@ -58,16 +98,16 @@ CREATE TABLE `pagos` (
   `desde` date DEFAULT NULL,
   `hasta` date DEFAULT NULL,
   `duracion` varchar(10) DEFAULT NULL,
-  `fecha_alerta_terminacion` date NOT NULL
+  `fecha_alerta_terminacion` date NOT NULL,
+  `dias_restantes` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `pagos`
 --
 
-INSERT INTO `pagos` (`id`, `documento`, `valor`, `usu_nombre`, `desde`, `hasta`, `duracion`, `fecha_alerta_terminacion`) VALUES
-(10, '22222222', '50000', 'Geronimo Vega', '2023-05-30', '2023-06-13', '15', '2023-05-30'),
-(11, '1212121212', '100', 'Guadalupe Vega', '2023-05-30', '2023-06-30', '30', '2023-06-28');
+INSERT INTO `pagos` (`id`, `documento`, `valor`, `usu_nombre`, `desde`, `hasta`, `duracion`, `fecha_alerta_terminacion`, `dias_restantes`) VALUES
+(14, '121212121212	', '100', 'Guadalupe Vega', '2023-06-07', '2023-07-07', '30', '2023-07-05', '');
 
 -- --------------------------------------------------------
 
@@ -101,12 +141,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usu_nombre`, `usu_rol`, `usu_pas`, `usu_documento`, `usu_correo`, `fecha`) VALUES
-(3, 'Hasbleidy Poveda', '2', '', '1023877403', 'hasbleidy03@gmail.comk', '2023-05-24 21:57:45'),
-(4, 'Guadalupe Vega Poveda', '2', '', '1212121212', 'pupe@yopmail.com', '2023-05-29 20:09:39'),
-(5, 'Geronimo Vega', '2', '', '22222222', 'gerochillon@yopmail.com', '2023-05-29 19:48:42'),
 (7, 'Christian Camilo Vega ', '1', 'Qwerty123*', '1032410251', 'hasergecris9@gmail.com', '2023-05-29 20:10:58'),
-(8, 'Jose Ramirez', '2', '', '1073711329', 'jose@yopmail.com', '2023-05-30 20:09:01'),
-(9, 'Kevin Andrade', '2', '', '0000000000', 'kevin@yopmail.com', '2023-05-30 20:15:10');
+(8, 'Guadalupe Vega', 'cl', '', '121212121212', 'pupe@yopmail.com', '2023-06-07 18:29:51');
 
 --
 -- Índices para tablas volcadas
@@ -144,13 +180,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ingreso_clientes`
 --
 ALTER TABLE `ingreso_clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -162,7 +198,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
