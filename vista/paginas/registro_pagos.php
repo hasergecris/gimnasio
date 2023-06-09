@@ -45,19 +45,21 @@ require("dashboard.php");
               <?php
 
               // METODO ESTATICO
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $respuesta = ControladorPagos::ctrRegistroPagos();
 
-              $usuarios = ControladorPagos::ctrRegistroPagos();
-              if ($usuarios == "ok") {
+                if ($respuesta == "ok") {
+                  echo
+                    '<script>
+                      if (window.history.replaceState) {
+                        window.history.replaceState(null, null, window.location.href);
+                      }
+                    </script>';
 
-                echo
-                '<script>
-                    if(window.history.replaceState) {
-                      
-                      window.history.replaceState(null,null,window.location.href);
-                    }
-                  </script>';
-
-                echo '<div class="alert alert-success">El pago del usuario ha sido registrado</div>';
+                  echo '<div class="alert alert-success">El pago del usuario ha sido registrado</div>';
+                } else {
+                  echo '<div class="alert alert-danger">' . $respuesta . '</div>';
+                }
               }
               ?>
 

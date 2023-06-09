@@ -3,8 +3,7 @@ require_once "conexion.php";
 
 class ModeloPagos
 {
-
-  /// SELECCIONAR PAGOS POR DOCUMENTO
+  // SELECCIONAR PAGOS POR DOCUMENTO
   static public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
   {
     $hoy = date("Y-m-d");
