@@ -11,10 +11,10 @@ class ModeloPagos
 
 
     $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario and ( :ing_fecha >= desde AND :ing_fecha <= hasta )");
-    
+
     $alerta->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
     $alerta->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
-    
+
     $alerta->execute();
 
 
@@ -22,7 +22,7 @@ class ModeloPagos
 
     $fecha_final = $datosIngreso['hasta'];
     $hasta = $fecha_final;
-    
+
     if ($alerta) {
       $ingreso = "true";
     } else {
@@ -67,28 +67,64 @@ class ModeloPagos
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
+    $documento = ($datos["documento"]);
     $hasta = date($datos["hasta"]);
     $desde = date($datos["desde"]);
     $fecha_alerta_terminacion =  date("y-m-d", strtotime($hasta . "- 2 days"));
 
+    // COMPROVACION  SI NO EXIXTE EL CLIENTE NO DEJA REGISTRAR PAGO  
+    $comprovacionUsusarios = Conexion::conectar()->prepare("SELECT COUNT(*) FROM usuarios WHERE usu_documento = :ing_idUsuario");
+    $comprovacionUsusarios->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+    $comprovacionUsusarios->execute();
+    $count = $comprovacionUsusarios->fetchColumn();
 
-    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta,fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta, :fecha_alerta_terminacion)");
+    // COMPROBACION DE SI EXIXTE MEMBRESIA NO DEJE REGISTRAR OTRO PAGO
+    $comprovacionVigencia = Conexion::conectar()->prepare("SELECT COUNT(*) FROM pagos WHERE documento = :ing_idUsuario and hasta > :desde");
+    $comprovacionVigencia->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+    $comprovacionVigencia->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
+    $comprovacionVigencia->execute();
+    $comprobacion = $comprovacionVigencia->fetchColumn();
 
-    $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
-    $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
-    $stmt->bindParam(":usu_nombre", $datos["usu_nombre"], PDO::PARAM_STR);
-    $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
-    $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);
-    $stmt->bindParam(":hasta", $hasta, PDO::PARAM_STR);
-    $stmt->bindParam(":fecha_alerta_terminacion", $fecha_alerta_terminacion, PDO::PARAM_STR);
+    if ($count > 0 &&  $comprobacion <= 0) {
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta,fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta, :fecha_alerta_terminacion)");
 
-    if ($stmt->execute()) {
-      return "ok";
+      $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+      $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
+      $stmt->bindParam(":usu_nombre", $datos["usu_nombre"], PDO::PARAM_STR);
+      $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
+      $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);
+      $stmt->bindParam(":hasta", $hasta, PDO::PARAM_STR);
+      $stmt->bindParam(":fecha_alerta_terminacion", $fecha_alerta_terminacion, PDO::PARAM_STR);
+
+      if ($stmt->execute()) {
+        return "ok";
+      } else {
+        print_r(Conexion::conectar()->errorInfo());
+      }
+    } else if ($comprobacion > 0) {
+      return "vigente";
     } else {
-      print_r(Conexion::conectar()->errorInfo());
+      return "no";
     }
   }
 
+  // static public function mdlBuscarUsuario() {
+    
+  // $busqueda=$_POST['cadena'];
+
+  // strlen($busqueda);
+
+
+  //   $buscar = Conexion::conectar()->prepare("SELECT * FROM usuarios where usu_docunmento LIKE '% :usu_documento %'");
+  //   $buscar->bindParam(":usu_documento", $busqueda, PDO::PARAM_STR);
+  //   $buscar->execute();
+    
+  //   $buscarDocumento = $buscar->fetch(PDO::FETCH_ASSOC);
+
+
+
+
+  // }
   // LISTAR PAGOS
   static public function mdlSeleccionarPagos($tabla)
   {

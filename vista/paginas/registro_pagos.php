@@ -1,6 +1,20 @@
 <?php
 require("dashboard.php");
 ?>
+<script>
+  function buscar_ajax(cadena) {
+    $.ajax({
+      type: 'POST',
+      url: '../GYM/modelo/buscar_pago.php',
+      data: 'cadena=' + cadena,
+      success: function(respuesta) {
+        //Copiamos el resultado en #mostrar
+        $('#mostrar').html(respuesta);
+      }
+    });
+  }
+</script>
+
 
 <div id="ingreso_cliente">
   <div class="container">
@@ -8,13 +22,14 @@ require("dashboard.php");
       <div class="col-12">
         <div class="card card_registro">
           <div class="card-header">
+            <div id="mostrar"></div>
             <h2 class="titulo text-center">REGISTRO DE PAGOS</h2>
           </div>
           <div class="card-body">
             <form class="row g-3" method="post">
               <div class="col-md-6">
                 <label for="documento" class="form-label texto">Numero de documento:</label>
-                <input type="text" class="form-control" id="documento" name="documento" required>
+                <input type="text" class="form-control" id="documento" name="documento" onkeyup="buscar_ajax(this.value);" required>
               </div>
 
               <div class="col-md-6">
@@ -49,15 +64,53 @@ require("dashboard.php");
               $usuarios = ControladorPagos::ctrRegistroPagos();
               if ($usuarios == "ok") {
 
-                echo
-                '<script>
-                    if(window.history.replaceState) {
-                      
-                      window.history.replaceState(null,null,window.location.href);
-                    }
-                  </script>';
+                echo '
+                <script>
+                  if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                  }
+                </script>';
 
-                echo '<div class="alert alert-success">El pago del usuario ha sido registrado</div>';
+                echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">SU PAGO A SIDO REGISTRADO</div>';
+
+                echo '
+                <script>
+                  setTimeout(function() {
+                    window.location = "index.php?pagina=lista_pagos";
+                  }, 2000);
+                </script>';
+              } else if ($usuarios == "no") {
+                echo '
+                <script>
+                  if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                  }
+                </script>';
+
+                echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>';
+
+                echo '
+                <script>
+                  setTimeout(function() {
+                    window.location = "index.php?pagina=lista_pagos";
+                  }, 4000);
+                </script>';
+              } else if ($usuarios == "vigente") {
+                echo '
+                <script>
+                  if (window.history.replaceState) {
+                    window.history.replaceState(null, null, window.location.href);
+                  }
+                </script>';
+
+                echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">EL USUARIO  TIENE UNA MEMBRESIA ACTIVA</div>';
+
+                echo '
+                <script>
+                  setTimeout(function() {
+                    window.location = "index.php?pagina=lista_pagos";
+                  }, 4000);
+                </script>';
               }
               ?>
 
