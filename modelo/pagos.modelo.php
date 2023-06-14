@@ -3,65 +3,76 @@ require_once "conexion.php";
 
 class ModeloPagos
 {
+
   // SELECCIONAR PAGOS POR DOCUMENTO
   static public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
   {
     $hoy = date("Y-m-d");
 
-    // Consulta para seleccionar el último pago realizado por el usuario
-    $filtro = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento=:ing_idUsuario ORDER BY campo_fecha DESC LIMIT 1;");
-    $filtro->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
-    $filtro->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
-    $filtro->execute();
-    $datos_filtro = $filtro->fetch(PDO::FETCH_ASSOC);
-    $id_ultimo_pago = $datos_filtro["id"];
 
-    // Consulta para comprobar si la suscripción aún está vigente
-    $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE id = :ultimo_pago AND (fecha_alerta_terminacion <= :ing_fecha AND documento = :ing_idUsuario AND (:ing_fecha >= desde AND :ing_fecha <= hasta))");
+    $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario and ( :ing_fecha >= desde AND :ing_fecha <= hasta )");
+    
     $alerta->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
     $alerta->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
-    $alerta->bindParam(":ultimo_pago", $id_ultimo_pago, PDO::PARAM_STR);
+    
     $alerta->execute();
-    $datosIngreso = $alerta->fetch(PDO::FETCH_ASSOC);
-    $fecha_final = $datosIngreso["hasta"];
 
-    if ($alerta->rowCount() > 0) {
-      $ingreso = true;
+
+    $datosIngreso = $alerta->fetch(PDO::FETCH_ASSOC);
+
+    $fecha_final = $datosIngreso['hasta'];
+    $hasta = $fecha_final;
+    
+    if ($alerta) {
+      $ingreso = "true";
     } else {
-      $ingreso = false;
+      $ingreso = "false";
     }
 
-    // Calcular los días restantes
-    $date1 = new DateTime($hoy);
-    $date2 = new DateTime($fecha_final);
+    // ingresar dias restantes
+    $date1 = new DateTime();
+    $date2 = new DateTime($hasta);
+    // print_r($date1);
+    // print_r($date2);
+
+
     $diff = $date1->diff($date2);
+
+    // will output 2 days
     $fechaString = $diff->format('%d');
 
+    // print_r($fechaString);
+
+
     if ($fechaString != 0) {
-      // Insertar el nuevo pago
-      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ing_idUsuario, ing_fecha) VALUES (:ing_idUsuario, :ing_fecha)");
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ing_idUsuario, ing_fecha) VALUES (:ing_idUsuario,:ing_fecha )");
       $stmt->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
       $stmt->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
+
       $stmt->execute();
     }
 
-    // Actualizar los días restantes en la tabla de pagos
-    $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE documento = :documento");
+    $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE  documento = :documento");
+
     $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
     $stmt->bindParam(":dias_restantes", $fechaString, PDO::PARAM_STR);
+
     $stmt->execute();
 
-    return array($stmt, $ingreso, $fechaString);
+
+    return  array($stmt, $ingreso, $fechaString);
   }
+
 
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
     $hasta = date($datos["hasta"]);
     $desde = date($datos["desde"]);
-    $fecha_alerta_terminacion = date("y-m-d", strtotime($hasta . "- 2 days"));
+    $fecha_alerta_terminacion =  date("y-m-d", strtotime($hasta . "- 2 days"));
 
-    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre, duracion, desde, hasta, fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre, :duracion, :desde, :hasta, :fecha_alerta_terminacion)");
+
+    $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta,fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta, :fecha_alerta_terminacion)");
 
     $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
     $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);

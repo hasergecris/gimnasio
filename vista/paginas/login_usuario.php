@@ -34,51 +34,69 @@ require("dashboard.php");
 
                 if ($respuesta[1] == "true") {
                   if ($respuesta[2] == 0) {
-                    echo
-                    '<script>
-                    if(window.history.replaceState) {
-                      
-                      window.history.replaceState(null,null,window.location.href);
+                    echo '
+                    <script>
+                      if (window.history.replaceState) {
+                        window.history.replaceState(null, null, window.location.href);
+                      }
+                    </script>';
+
+                    echo '<div class="alert alert-danger"style="font-weight:700; font-size: 2rem; line-height: 1;"> !!! ATENCION !!! <br> POR FAVOR RENUEVE SU PAGO </div>';
+
+                    echo '
+                    <script>
+                      setTimeout(function() {
+                        window.location = "index.php?pagina=lista_pagos";
+                      }, 4000);
+                    </script>';
+                  } else if ($respuesta[2] <= 2) {
+                    echo '
+                    <script>
+                      if (window.history.replaceState) {
+                        window.history.replaceState(null, null, window.location.href);
+                      }
+                    </script>';
+
+                    echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">SU MEMBRESIA ESTA PROXIMA A VECER, LE QUEDAN <br>' . $respuesta[2] . ' <br> DIAS</div>';
+
+                    echo '
+                    <script>
+                      setTimeout(function() {
+                        window.location = "index.php?pagina=lista_pagos";
+                      }, 2000);
+                    </script>';
+                  } else {
+                    echo '
+                    <script>
+                      if (window.history.replaceState) {
+                        window.history.replaceState(null, null, window.location.href);
+                      }
+                    </script>';
+
+                    echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">AL USUARIO LE QUEDAN <br>' . $respuesta[2] . ' <br> DIAS</div>';
+
+                    echo '
+                    <script>
+                      setTimeout(function() {
+                        window.location = "index.php?pagina=lista_pagos";
+                      }, 2000);
+                    </script>';
+                  }
+                } else {
+                  echo '
+                  <script>
+                    if (window.history.replaceState) {
+                      window.history.replaceState(null, null, window.location.href);
                     }
                   </script>';
 
-                    echo '<div class="alert alert-danger"> !!! ATENCION !!! <br> POR FAVOR RENUEVE SU PAGO </div>';
-                    '<script>
-                      setTimeout(fuction(){
-                        window.location = "index.php?pagina=lista_pagos";
-                      },5000);
-                    </script>';
-                  } else {
+                  echo '<div class="alert alert-success"style="font-weight:700; font-size: 2rem; line-height: 1;">INGRESO EXITOSO</div>';
 
-                    echo
-                    '<script>
-                      if(window.history.replaceState) {
-                        
-                        window.history.replaceState(null,null,window.location.href);
-                      }
-                    </script>';
-
-                    echo '<div class="alert alert-danger">AL USUARIO LE QUEDAN' . $respuesta[2] . ' DIAS</div>';
-                    '<script>
-                    setTimeout(fuction(){
+                  echo '
+                  <script>
+                    setTimeout(function() {
                       window.location = "index.php?pagina=lista_pagos";
-                    },3000);
-                  </script>';
-                  }
-                } else {
-                  echo
-                  '<script>
-                      if(window.history.replaceState) {
-                        
-                        window.history.replaceState(null,null,window.location.href);
-                      }
-                    </script>';
-
-                  echo '<div class="alert alert-success">INGRESO EXITOSO</div>';
-                  '<script>
-                    setTimeout(fuction(){
-                      window.location = "index.php?pagina=lista_pagos";
-                    },3000);
+                    }, 2000);
                   </script>';
                 }
               }

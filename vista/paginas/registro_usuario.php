@@ -35,8 +35,8 @@ require("dashboard.php")
                 <label for="validacion_rol" class="form-label texto">Rol</label>
                 <select class="form-select" name="validacion_rol" id="validacion_rol" onchange="cargarRol(this.value);" required>
                   <option value="" selected>Seleccionar.... </option>
-                  <option value="administrador">Administrador</option>
-                  <option value="cliente">Cliente</option>
+                  <option value="1">Administrador</option>
+                  <option value="2">Cliente</option>
                 </select>
               </div>
 

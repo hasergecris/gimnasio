@@ -1,10 +1,9 @@
 <?php
 
-  //INGRESO USUARIO
   class ControladorPagos
   {
-    // INGRESO USUARIO
-    static public function ctrIngresoUsuarios()
+    //INGRESO USUARIO
+   static  public function ctrIngresoUsuarios()
     {
       if (isset($_POST["documento"])) {
         $tabla = "ingreso_clientes";
@@ -12,49 +11,27 @@
   
         $respuesta = ModeloPagos::mdlSeleccionarPagosPorDocumento($tabla, $documento);
   
-        return $respuesta;
+        return$respuesta;
       }
     }
   
-    // SELECCIONAR PAGOS POR DOCUMENTO
-    public static function ctrSeleccionarPagosPorDocumento()
-    {
-      if (isset($_POST["documento"])) {
-        $documento = $_POST["documento"];
-        $respuesta = ModeloPagos::mdlSeleccionarPagosPorDocumento("pagos", $documento);
-  
-        if ($respuesta[1]) {
-          $mensaje = "La suscripción está vigente. Quedan " . $respuesta[2] . " días.";
-        } else {
-          $mensaje = "La suscripción ha finalizado.";
-        }
-  
-        echo json_encode($mensaje);
-      }
-    }
-  
-    // REGISTRO DE PAGO
+    // REGISTRO PAGOS
     public static function ctrRegistroPagos()
     {
       if (isset($_POST["documento"])) {
         $tabla = "pagos";
+  
         $datos = array(
           "documento" => $_POST["documento"],
           "valor" => $_POST["valor"],
-          "usu_nombre" => $_POST["usu_nombre"],
+          "usu_nombre" => $_POST["registroNombre"],
           "duracion" => $_POST["duracion"],
           "desde" => $_POST["desde"],
           "hasta" => $_POST["hasta"]
         );
   
-        // Comprobar si existen pagos vigentes para el mismo documento
-        $pagosVigentes = ModeloPagos::mdlSeleccionarPagosPorDocumento($tabla, $datos["documento"]);
-  
-        if ($pagosVigentes[1]) {
-          return "No se puede registrar el pago. Aún hay una suscripción vigente para este documento.";
-        }
-  
         $respuesta = ModeloPagos::mdlRegistroPagos($tabla, $datos);
+  
         return $respuesta;
       }
     }
@@ -100,15 +77,14 @@
   
         if ($respuesta == "ok") {
           echo
-            '<script>
-              if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
-              }
-              window.location = "index.php?pagina=lista_pagos";
-            </script>';
+          '<script>
+            if(window.history.replaceState) {
+              window.history.replaceState(null, null, window.location.href);
+            }
+            window.location = "index.php?pagina=lista_pagos";
+          </script>';
         }
       }
     }
   }
-  
 
