@@ -29,11 +29,9 @@ class ModeloPagos
       $ingreso = "false";
     }
 
-    // ingresar dias restantes
     $date1 = new DateTime();
     $date2 = new DateTime($hasta);
-    // print_r($date1);
-    // print_r($date2);
+    
 
 
     $diff = $date1->diff($date2);
