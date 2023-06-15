@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2023 a las 17:38:08
+-- Tiempo de generación: 15-06-2023 a las 20:32:08
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 5.6.40
 
@@ -82,7 +82,27 @@ INSERT INTO `ingreso_clientes` (`id`, `ing_idUsuario`, `ing_fecha`) VALUES
 (41, 1016588978, '2023-06-01'),
 (42, 1016588978, '2023-06-01'),
 (43, 1016588978, '2023-06-01'),
-(44, 1212121212, '2023-06-01');
+(44, 1212121212, '2023-06-01'),
+(45, 0, '2023-06-14'),
+(46, 0, '2023-06-14'),
+(47, 0, '2023-06-14'),
+(48, 0, '2023-06-14'),
+(49, 0, '2023-06-14'),
+(50, 0, '2023-06-14'),
+(51, 0, '2023-06-14'),
+(52, 0, '2023-06-14'),
+(53, 0, '2023-06-14'),
+(54, 0, '2023-06-14'),
+(55, 0, '2023-06-14'),
+(56, 0, '2023-06-14'),
+(57, 0, '2023-06-14'),
+(58, 0, '2023-06-14'),
+(59, 0, '2023-06-14'),
+(60, 0, '2023-06-14'),
+(61, 0, '2023-06-14'),
+(62, 0, '2023-06-14'),
+(63, 0, '2023-06-14'),
+(64, 0, '2023-06-14');
 
 -- --------------------------------------------------------
 
@@ -107,7 +127,8 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id`, `documento`, `valor`, `usu_nombre`, `desde`, `hasta`, `duracion`, `fecha_alerta_terminacion`, `dias_restantes`) VALUES
-(14, '121212121212	', '100', 'Guadalupe Vega', '2023-06-07', '2023-07-07', '30', '2023-07-05', '');
+(24, '1073711329', '123000', 'Jose Ramirez', '2023-06-14', '2023-07-14', '30', '2023-07-12', ''),
+(25, '33333333333', '123000', 'luis preciado', '2023-06-15', '2023-07-15', '30', '2023-07-13', '');
 
 -- --------------------------------------------------------
 
@@ -142,7 +163,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `usu_nombre`, `usu_rol`, `usu_pas`, `usu_documento`, `usu_correo`, `fecha`) VALUES
 (7, 'Christian Camilo Vega ', '1', 'Qwerty123*', '1032410251', 'hasergecris9@gmail.com', '2023-05-29 20:10:58'),
-(8, 'Guadalupe Vega', 'cl', '', '121212121212', 'pupe@yopmail.com', '2023-06-07 18:29:51');
+(10, 'Jose Ramirez', '2', '', '1073711329', 'jose@yopmail.com', '2023-06-14 14:00:31'),
+(12, 'luis Preciado', '2', '', '33333333333', 'luch@yopmail.com', '2023-06-14 18:57:13');
 
 --
 -- Índices para tablas volcadas
@@ -180,13 +202,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ingreso_clientes`
 --
 ALTER TABLE `ingreso_clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -198,7 +220,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
