@@ -101,6 +101,22 @@ input[type="search"] {
   border: 1px solid #000;
 }
 
+.dataTables_info {
+  font-weight: 700;
+}
+
+a#lista_usuarios_previous {
+  font-weight: 700 !important;
+}
+
+a#lista_usuarios_next {
+  font-weight: 700 !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  background-color: #fff;
+}
+
  
 .texto {
   color: #212529;
