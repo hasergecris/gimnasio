@@ -1,9 +1,15 @@
 <?php
 require("dashboard.php")
 ?>
-
-
-
+<script>
+  function cargarRol(rol) {
+    if (rol == 1) {
+      document.getElementById("admin_contrasenia").style.display = "block";
+    } else {
+      document.getElementById("admin_contrasenia").style.display = "none";
+    }
+  }
+</script>
 
 <div id="ingreso_cliente">
   <div class="container">

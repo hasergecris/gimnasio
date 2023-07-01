@@ -1,15 +1,22 @@
 <?php
 require("dashboard.php");
 
-
-
 $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
 ?>
+
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#lista_usuarios').DataTable();
+  });
+</script>
 
 <div class="tabla_usuarios">
   <h1 class="titulo_general text-center">LISTA DE USUARIOS</h1>
 
-  <table class="table table-dark table-hover">
+  <table id="lista_usuarios" class="table table-dark table-hover">
     <thead>
       <tr>
         <th>NUMERO</th>
@@ -25,13 +32,14 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
     <tbody>
       <?php
       foreach ($usuarios as $key => $value) : ?>
-        <tr>
-          <td class="text-center"><?php echo ($key + 1); ?></td>
-          <td><?php echo $value["usu_nombre"] ?> </td>
-          <td><?php echo $value["usu_documento"] ?></td>
-          <td><?php echo $value["usu_correo"] ?></td>
-          <td class="text-center"><?php echo $value["usu_rol"] ?></td>
-          <td><?php echo $value["fecha"] ?></td>
+        <tr class=" align-items-center">
+          <td class="text-center texto_tablas"><?php echo ($key + 1); ?></td>
+          <td class="texto_tablas"><?php echo $value["usu_nombre"] ?> </td>
+          <td class="texto_tablas"><?php echo $value["usu_documento"] ?></td>
+          <td class="texto_tablas"><?php echo $value["usu_correo"] ?></td>
+          <td class="text-center texto_tablas"><?php echo $value["usu_rol"] ?></td>
+          <td class="texto_tablas"><?php echo $value["fecha"] ?></td>
+
           <td class="d-flex">
             <div class="btn-group">
               <div class="px-1">

@@ -48,7 +48,7 @@ body {
 }
 
 .tabla_usuarios {
-  padding: 8% 5%;
+  padding: 8% 3%;
   background-color: rgba(175, 182, 1, 0.3);
   color: rgba(175, 182, 1, 0.3);
   box-shadow:
@@ -57,6 +57,11 @@ body {
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   margin-top: 3rem;
   border-radius: 10px;
+}
+
+.texto_tablas {
+  font-size: 1rem !important;
+  line-height: 1 !important;
 }
 
 .card_registro {
@@ -71,6 +76,21 @@ body {
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+/* FILTROS */
+
+.dataTables_length {
+  background-color: #fff;
+  padding: .5%;
+  border: 1px solid #c6c6c6;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 700;
+}
+
+
+ 
 .texto {
   color: #212529;
   font-weight: 500 !important;
