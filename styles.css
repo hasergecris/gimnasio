@@ -79,16 +79,27 @@ body {
 /* FILTROS */
 
 .dataTables_length {
-  background-color: #fff;
   padding: .5%;
   border: 1px solid #c6c6c6;
   margin-bottom: 1rem;
 }
+  
 
 label {
   font-weight: 700;
 }
 
+.dataTables_filter {
+  padding: .5%;
+  border: 1px solid #c6c6c6;
+  margin-bottom: 1rem;
+}
+
+input[type="search"] {
+  background-color: #FFF !important;
+  border-radius: 10px !important;
+  border: 1px solid #000;
+}
 
  
 .texto {
