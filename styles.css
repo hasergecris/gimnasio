@@ -48,14 +48,14 @@ body {
 }
 
 .tabla_usuarios {
-  padding: 8% 3%;
+  padding: 6%;
   background-color: rgba(175, 182, 1, 0.3);
   color: rgba(175, 182, 1, 0.3);
   box-shadow:
     inset 0 -3em 3em rgba(0, 0, 0, 0.1),
     0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  margin-top: 3rem;
+  margin-top: 3%;
   border-radius: 10px;
 }
 
@@ -83,7 +83,7 @@ body {
   border: 1px solid #c6c6c6;
   margin-bottom: 1rem;
 }
-  
+
 
 label {
   font-weight: 700;
@@ -117,7 +117,7 @@ a#lista_usuarios_next {
   background-color: #fff;
 }
 
- 
+
 .texto {
   color: #212529;
   font-weight: 500 !important;
@@ -149,7 +149,7 @@ a#lista_usuarios_next {
 
 
 .contenido {
-  padding: 2% 7% 0% !important;
+  padding: 2% 3% 0% !important;
 }
 
 .form-control {
