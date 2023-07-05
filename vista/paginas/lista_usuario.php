@@ -8,8 +8,19 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 <script>
+  // $(document).ready(function() {
+  //   $('#lista_usuarios').DataTable();
+  // });
+
   $(document).ready(function() {
-    $('#lista_usuarios').DataTable();
+    $('#lista_usuarios').DataTable({
+      searching: true, // Habilitar la búsqueda
+      ordering: true, // Habilitar el ordenamiento
+      paging: true, // Habilitar paginación
+      pageLength: 10, // Mostrar 10 elementos por página
+      search: 'Buscar:', 
+   
+    });
   });
 </script>
 

@@ -4,10 +4,28 @@ require("dashboard.php");
 $pagos = ControladorPagos::ctrSeleccionarPagos();
 
 ?>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script>
+  // $(document).ready(function() {
+  //   $('#lista_usuarios').DataTable();
+  // });
+
+  $(document).ready(function() {
+    $('#lista_pagos').DataTable({
+      searching: true, // Habilitar la búsqueda
+      ordering: true, // Habilitar el ordenamiento
+      paging: true, // Habilitar paginación
+      pageLength: 10, // Mostrar 10 elementos por página
+      search: 'Buscar:', 
+   
+    });
+  });
+</script>
 
 <div class="tabla_usuarios">
   <h2 class="titulo text-center">Listado de Pagos</h2>
-  <table class="table table-dark table-hove">
+  <table class="table table-dark table-hove" id="lista_pagos" >
     <thead>
       <tr>
         <th>Documento</th>

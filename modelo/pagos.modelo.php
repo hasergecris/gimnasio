@@ -9,14 +9,12 @@ class ModeloPagos
   {
     $hoy = date("Y-m-d");
 
-
-    $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario and ( :ing_fecha >= desde AND :ing_fecha <= hasta )");
+    $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario and :ing_fecha >= desde AND :ing_fecha <= hasta");
 
     $alerta->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
     $alerta->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
 
     $alerta->execute();
-
 
     $datosIngreso = $alerta->fetch(PDO::FETCH_ASSOC);
 
@@ -32,35 +30,22 @@ class ModeloPagos
     $date1 = new DateTime();
     $date2 = new DateTime($hasta);
     
-
-
     $diff = $date1->diff($date2);
+    $dias_restantes = $diff->format('%d');
 
-    // will output 2 days
-    $fechaString = $diff->format('%d');
-
-    // print_r($fechaString);
-
-
-    if ($fechaString != 0) {
-      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (ing_idUsuario, ing_fecha) VALUES (:ing_idUsuario,:ing_fecha )");
-      $stmt->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
-      $stmt->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
-
-      $stmt->execute();
+    if ($dias_restantes <= 2) {
+      // Enviar alerta al usuario
     }
 
-    $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE  documento = :documento");
+    $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE documento = :documento");
 
     $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
-    $stmt->bindParam(":dias_restantes", $fechaString, PDO::PARAM_STR);
+    $stmt->bindParam(":dias_restantes", $dias_restantes, PDO::PARAM_STR);
 
     $stmt->execute();
 
-
-    return  array($stmt, $ingreso, $fechaString);
+    return  array($stmt, $ingreso, $dias_restantes);
   }
-
 
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
@@ -68,23 +53,23 @@ class ModeloPagos
     $documento = ($datos["documento"]);
     $hasta = date($datos["hasta"]);
     $desde = date($datos["desde"]);
-    $fecha_alerta_terminacion =  date("y-m-d", strtotime($hasta . "- 2 days"));
+    $fecha_alerta_terminacion =  date("Y-m-d", strtotime($hasta . "- 2 days"));
 
     // COMPROVACION  SI NO EXIXTE EL CLIENTE NO DEJA REGISTRAR PAGO  
-    $comprovacionUsusarios = Conexion::conectar()->prepare("SELECT COUNT(*) FROM usuarios WHERE usu_documento = :ing_idUsuario");
-    $comprovacionUsusarios->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
-    $comprovacionUsusarios->execute();
-    $count = $comprovacionUsusarios->fetchColumn();
+    $comprovacionUsuarios = Conexion::conectar()->prepare("SELECT COUNT(*) FROM usuarios WHERE usu_documento = :ing_idUsuario");
+    $comprovacionUsuarios->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+    $comprovacionUsuarios->execute();
+    $count = $comprovacionUsuarios->fetchColumn();
 
     // COMPROBACION DE SI EXIXTE MEMBRESIA NO DEJE REGISTRAR OTRO PAGO
-    $comprovacionVigencia = Conexion::conectar()->prepare("SELECT COUNT(*) FROM pagos WHERE documento = :ing_idUsuario and hasta > :desde");
+    $comprovacionVigencia = Conexion::conectar()->prepare("SELECT COUNT(*) FROM pagos WHERE documento = :ing_idUsuario AND hasta > :desde");
     $comprovacionVigencia->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
     $comprovacionVigencia->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
     $comprovacionVigencia->execute();
-    $comprobacion = $comprovacionVigencia->fetchColumn();
+    $comprobacion =$comprovacionVigencia->fetchColumn();
 
-    if ($count > 0 &&  $comprobacion <= 0) {
-      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre,duracion, desde, hasta,fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre,:duracion, :desde, :hasta, :fecha_alerta_terminacion)");
+    if ($count > 0 && $comprobacion <= 0) {
+      $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre, duracion, desde, hasta, fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre, :duracion, :desde, :hasta, :fecha_alerta_terminacion)");
 
       $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
       $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);

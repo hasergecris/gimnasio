@@ -76,6 +76,16 @@ body {
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+/* .fixed-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  z-index: 9999;
+} */
+
 /* FILTROS */
 
 .dataTables_length {
@@ -83,6 +93,7 @@ body {
   border: 1px solid #c6c6c6;
   margin-bottom: 1rem;
 }
+
 
 
 label {
