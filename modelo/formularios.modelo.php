@@ -67,9 +67,6 @@ class ModeloFormularios
     }
   }
 
-
-
-
   // LISTAR REGISTROS
   static public function mdlSeleccionarRegistros($tabla, $item, $valor)
   {
@@ -91,6 +88,21 @@ class ModeloFormularios
 
     return $stmt->fetchAll();
   }
+
+    // LISTAR REGISTROS
+    static public function mdlSeleccionarUsuarioPago($tabla, $item, $valor)
+    {
+      $query = "SELECT * FROM $tabla WHERE $item = $valor";
+  
+      $stmt = Conexion::conectar()->prepare($query);
+      $stmt->execute();
+  
+      return $stmt->fetchAll();
+    }
+      
+  
+
+  
 
   // ACTUALIZAR REGISTRO 
   static public function mdlActualizarRegistro($tabla, $datos)

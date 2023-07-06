@@ -6,7 +6,7 @@ if (isset($_GET["id"])) {
   $item = "id";
   $valor = $_GET["id"];
 
-  $usuario = ControladorPagos::ctrSeleccionarPagos($item, $valor);
+  $usuario = ControladorFormularios::ctrSeleccinarUsuarioPago($item, $valor);
 
   // print_r($usuario);
   // echo $usuario[0]["usu_nombre"];
@@ -81,7 +81,7 @@ if (isset($_GET["id"])) {
                   '<script>
                       setTimeout(fuction(){
                         window.location = "index.php?pagina=lista_pagos";
-                      },3000);
+                      },5000);
                   </script>';
                 }
                 ?>

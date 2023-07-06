@@ -44,7 +44,7 @@ require("dashboard.php");
                       echo '
                       <script>
                         setTimeout(function() {
-                          window.location = "index.php?pagina=lista_pagos";
+                          window.location = "index.php?pagina=editar_pagos";
                         }, 5000);
                       </script>';
                     } else if ($respuesta[2] <= 2) {
@@ -60,7 +60,7 @@ require("dashboard.php");
                       echo '
                       <script>
                         setTimeout(function() {
-                          window.location = "index.php?pagina=lista_pagos";
+                          window.location = "index.php?pagina=login_usuario";
                         }, 5000);
                       </script>';
                     } else {
@@ -76,7 +76,7 @@ require("dashboard.php");
                       echo '
                       <script>
                         setTimeout(function() {
-                          window.location = "index.php?pagina=lista_pagos";
+                          window.location = "index.php?pagina=login_usuario";
                         }, 5000);
                       </script>';
                     }

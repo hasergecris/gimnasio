@@ -91,23 +91,7 @@ class ModeloPagos
     }
   }
 
-  // static public function mdlBuscarUsuario() {
-    
-  // $busqueda=$_POST['cadena'];
 
-  // strlen($busqueda);
-
-
-  //   $buscar = Conexion::conectar()->prepare("SELECT * FROM usuarios where usu_docunmento LIKE '% :usu_documento %'");
-  //   $buscar->bindParam(":usu_documento", $busqueda, PDO::PARAM_STR);
-  //   $buscar->execute();
-    
-  //   $buscarDocumento = $buscar->fetch(PDO::FETCH_ASSOC);
-
-
-
-
-  // }
   // LISTAR PAGOS
   static public function mdlSeleccionarPagos($tabla)
   {
@@ -116,6 +100,7 @@ class ModeloPagos
 
     return $stmt->fetchAll();
   }
+
 
   // ACTUALIZAR PAGO
   static public function mdlActualizarPago($tabla, $datos)
