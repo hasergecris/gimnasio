@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
 
                   '<script>
                       setTimeout(fuction(){
-                        window.location = "index.php?pagina=lista_pagos";
+                        window.location = "index.php?pagina=login_usuario";
                       },5000);
                   </script>';
                 }
