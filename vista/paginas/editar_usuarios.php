@@ -17,13 +17,9 @@ if (isset($_GET["id"])) {
   $valor = $_GET["id"];
 
   $usuario = ControladorFormularios::ctrSeleccionarRegistro($item, $valor);
-
-  //  print_r($usuario);
-  // echo $usuario[0]["usu_nombre"];
 }
 
 ?>
-
 
 <div id="editar_usuarios">
   <div class="container">
@@ -40,7 +36,6 @@ if (isset($_GET["id"])) {
                   <input type="text" class="form-control" placeholder="Escriba su nombre" id="nombres" name="actualizarNombre" value="<?php echo $usuario[0]["usu_nombre"]; ?>">
                 </div>
 
-
                 <div class="col-md-12 mb-4">
                   <input type="text" class="form-control" placeholder="Escriba su documento" id="num_documento" name="actualizarDocumento" value="<?php echo $usuario[0]["usu_documento"] ?>" aria-describedby="inputGroupPrepend2">
                 </div>
@@ -50,7 +45,7 @@ if (isset($_GET["id"])) {
                 </div>
 
                 <div class="col-md-12 mb-4" id="admin_contrasenia">
-                  <input type="pasword" class="form-control" placeholder="Escriba su contraseña" id="actualizarContrasenia" name="actualizarContrasenia">
+                  <input type="password" class="form-control" placeholder="Escriba su contraseña" id="actualizarContrasenia" name="actualizarContrasenia">
                   <input type="hidden" class="form-control" id="contraseniaActual" name="contraseniaActual" value="<?php echo $usuario[0]["usu_pas"] ?>">
                 </div>
                 <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario[0]["id"] ?>">
@@ -58,29 +53,43 @@ if (isset($_GET["id"])) {
                 <?php
                 $actualizar = ControladorFormularios::ctrActualizarRegistro();
 
-                if ($actualizar == " ok") {
-                  echo
-                  '<script>
+                if ($actualizar == "ok") {
+                  echo '
+                  <script>
                       if(window.history.replaceState) {
-                        window.history.replaceState(null,null,window.location.href);
+                        window.history.replaceState(null, null, window.location.href);
                       }
                     </script>';
-
-
-                  echo '<div class="alert alert-success">La información del Usuario <br>' . $usuario[0]["usu_nombre"] .  ' <br>a sido actualizada.</div>';
-
-                  '<script>
-                        setTimeout(fuction(){
-                          window.location = "index.php?pagina=editar_usuario";
-                        },3000);
-                    </script>';
+                ?>
+                  <div class="modal fade modal_general" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                          La información del usuario <br><?php echo $usuario[0]["usu_nombre"]; ?> <br>ha sido actualizada.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <script>
+                    $(document).ready(function() {
+                      $("#successModal").modal("show");
+                    });
+                  </script>
+                <?php
                 }
                 ?>
 
-
                 <div class="col-12 d-flex justify-content-end">
-                  <button type="submit" class="btn btn-lg btn-primary boton_general">ActuaLizar</button>
+                  <button type="submit" class="btn btn-lg btn-primary boton_general">Actualizar</button>
                 </div>
+              </div>
             </form>
           </div>
         </div>
