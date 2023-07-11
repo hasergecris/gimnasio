@@ -1,7 +1,7 @@
 <?php
 require("dashboard.php");
-
 ?>
+
 <div id="ingreso_cliente">
   <div class="container">
     <div class="row">
@@ -23,7 +23,6 @@ require("dashboard.php");
               </div>
 
               <?php
-
               $respuesta = ControladorPagos::ctrIngresoUsuarios();
 
               if (isset($respuesta[0])) {
@@ -32,75 +31,110 @@ require("dashboard.php");
 
                   if ($respuesta[1] == "true") {
                     if ($respuesta[2] == 0) {
-                      echo '
-                      <script>
-                        if (window.history.replaceState) {
-                          window.history.replaceState(null, null, window.location.href);
-                        }
-                      </script>';
+              ?>
+                      <div class="modal" tabindex="-1" role="dialog" id="renewModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Atención</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="custom-alert custom-alert-danger"> !!! ATENCIÓN !!! <br> POR FAVOR RENUEVE SU PAGO </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                      echo '<div class="alert alert-danger fixed-alert" style="font-weight:700; font-size: 2rem; line-height: 1;"> !!! ATENCION !!! <br> POR FAVOR RENUEVE SU PAGO </div>';
-
-                      echo '
                       <script>
-                        setTimeout(function() {
-                          window.location = "index.php?pagina=editar_pagos";
-                        }, 5000);
-                      </script>';
+                        $(document).ready(function() {
+                          $("#renewModal").modal("show");
+                        });
+                      </script>
+                    <?php
                     } else if ($respuesta[2] <= 2) {
-                      echo '
-                      <script>
-                        if (window.history.replaceState) {
-                          window.history.replaceState(null, null, window.location.href);
-                        }
-                      </script>';
+                    ?>
+                      <div class="modal" tabindex="-1" role="dialog" id="expireModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Atención</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="custom-alert custom-alert-danger">SU MEMBRESIA ESTA PRÓXIMA A VENCER, LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                      echo '<div class="alert alert-danger fixed-alert" style="font-weight:700; font-size: 2rem; line-height: 1;">SU MEMBRESIA ESTA PRÓXIMA A VENCER, LE QUEDAN <br>' . $respuesta[2] . ' <br> DIAS</div>';
-
-                      echo '
                       <script>
-                        setTimeout(function() {
-                          window.location = "index.php?pagina=login_usuario";
-                        }, 5000);
-                      </script>';
+                        $(document).ready(function() {
+                          $("#expireModal").modal("show");
+                        });
+                      </script>
+                    <?php
                     } else {
-                      echo '
-                      <script>
-                        if (window.history.replaceState) {
-                          window.history.replaceState(null, null, window.location.href);
-                        }
-                      </script>';
+                    ?>
+                      <div class="modal" tabindex="-1" role="dialog" id="daysModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Atención</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="custom-alert custom-alert-danger">AL USUARIO LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                      echo '<div class="alert alert-danger fixed-alert" style="font-weight:700; font-size: 2rem; line-height: 1;">AL USUARIO LE QUEDAN <br>' . $respuesta[2] . ' <br> DIAS</div>';
-
-                      echo '
                       <script>
-                        setTimeout(function() {
-                          window.location = "index.php?pagina=login_usuario";
-                        }, 5000);
-                      </script>';
+                        $(document).ready(function() {
+                          $("#daysModal").modal("show");
+                        });
+                      </script>
+                    <?php
                     }
                   } else {
-                    echo '
-                    <script>
-                      if (window.history.replaceState) {
-                        window.history.replaceState(null, null, window.location.href);
-                      }
-                    </script>';
+                    ?>
+                    <div class="modal" tabindex="-1" role="dialog" id="successModal">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Éxito</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="custom-alert custom-alert-success">INGRESO EXITOSO</div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-                    echo '<div class="alert alert-success fixed-alert" style="font-weight:700; font-size: 2rem; line-height: 1;">INGRESO EXITOSO</div>';
-
-                    echo '
                     <script>
-                      setTimeout(function() {
-                        window.location = "index.php?pagina=lista_pagos";
-                      }, 5000);
-                    </script>';
+                      $(document).ready(function() {
+                        $("#successModal").modal("show");
+                      });
+                    </script>
+              <?php
                   }
                 }
               }
               ?>
-
 
               <div class="card-footer">
                 <div class="col-12 d-flex justify-content-center">

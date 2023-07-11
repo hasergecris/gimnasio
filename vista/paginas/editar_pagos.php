@@ -14,7 +14,6 @@ if (isset($_GET["id"])) {
 
 ?>
 
-
 <div id="ingreso_cliente">
   <div class="container">
     <div class="row">
@@ -25,7 +24,7 @@ if (isset($_GET["id"])) {
           </div>
           <div class="card-body">
             <form method="post" class="row d-flex">
-              <div class="col-12 jusdtify-content-between">
+              <div class="col-12 justify-content-between">
                 <div class="d-flex">
                   <div class="col-md-6 mb-3">
                     <label for="desde" class="texto">Documento:</label>
@@ -63,37 +62,48 @@ if (isset($_GET["id"])) {
                   </div>
                 </div>
 
-
                 <?php
                 $actualizar = ControladorPagos::ctrActualizarPago();
 
                 if ($actualizar == "ok") {
-                  echo
-                  '<script>
-                      if(window.history.replaceState) {
-                        window.history.replaceState(null,null,window.location.href);
-                      }
-                    </script>';
+                ?>
 
+                  <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          La información de pago al usuario <br><?php echo $usuario[0]["usu_nombre"]; ?><br> ha sido actualizada.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                  echo '<div class="alert alert-success">La información de pago al usuario <br>' . $usuario[0]["usu_nombre"] . '<br> a sido actualizada.</div>';
-
-                  '<script>
-                      setTimeout(fuction(){
+                  <script>
+                    $(document).ready(function() {
+                      $("#successModal").modal("show");
+                      setTimeout(function() {
                         window.location = "index.php?pagina=login_usuario";
-                      },5000);
-                  </script>';
+                      }, 3000);
+                    });
+                  </script>
+                <?php
                 }
                 ?>
 
                 <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario[0]["id"] ?>">
 
                 <div class="col-12 d-flex justify-content-end">
-                  <button type="submit" class="btn btn-lg btn-primary boton_general">ActuaLizar</button>
+                  <button type="submit" class="btn btn-lg btn-primary boton_general">Actualizar</button>
                 </div>
 
-
-
+              </div>
             </form>
           </div>
         </div>

@@ -5,21 +5,25 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
 ?>
 
 
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-  // $(document).ready(function() {
-  //   $('#lista_usuarios').DataTable();
-  // });
-
   $(document).ready(function() {
     $('#lista_usuarios').DataTable({
-      searching: true, // Habilitar la búsqueda
-      ordering: true, // Habilitar el ordenamiento
-      paging: true, // Habilitar paginación
-      pageLength: 10, // Mostrar 10 elementos por página
-      search: 'Buscar:', 
-   
+      searching: true,
+      ordering: true,
+      paging: true,
+      pageLength: 10,
+      language: {
+        search: 'Buscar:',
+        paginate: {
+          next: '<i class="fas fa-chevron-right"></i>',
+          previous: '<i class="fas fa-chevron-left"></i>'
+        }
+      }
     });
   });
 </script>
@@ -35,15 +39,14 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
         <th>DOCUMENTO</th>
         <th>CORREO</th>
         <th>ROL</th>
-        <th>FECHA </th>
+        <th>FECHA</th>
         <th>ACCIONES</th>
       </tr>
     </thead>
 
     <tbody>
-      <?php
-      foreach ($usuarios as $key => $value) : ?>
-        <tr class=" align-items-center">
+      <?php foreach ($usuarios as $key => $value) : ?>
+        <tr class="align-items-center">
           <td class="text-center texto_tablas"><?php echo ($key + 1); ?></td>
           <td class="texto_tablas"><?php echo $value["usu_nombre"] ?> </td>
           <td class="texto_tablas"><?php echo $value["usu_documento"] ?></td>
@@ -58,8 +61,8 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
               </div>
 
               <form method="post">
-                <input type="hidden" name="eliminarRegistro" value=" <?php echo $value["id"]; ?>">
-                <button type="submit" class="btn btn-danger"><i class=" fas fa-trash-alt"></i></button>
+                <input type="hidden" name="eliminarRegistro" value="<?php echo $value["id"]; ?>">
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 
                 <?php
                 $eliminar = new  ControladorFormularios();
@@ -68,15 +71,8 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
               </form>
             </div>
           </td>
-
-
         </tr>
-
-
-
       <?php endforeach ?>
-
     </tbody>
   </table>
-
 </div>

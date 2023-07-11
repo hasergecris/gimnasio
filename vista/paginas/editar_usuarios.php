@@ -72,12 +72,16 @@ if (isset($_GET["id"])) {
                           La información del usuario <br><?php echo $usuario[0]["usu_nombre"]; ?> <br>ha sido actualizada.
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redirectToUsersList()">Aceptar</button>
                         </div>
                       </div>
                     </div>
                   </div>
                   <script>
+                    function redirectToUsersList() {
+                      window.location.href = "index.php?pagina=lista_usuario";
+                    }
+
                     $(document).ready(function() {
                       $("#successModal").modal("show");
                     });

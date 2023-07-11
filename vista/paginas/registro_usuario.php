@@ -1,6 +1,7 @@
 <?php
-require("dashboard.php")
+require("dashboard.php");
 ?>
+
 <script>
   function cargarRol(rol) {
     if (rol == 1) {
@@ -51,34 +52,6 @@ require("dashboard.php")
                 <input type="password" class="form-control" id="contrasenia" name="contrasenia">
               </div>
 
-
-              <?php
-
-              // METODO ESTATICO
-              $registro = ControladorFormularios::ctrRegistroUsuarios();
-
-              if ($registro == "ok") {
-                echo
-                '<script>
-                  if(window.history.replaceState) {
-                    window.history.replaceState(null,null,window.location.href);
-                  }
-                </script>';
-
-                echo '<div class="alert alert-success">El usuario ha sido registrado</div>';
-
-                echo
-                '<script>
-                  setTimeout(function(){
-                    window.location = "index.php?pagina=lista_usuario";
-                  }, 3000);
-                </script>';
-              } elseif (!empty($registro)) {
-                echo '<div class="alert alert-danger">' . $registro . '</div>';
-              }
-              ?>
-
-
               <div class="col-12 d-flex justify-content-end">
                 <button type="submit" class="btn btn-lg btn-primary boton_general">Enviar</button>
               </div>
@@ -89,3 +62,71 @@ require("dashboard.php")
     </div>
   </div>
 </div>
+
+<!-- Modal Éxito -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-icon">
+          <span class="modal-icon-govco modal-success-icon"></span>
+        </div>
+        <p>El usuario ha sido registrado.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Error -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-icon">
+          <span class="modal-icon-govco modal-error-icon"></span>
+        </div>
+        <p>El usuario o el documento ya están registrados.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  <?php
+  $registro = ControladorFormularios::ctrRegistroUsuarios();
+
+  if ($registro == "ok") {
+    echo '
+      $(document).ready(function() {
+        if(window.history.replaceState) {
+          window.history.replaceState(null,null,window.location.href);
+        }
+        $("#successModal").modal("show");
+        setTimeout(function(){
+          window.location = "index.php?pagina=registro_pagos";
+        }, 3000);
+      });
+    ';
+  } elseif (!empty($registro)) {
+    echo '
+      $(document).ready(function() {
+        $("#errorModal").modal("show");
+      });
+    ';
+  }
+  ?>
+</script>

@@ -15,7 +15,6 @@ require("dashboard.php");
   }
 </script>
 
-
 <div id="ingreso_cliente">
   <div class="container">
     <div class="row">
@@ -63,54 +62,95 @@ require("dashboard.php");
 
               $usuarios = ControladorPagos::ctrRegistroPagos();
               if ($usuarios == "ok") {
+              ?>
+                <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="texto">SU PAGO HA SIDO REGISTRADO</div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                echo '
                 <script>
-                  if (window.history.replaceState) {
-                    window.history.replaceState(null, null, window.location.href);
-                  }
-                </script>';
-
-                echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">SU PAGO A SIDO REGISTRADO</div>';
-
-                echo '
-                <script>
-                  setTimeout(function() {
-                    window.location = "index.php?pagina=lista_pagos";
-                  }, 2000);
-                </script>';
+                  $(document).ready(function() {
+                    $("#successModal").modal("show");
+                    setTimeout(function() {
+                      window.location = "index.php?pagina=login_usuario";
+                    }, 5000);
+                  });
+                </script>
+              <?php
               } else if ($usuarios == "no") {
-                echo '
-                <script>
-                  if (window.history.replaceState) {
-                    window.history.replaceState(null, null, window.location.href);
-                  }
-                </script>';
+              ?>
+                <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="texto">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>';
-
-                echo '
                 <script>
-                  setTimeout(function() {
-                    window.location = "index.php?pagina=lista_pagos";
-                  }, 4000);
-                </script>';
+                  $(document).ready(function() {
+                    $("#errorModal").modal("show");
+                    setTimeout(function() {
+                      window.location = "index.php?pagina=registro_usuario";
+                    }, 5000);
+                  });
+                </script>
+              <?php
               } else if ($usuarios == "vigente") {
-                echo '
-                <script>
-                  if (window.history.replaceState) {
-                    window.history.replaceState(null, null, window.location.href);
-                  }
-                </script>';
+              ?>
+                <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="warningModalLabel">Advertencia</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="texto">EL USUARIO TIENE UNA MEMBRESIA ACTIVA</div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                echo '<div class="alert alert-danger" style="font-weight:700; font-size: 2rem; line-height: 1;">EL USUARIO  TIENE UNA MEMBRESIA ACTIVA</div>';
-
-                echo '
                 <script>
-                  setTimeout(function() {
-                    window.location = "index.php?pagina=lista_pagos";
-                  }, 4000);
-                </script>';
+                  $(document).ready(function() {
+                    $("#warningModal").modal("show");
+                    setTimeout(function() {
+                      window.location = "index.php?pagina=login_usuario";
+                    }, 5000);
+                  });
+                </script>
+              <?php
               }
               ?>
 

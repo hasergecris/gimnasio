@@ -4,28 +4,32 @@ require("dashboard.php");
 $pagos = ControladorPagos::ctrSeleccionarPagos();
 
 ?>
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-  // $(document).ready(function() {
-  //   $('#lista_usuarios').DataTable();
-  // });
-
   $(document).ready(function() {
     $('#lista_pagos').DataTable({
-      searching: true, // Habilitar la búsqueda
-      ordering: true, // Habilitar el ordenamiento
-      paging: true, // Habilitar paginación
-      pageLength: 10, // Mostrar 10 elementos por página
-      search: 'Buscar:', 
-   
+      searching: true,
+      ordering: true,
+      paging: true,
+      pageLength: 10,
+      language: {
+        search: 'Buscar:',
+        paginate: {
+          next: '<i class="fas fa-chevron-right"></i>',
+          previous: '<i class="fas fa-chevron-left"></i>'
+        }
+      }
     });
   });
 </script>
 
 <div class="tabla_usuarios">
   <h2 class="titulo text-center">Listado de Pagos</h2>
-  <table class="table table-dark table-hove" id="lista_pagos" >
+  <table class="table table-dark table-hover" id="lista_pagos">
     <thead>
       <tr>
         <th>Documento</th>
@@ -53,11 +57,11 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
               </div>
 
               <form method="post">
-                <input type="hidden" name="eliminarPago" value=" <?php echo $pago["id"]; ?>">
-                <button type="submit" class="btn btn-danger"><i class=" fas fa-trash-alt"></i></button>
+                <input type="hidden" name="eliminarPago" value="<?php echo $pago["id"]; ?>">
+                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 
                 <?php
-                $eliminar = new  ControladorPagos();
+                $eliminar = new ControladorPagos();
                 $eliminar->ctrEliminarPago();
                 ?>
               </form>
