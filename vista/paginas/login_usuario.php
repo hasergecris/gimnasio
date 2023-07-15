@@ -33,17 +33,18 @@ require("dashboard.php");
                     if ($respuesta[2] == 0) {
               ?>
                       <div class="modal" tabindex="-1" role="dialog" id="renewModal">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
+                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                          <div class="modal-content modal_danger">
                             <div class="modal-header">
-                              <h5 class="modal-title">Atención</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: red;"></button>
                             </div>
                             <div class="modal-body">
-                              <div class="custom-alert custom-alert-danger"> !!! ATENCIÓN !!! <br> POR FAVOR RENUEVE SU PAGO </div>
+                              <h5 class="modal-title text-center titulo_modal">!!! ALERTA !!! </h5>
+                              <div class="icono_danger d-flex justify-content-center"><i class="fas fa-skull-crossbones"></i></div>
+                              <div class="texto-danger text-center"> POR FAVOR RENUEVE SU PAGO </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Aceptar</button>
                             </div>
                           </div>
                         </div>
@@ -59,16 +60,18 @@ require("dashboard.php");
                     ?>
                       <div class="modal" tabindex="-1" role="dialog" id="expireModal">
                         <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
+                          <div class="modal-content modal_warning">
                             <div class="modal-header">
-                              <h5 class="modal-title">Atención</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <div class="custom-alert custom-alert-danger">SU MEMBRESIA ESTA PRÓXIMA A VENCER, LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
+                              <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!! </h5>
+                              <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i></div>
+                              <div class="texto-warning flex-column d-flex justify-content-center">AL USUARIO LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
                             </div>
+
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Aceptar</button>
                             </div>
                           </div>
                         </div>
@@ -84,13 +87,14 @@ require("dashboard.php");
                     ?>
                       <div class="modal" tabindex="-1" role="dialog" id="daysModal">
                         <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
+                          <div class="modal-content entrada_normal">
                             <div class="modal-header">
-                              <h5 class="modal-title">Atención</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <div class="custom-alert custom-alert-danger">AL USUARIO LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
+                              <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!!</h5>
+                              <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></div>
+                              <div class="texto-warning text-center">AL USUARIO LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
@@ -112,10 +116,11 @@ require("dashboard.php");
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title">Éxito</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
+                            <h5 class="modal-title text-center titulo_modal">Éxito</h5>
+                            <div class="icono_exito"><i class="fa fa-circle-check" aria-hidden="true"></i></div>
                             <div class="custom-alert custom-alert-success">INGRESO EXITOSO</div>
                           </div>
                           <div class="modal-footer">

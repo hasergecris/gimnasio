@@ -65,15 +65,14 @@ require("dashboard.php");
               ?>
                 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content entrada_normal">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="successModalLabel">Éxito</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <div class="texto">SU PAGO HA SIDO REGISTRADO</div>
+                        <h5 class="modal-title text-center titulo_modal">Éxito</h5>
+                        <div class="icono_check d-flex justify-content-center"><i class="fas fa-check"></i></div>
+                        <div class="texto text-center">SU PAGO HA SIDO REGISTRADO</div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
@@ -95,18 +94,17 @@ require("dashboard.php");
               ?>
                 <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content modal_danger">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: red;"></button>
                       </div>
                       <div class="modal-body">
-                        <div class="texto">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>
+                        <h5 class="modal-title titulo_modal" id="errorModalLabel">Error</h5>
+                        <div class="icono_danger d-flex justify-content-center"><i class="fas fa-skull-crossbones"></i></div>
+                        <div class="texto-danger text-center">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
                       </div>
                     </div>
                   </div>
@@ -125,15 +123,14 @@ require("dashboard.php");
               ?>
                 <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content modal_warning">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="warningModalLabel">Advertencia</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <div class="texto">EL USUARIO TIENE UNA MEMBRESIA ACTIVA</div>
+                        <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!! </h5>
+                        <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></div>
+                        <div class="texto-warning flex-column d-flex justify-content-center">EL USUARIO TIENE UNA MEMBRESIA ACTIVA</div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
