@@ -93,7 +93,7 @@ require("dashboard.php");
                             </div>
                             <div class="modal-body">
                               <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!!</h5>
-                              <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></div>
+                              <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i></div>
                               <div class="texto-warning text-center">AL USUARIO LE QUEDAN <br><?php echo $respuesta[2] ?> <br> DIAS</div>
                             </div>
                             <div class="modal-footer">
