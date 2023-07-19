@@ -63,16 +63,17 @@ if (isset($_GET["id"])) {
                 ?>
                   <div class="modal fade modal_general" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
+                      <div class="modal-content modal_actualizado">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="successModalLabel">Éxito</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
-                          La información del usuario <br><?php echo $usuario[0]["usu_nombre"]; ?> <br>ha sido actualizada.
+                          <h5 class="modal-title titulo_modal text-center">!!! Éxito !!!</h5>z
+                          <div class="icono-danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
+                          <div class="texto-warning flex-column d-flex justify-content-center">La información del usuario <br><?php echo $usuario[0]["usu_nombre"]; ?> <br>ha sido actualizada.</div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redirectToUsersList()">Aceptar</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal" onclick="redirectToUsersList()">Aceptar</button>
                         </div>
                       </div>
                     </div>

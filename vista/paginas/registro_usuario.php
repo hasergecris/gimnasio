@@ -66,37 +66,34 @@ require("dashboard.php");
 <!-- Modal Éxito -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content modal_actualizado">
       <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Éxito</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="modal-icon">
-          <span class="modal-icon-govco modal-success-icon"></span>
-        </div>
-        <p>El usuario ha sido registrado.</p>
+        <h5 class="modal-title text-center">!!! Éxito !!!</h5>
+        <div class="icono-danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
+        <p class="texto_danger tetx-center">El usuario ha sido registrado.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
+        
 
 <!-- Modal Error -->
 <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content modal_warning">
       <div class="modal-header">
-        <h5 class="modal-title" id="errorModalLabel">Error</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="modal-icon">
-          <span class="modal-icon-govco modal-error-icon"></span>
-        </div>
-        <p>El usuario o el documento ya están registrados.</p>
+        <h5 class="modal-title text-center">!!! Error !!!</h5>
+        <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i></div>
+        <p class="texto_danger text-center">El usuario o el documento ya están registrados.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

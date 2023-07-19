@@ -407,6 +407,10 @@ a#lista_usuarios_next {
   background-color: rgba(0, 140, 255, 0.664);
 }
 
+.modal_actualizado {
+  background-color: rgba(0, 255, 0, 0.726);
+}
+
 .modal-header {
   border-bottom: none;
 }
@@ -427,6 +431,7 @@ a#lista_usuarios_next {
   font-size: 8rem;
   margin-bottom: 1rem;
 }
+
 .icono_exito {
   color: blue;
 }
@@ -436,7 +441,7 @@ a#lista_usuarios_next {
   font-size: 2rem;
 }
 
-.texto-danger{
+.texto-danger {
   color: #fff;
   font-weight: 700;
   font-size: 2rem;
@@ -444,7 +449,8 @@ a#lista_usuarios_next {
 }
 
 .texto-warning {
-  font-size: 1.5rem;  color: #fff;
+  font-size: 1.5rem;
+  color: #fff;
   font-weight: 700;
   line-height: 1;
 }
