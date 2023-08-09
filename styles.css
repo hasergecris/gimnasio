@@ -408,7 +408,7 @@ a#lista_usuarios_next {
 }
 
 .modal_actualizado {
-  background-color: rgba(0, 255, 0, 0.726);
+  background-color: rgba(107, 139, 107, 0.767);
 }
 
 .modal-header {
@@ -428,12 +428,19 @@ a#lista_usuarios_next {
 
 .icono_danger {
   color: #fff;
-  font-size: 8rem;
-  margin-bottom: 1rem;
+    font-size: 7rem;
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
 }
+
 
 .icono_exito {
   color: blue;
+    font-size: 7rem;
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: center;
 }
 
 .texto_exito {
@@ -453,6 +460,9 @@ a#lista_usuarios_next {
   color: #fff;
   font-weight: 700;
   line-height: 1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 

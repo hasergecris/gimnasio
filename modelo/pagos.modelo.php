@@ -29,7 +29,7 @@ class ModeloPagos
 
     $date1 = new DateTime();
     $date2 = new DateTime($hasta);
-    
+
     $diff = $date1->diff($date2);
     $dias_restantes = $diff->format('%d');
 
@@ -53,7 +53,7 @@ class ModeloPagos
     $documento = ($datos["documento"]);
     $hasta = date($datos["hasta"]);
     $desde = date($datos["desde"]);
-    $fecha_alerta_terminacion =  date("Y-m-d", strtotime($hasta . "- 2 days"));
+    $fecha_alerta_terminacion =  date("Y-m-d", strtotime($hasta . "- 1 days"));
 
     // COMPROVACION  SI NO EXIXTE EL CLIENTE NO DEJA REGISTRAR PAGO  
     $comprovacionUsuarios = Conexion::conectar()->prepare("SELECT COUNT(*) FROM usuarios WHERE usu_documento = :ing_idUsuario");
@@ -66,7 +66,7 @@ class ModeloPagos
     $comprovacionVigencia->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
     $comprovacionVigencia->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
     $comprovacionVigencia->execute();
-    $comprobacion =$comprovacionVigencia->fetchColumn();
+    $comprobacion = $comprovacionVigencia->fetchColumn();
 
     if ($count > 0 && $comprobacion <= 0) {
       $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (documento, valor, usu_nombre, duracion, desde, hasta, fecha_alerta_terminacion) VALUES (:documento, :valor, :usu_nombre, :duracion, :desde, :hasta, :fecha_alerta_terminacion)");

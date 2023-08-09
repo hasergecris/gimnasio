@@ -76,8 +76,8 @@ if (isset($_GET["id"])) {
                         </div>
                         <div class="modal-body">
                           <h5 class="modal-title text-center titulo_modal" id="successModalLabel">!!! Éxito !!!</h5>
-                          <div class="icono-danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
-                          <div class="texto-warning text-center">  La información de pago al usuario <br><?php echo $usuario[0]["usu_nombre"]; ?><br> ha sido actualizada.</div>
+                          <div class="icono_danger d-flex-justify-content-center"><i class="fas fa-check"></i></div>
+                          <div class="texto-warning text-center"> La información de pago al usuario <br><?php echo $usuario[0]["usu_nombre"]; ?><br> ha sido actualizada.</div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
