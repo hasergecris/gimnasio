@@ -73,7 +73,7 @@ if (isset($_GET["id"])) {
                           <div class="texto-warning flex-column d-flex justify-content-center">La información del usuario <br><?php echo $usuario[0]["usu_nombre"]; ?> <br>ha sido actualizada.</div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-dismiss="modal" onclick="redirectToUsersList()">Aceptar</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal" data-bs-toggle="modal" data-bs-target="#successModal" onclick="redirectToUsersList()">Aceptar</button>
                         </div>
                       </div>
                     </div>

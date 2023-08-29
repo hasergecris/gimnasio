@@ -4,7 +4,6 @@ require_once "conexion.php";
 class ModeloPagos
 {
 
-  // SELECCIONAR PAGOS POR DOCUMENTO
   static public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
   {
     $hoy = date("Y-m-d");
@@ -12,6 +11,7 @@ class ModeloPagos
     $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario and :ing_fecha >= desde AND :ing_fecha <= hasta");
 
     $alerta->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
+    // Cambia :ing_fecha por su valor directamente
     $alerta->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
 
     $alerta->execute();
@@ -21,32 +21,33 @@ class ModeloPagos
     $fecha_final = $datosIngreso['hasta'];
     $hasta = $fecha_final;
 
-    if ($alerta) {
+    if ($datosIngreso) {
       $ingreso = "true";
+
+      $date1 = new DateTime();
+      $date2 = new DateTime($hasta);
+      $date2->sub(new DateInterval('P1D')); // Restar un día
+
+      $diff = $date1->diff($date2);
+      $dias_restantes = $diff->format('%d');
+
+      if ($dias_restantes <= 2) {
+        // Enviar alerta al usuario
+      }
+
+      $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE documento = :documento");
+
+      $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
+      $stmt->bindParam(":dias_restantes", $dias_restantes, PDO::PARAM_STR);
+
+      $stmt->execute();
     } else {
       $ingreso = "false";
+      $dias_restantes = 0; // Puedes ajustar esto según tu lógica
     }
 
-    $date1 = new DateTime();
-    $date2 = new DateTime($hasta);
-
-    $diff = $date1->diff($date2);
-    $dias_restantes = $diff->format('%d');
-
-    if ($dias_restantes <= 2) {
-      // Enviar alerta al usuario
-    }
-
-    $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE documento = :documento");
-
-    $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
-    $stmt->bindParam(":dias_restantes", $dias_restantes, PDO::PARAM_STR);
-
-    $stmt->execute();
-
-    return  array($stmt, $ingreso, $dias_restantes);
+    return array($stmt, $ingreso, $dias_restantes);
   }
-
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {

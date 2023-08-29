@@ -75,7 +75,7 @@ require("dashboard.php");
                         <div class="texto text-center">SU PAGO HA SIDO REGISTRADO</div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()"data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
                       </div>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ require("dashboard.php");
                         <div class="texto-danger text-center">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="redireccionar()"data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
                       </div>
                     </div>
                   </div>
@@ -133,7 +133,7 @@ require("dashboard.php");
                         <div class="texto-warning flex-column d-flex justify-content-center">EL USUARIO TIENE UNA MEMBRESIA ACTIVA</div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()">Aceptar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()" data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
                       </div>
                     </div>
                   </div>

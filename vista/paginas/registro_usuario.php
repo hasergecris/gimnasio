@@ -76,7 +76,7 @@ require("dashboard.php");
         <p class="texto_danger tetx-center">El usuario ha sido registrado.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#successModal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -96,7 +96,8 @@ require("dashboard.php");
         <p class="texto_danger text-center">El usuario o el documento ya están registrados.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#successModal">Cerrar</button>
       </div>
     </div>
   </div>

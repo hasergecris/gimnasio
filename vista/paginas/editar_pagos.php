@@ -80,7 +80,7 @@ if (isset($_GET["id"])) {
                           <div class="texto-warning text-center"> La información de pago al usuario <br><?php echo $usuario[0]["usu_nombre"]; ?><br> ha sido actualizada.</div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+                          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
                         </div>
                       </div>
                     </div>
