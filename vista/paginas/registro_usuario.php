@@ -2,6 +2,7 @@
 require("dashboard.php");
 ?>
 
+
 <script>
   function cargarRol(rol) {
     if (rol == 1) {
@@ -71,9 +72,9 @@ require("dashboard.php");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5 class="modal-title text-center">!!! Éxito !!!</h5>
-        <div class="icono-danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
-        <p class="texto_danger tetx-center">El usuario ha sido registrado.</p>
+        <h5 class="modal-title text-center titulo_modal ">!!! Éxito !!!</h5>
+        <div class="icono_danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
+        <p class="texto-danger text-center">El usuario ha sido registrado.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#successModal">Cerrar</button>
@@ -91,9 +92,9 @@ require("dashboard.php");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5 class="modal-title text-center">!!! Error !!!</h5>
+        <h5 class="modal-title text-center titulo_modal">!!! Error !!!</h5>
         <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i></div>
-        <p class="texto_danger text-center">El usuario o el documento ya están registrados.</p>
+        <div class="texto-danger text-center">El usuario o el documento ya están registrados.</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"

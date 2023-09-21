@@ -25,134 +25,23 @@ require("dashboard.php");
               <?php
               $respuesta = ControladorPagos::ctrIngresoUsuarios();
 
-              if (isset($respuesta[0])) {
+              if (isset($respuesta[0]) && $respuesta[0] && $respuesta[1] == "true") {
+                $daysRemaining = $respuesta[2];
+                $modalToShow = '';
 
-                if ($respuesta[0]) {
-
-                  if ($respuesta[1] == "true") {
-                    if ($respuesta[2] == 0) {
-              ?>
-              <div class="modal" tabindex="-1" role="dialog" id="renewModal">
-                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                  <div class="modal-content modal_danger">
-                    <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        style="color: red;"></button>
-                    </div>
-                    <div class="modal-body">
-                      <h5 class="modal-title text-center titulo_modal">!!! ALERTA !!! </h5>
-                      <div class="icono_danger d-flex justify-content-center"><i class="fas fa-skull-crossbones"></i>
-                      </div>
-                      <div class="texto-danger text-center"> POR FAVOR RENUEVE SU PAGO </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <script>
-                $(document).ready(function () {
-                  $("#renewModal").modal("show");
-                });
-              </script>
-              <?php
-                    } else if ($respuesta[2] <= 2) {
-                    ?>
-              <div class="modal" tabindex="-1" role="dialog" id="expireModal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content modal_warning">
-                    <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!! </h5>
-                      <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i>
-                      </div>
-                      <div class="texto-warning d-flex justify-content-center">AL USUARIO LE QUEDAN <br>
-                        <?php echo $respuesta[2] ?> <br> DIAS
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#successModal">Aceptar</button>
-                    </div>
-
-
-                  </div>
-                </div>
-              </div>
-
-              <script>
-                $(document).ready(function () {
-                  $("#expireModal").modal("show");
-                });
-              </script>
-              <?php
-                    } else {
-                    ?>
-              <div class="modal" tabindex="-1" role="dialog" id="daysModal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content entrada_normal">
-                    <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!!</h5>
-                      <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i>
-                      </div>
-                      <div class="texto-warning text-center">AL USUARIO LE QUEDAN <br>
-                        <?php echo $respuesta[2] ?> <br> DIAS
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#successModal">Aceptar</button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <script>
-                $(document).ready(function () {
-                  $("#daysModal").modal("show");
-                });
-              </script>
-              <?php
-                    }
-                  } else {
-                    ?>
-              <div class="modal" tabindex="-1" role="dialog" id="successModal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <h5 class="modal-title text-center titulo_modal">Éxito</h5>
-                      <div class="icono_exito"><i class="fa fa-circle-check" aria-hidden="true"></i></div>
-                      <div class="custom-alert custom-alert-success">INGRESO EXITOSO</div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#successModal">Aceptar</button>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <script>
-                $(document).ready(function () {
-                  $("#successModal").modal("show");
-                });
-              </script>
-              <?php
-                  }
+                if ($daysRemaining <= 0) {
+                  $modalToShow = 'renewModal';
+                } elseif ($daysRemaining == 1 || $daysRemaining == 2) {
+                  $modalToShow = 'expireModal';
+                } else {
+                  $modalToShow = 'daysModal';
                 }
+
+                echo '<script>
+                  $(document).ready(function() {
+                    $("#" + "' . $modalToShow . '").modal("show");
+                  });
+                </script>';
               }
               ?>
 
@@ -165,6 +54,60 @@ require("dashboard.php");
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modales -->
+<div class="modal" tabindex="-1" role="dialog" id="renewModal">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content modal_danger">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: red;"></button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title text-center titulo_modal">!!! ALERTA !!! </h5>
+        <div class="icono_danger d-flex justify-content-center"><i class="fas fa-skull-crossbones"></i></div>
+        <div class="texto-danger text-center"> POR FAVOR RENUEVE SU PAGO </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="expireModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal_warning">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!! </h5>
+        <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i></div>
+        <div class="texto-warning d-flex justify-content-center">AL USUARIO LE QUEDA<br>
+          <?php echo $daysRemaining ?> <br> DÍA<?php if ($daysRemaining > 1) echo 'S'; ?>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="daysModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content entrada_normal">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title text-center titulo_modal">!!! ATENCIÓN !!!</h5>
+        <div class="icono_danger d-flex justify-content-center"><i class="fa fa-exclamation-triangle"></i></div>
+        <div class="texto-warning text-center">AL USUARIO LE QUEDAN <br>
+          <?php echo $daysRemaining ?> <br> DÍA<?php if ($daysRemaining > 1) echo 'S'; ?>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

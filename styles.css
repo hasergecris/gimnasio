@@ -404,7 +404,7 @@ a#lista_usuarios_next {
 }
 
 .entrada_normal {
-  background-color: rgba(0, 140, 255, 0.664);
+  background-color: rgba(55, 0, 255, 0.925);
 }
 
 .modal_actualizado {
@@ -428,19 +428,19 @@ a#lista_usuarios_next {
 
 .icono_danger {
   color: #fff;
-    font-size: 7rem;
-    display: flex;
-    margin-bottom: 1rem;
-    justify-content: center;
+  font-size: 7rem;
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: center;
 }
 
 
 .icono_exito {
   color: blue;
-    font-size: 7rem;
-    display: flex;
-    margin-bottom: 1rem;
-    justify-content: center;
+  font-size: 7rem;
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: center;
 }
 
 .texto_exito {
