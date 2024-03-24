@@ -8,7 +8,7 @@ require("dashboard.php");
       <div class="col-12">
         <div class="card card_login">
           <div class="card-header">
-            <h2 class="titulo text-center"> INGRESO CLIENTE</h2>
+            <h2 class="titulo text-center">INGRESO CLIENTE</h2>
           </div>
           <div class="card-body contenido">
             <form method="POST" name="ingresoUsuarios">

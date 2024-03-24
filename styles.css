@@ -48,14 +48,13 @@ body {
 }
 
 .tabla_usuarios {
-  padding: 3% 6%;
+  padding: 3%;
   background-color: rgba(175, 182, 1, 0.3);
   color: rgba(175, 182, 1, 0.3);
   box-shadow:
     inset 0 -3em 3em rgba(0, 0, 0, 0.1),
     0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  margin-top: 3%;
   border-radius: 10px;
 }
 
@@ -202,8 +201,6 @@ a#lista_usuarios_next {
   font-size: 1rem !important;
 }
 
-
-
 /* buscar */
 .search-box {
   display: flex;
@@ -214,7 +211,15 @@ a#lista_usuarios_next {
   padding: 10px;
   color: #fff;
   background-color: #212529;
-  width: 300px;
+  width: 50%;
+}
+
+.table {
+  border: none;
+}
+
+.listaUsa {
+  border: none;
 }
 
 .search-box input {
@@ -227,15 +232,12 @@ a#lista_usuarios_next {
   font-size: 16px;
 }
 
-
 .search-box button {
   border: none;
   background-color: transparent;
   cursor: pointer;
   font-size: 16px;
 }
-
-
 
 .feather {
   width: 16px;
@@ -467,13 +469,13 @@ a#lista_usuarios_next {
 
 
 
-.modal-dialog {
+/* .modal-dialog {
   margin-top: 10%;
 }
 
 .modal-content {
   border-radius: 10px;
-}
+} */
 
 
 

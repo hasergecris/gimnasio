@@ -69,7 +69,7 @@ if (isset($_GET["id"])) {
                         </div>
                         <div class="modal-body text-center">
                           <h5 class="modal-title titulo_modal text-center">!!! Éxito !!!</h5>z
-                          <div class="icono-danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
+                          <div class="icono_danger d-flex-justify-content-center"><i class="fas fa-check"></i></div>
                           <div class="texto-warning flex-column d-flex justify-content-center">La información del usuario <br><?php echo $usuario[0]["usu_nombre"]; ?> <br>ha sido actualizada.</div>
                         </div>
                         <div class="modal-footer">

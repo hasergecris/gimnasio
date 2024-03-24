@@ -1,15 +1,13 @@
-<?php
-require("dashboard.php");
-
-$usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
-?>
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
 <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
 
+<?php
+require("dashboard.php");
+
+$usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
+?>
 <script>
   $(document).ready(function() {
     $('#lista_usuarios').DataTable({
@@ -34,19 +32,19 @@ $usuarios = ControladorFormularios::ctrSeleccionarRegistro(null, null);
   <table id="lista_usuarios" class="table table-dark table-hover">
     <thead>
       <tr>
-        <th>NUMERO</th>
-        <th>NOMBRES</th>
-        <th>DOCUMENTO</th>
-        <th>CORREO</th>
-        <th>ROL</th>
-        <th>FECHA</th>
-        <th>ACCIONES</th>
+        <th scope="col">#</th>
+        <th scope="col">NOMBRES</th>
+        <th scope="col">DOCUMENTO</th>
+        <th scope="col">CORREO</th>
+        <th scope="col">ROL</th>
+        <th scope="col">FECHA</th>
+        <th scope="col">ACCIONES</th>
       </tr>
     </thead>
 
     <tbody>
       <?php foreach ($usuarios as $key => $value) : ?>
-        <tr class="align-items-center">
+        <tr class="align-items-center listaUsa">
           <td class="text-center texto_tablas"><?php echo ($key + 1); ?></td>
           <td class="texto_tablas"><?php echo $value["usu_nombre"] ?> </td>
           <td class="texto_tablas"><?php echo $value["usu_documento"] ?></td>

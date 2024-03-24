@@ -1,6 +1,10 @@
 <?php
+$nombreUsuario = isset($_SESSION['usuario_nombre']) ? $_SESSION['usuario_nombre'] : '';
+$documentoUsuario = isset($_SESSION['usuario_documento']) ? $_SESSION['usuario_documento'] : '';
+
 require("dashboard.php");
 ?>
+
 <script>
   function buscar_ajax(cadena) {
     $.ajax({
@@ -28,7 +32,7 @@ require("dashboard.php");
             <form class="row g-3" method="post">
               <div class="col-md-6">
                 <label for="documento" class="form-label texto">Numero de documento:</label>
-                <input type="text" class="form-control" id="documento" name="documento" onkeyup="buscar_ajax(this.value);" required>
+                <input type="text" class="form-control" id="documento" name="documento" value="<?php echo $documentoUsuario; ?>" readonly onkeyup="buscar_ajax(this.value);" required>
               </div>
 
               <div class="col-md-6">
@@ -38,7 +42,7 @@ require("dashboard.php");
 
               <div class="col-md-8">
                 <label for="nombre" class="form-label texto">Nombre Usuario:</label>
-                <input type="text" class="form-control" id="nombre" name="registroNombre" required>
+                <input type="text" class="form-control" id="nombre" name="registroNombre" value="<?php echo $nombreUsuario; ?>" readonly required>
               </div>
 
               <div class="col-md-4">
@@ -57,10 +61,8 @@ require("dashboard.php");
               </div>
 
               <?php
-
-              // METODO ESTATICO
-
               $usuarios = ControladorPagos::ctrRegistroPagos();
+
               if ($usuarios == "ok") {
               ?>
                 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
@@ -75,20 +77,20 @@ require("dashboard.php");
                         <div class="texto text-center">SU PAGO HA SIDO REGISTRADO</div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()"data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()" data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <script>
+                <!-- <script>
                   $(document).ready(function() {
                     $("#successModal").modal("show");
                     setTimeout(function() {
                       window.location = "index.php?pagina=login_usuario";
                     }, 5000);
                   });
-                </script>
+                </script> -->
               <?php
               } else if ($usuarios == "no") {
               ?>
@@ -104,7 +106,7 @@ require("dashboard.php");
                         <div class="texto-danger text-center">EL USUARIO NO ESTA REGISTRADO EN LA BASE DE DATOS</div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="redireccionar()"data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="redireccionar()" data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
                       </div>
                     </div>
                   </div>

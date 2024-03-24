@@ -1,17 +1,38 @@
 <?php
 require("dashboard.php");
+
+$registro = ControladorFormularios::ctrRegistroUsuarios();
+
+if ($registro == "ok" && isset($_POST['registroNombre']) && isset($_POST['registroDocumento'])) {
+  $_SESSION['usuario_nombre'] = $_POST['registroNombre'];
+  $_SESSION['usuario_documento'] = $_POST['registroDocumento'];
 ?>
 
+  <script>
+    $(document).ready(function() {
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+      }
+      $("#successModal").modal("show");
+      setTimeout(function() {
+        window.location = "index.php?pagina=registro_pagos";
+      }, 3000);
+    });
+  </script>
 
-<script>
-  function cargarRol(rol) {
-    if (rol == 1) {
-      document.getElementById("admin_contrasenia").style.display = "block";
-    } else {
-      document.getElementById("admin_contrasenia").style.display = "none";
-    }
-  }
-</script>
+<?php
+} elseif (!empty($registro)) {
+?>
+
+  <script>
+    $(document).ready(function() {
+      $("#errorModal").modal("show");
+    });
+  </script>
+
+<?php
+}
+?>
 
 <div id="ingreso_cliente">
   <div class="container">
@@ -54,7 +75,7 @@ require("dashboard.php");
               </div>
 
               <div class="col-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-lg btn-primary boton_general">Enviar</button>
+                <button type="submit" class="btn btn-lg btn-primary boton_general">Registrar</button>
               </div>
             </form>
           </div>
@@ -65,7 +86,7 @@ require("dashboard.php");
 </div>
 
 <!-- Modal Éxito -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal fade" id="successModal" tabindex="1" aria-labelledby="successModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal_actualizado">
       <div class="modal-header">
@@ -73,7 +94,7 @@ require("dashboard.php");
       </div>
       <div class="modal-body">
         <h5 class="modal-title text-center titulo_modal ">!!! Éxito !!!</h5>
-        <div class="icono_danger d-flex-justify-content-center"><i class="fas fa-check fa-spin"></i></div>
+        <div class="icono_danger d-flex-justify-content-center"><i class="fas fa-check"></i></div>
         <p class="texto-danger text-center">El usuario ha sido registrado.</p>
       </div>
       <div class="modal-footer">
@@ -82,10 +103,10 @@ require("dashboard.php");
     </div>
   </div>
 </div>
-        
+
 
 <!-- Modal Error -->
-<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+<div class="modal fade" id="errorModal" tabindex="1" aria-labelledby="errorModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content modal_warning">
       <div class="modal-header">
@@ -97,35 +118,8 @@ require("dashboard.php");
         <div class="texto-danger text-center">El usuario o el documento ya están registrados.</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal"
-                        data-bs-target="#successModal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#successModal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  <?php
-  $registro = ControladorFormularios::ctrRegistroUsuarios();
-
-  if ($registro == "ok") {
-    echo '
-      $(document).ready(function() {
-        if(window.history.replaceState) {
-          window.history.replaceState(null,null,window.location.href);
-        }
-        $("#successModal").modal("show");
-        setTimeout(function(){
-          window.location = "index.php?pagina=registro_pagos";
-        }, 3000);
-      });
-    ';
-  } elseif (!empty($registro)) {
-    echo '
-      $(document).ready(function() {
-        $("#errorModal").modal("show");
-      });
-    ';
-  }
-  ?>
-</script>
