@@ -3,17 +3,26 @@
 class ControladorPagos
 {
   //INGRESO USUARIO
-  static  public function ctrIngresoUsuarios()
+  static public function ctrIngresoUsuarios()
   {
     if (isset($_POST["documento"])) {
+
       $tabla = "ingreso_clientes";
       $documento = $_POST["documento"];
 
-      $respuesta = ModeloPagos::mdlSeleccionarPagosPorDocumento($tabla, $documento);
+      $modeloPagos = new ModeloPagos(); // Creamos una instancia de ModeloPagos
+      $respuesta = $modeloPagos->mdlSeleccionarPagosPorDocumento($tabla, $documento);
 
-      return $respuesta;
+      // Verificar si la respuesta es un array antes de continuar
+      if (is_array($respuesta)) {
+        return $respuesta;
+      } else {
+        // Manejar el caso en que la respuesta no es un array
+        return false; // O cualquier otro valor apropiado
+      }
     }
   }
+
 
   // REGISTRO PAGOS
   public static function ctrRegistroPagos()

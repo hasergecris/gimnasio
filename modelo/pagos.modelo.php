@@ -3,58 +3,58 @@ require_once "conexion.php";
 
 class ModeloPagos
 {
-
   // SELECCIONAR PAGOS POR DOCUMENTO
-  static public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
+  public function mdlSeleccionarPagosPorDocumento($tabla, $documento)
   {
-    $hoy = date("Y-m-d");
+    $hoy = strtotime(date('Y-m-d'));
 
-    $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario and :ing_fecha >= desde AND :ing_fecha <= hasta");
+    $alerta = Conexion::conectar()->prepare("SELECT * FROM pagos WHERE documento = :ing_idUsuario AND :ing_fecha >= desde AND :ing_fecha <= hasta");
 
     $alerta->bindParam(":ing_idUsuario", $documento, PDO::PARAM_STR);
-    $alerta->bindParam(":ing_fecha", $hoy, PDO::PARAM_STR);
+    $alerta->bindValue(":ing_fecha", date('Y-m-d', $hoy), PDO::PARAM_STR); // Usar el formato correcto para la 
 
     $alerta->execute();
 
     $datosIngreso = $alerta->fetch(PDO::FETCH_ASSOC);
 
     if ($datosIngreso) {
-      $ingreso = "true";
+      $ingreso = true;
+      // Verificar si existe la clave 'hasta' en $datosIngreso
+      if (isset($datosIngreso['hasta'])) {
+        $fecha_final = strtotime($datosIngreso['hasta']); // Convertir la fecha final a timestamp
+        $diff = $fecha_final - $hoy; // Calcular la diferencia en segundos
+        $dias_restantes = round($diff / (60 * 60 * 24)); // Convertir la diferencia a días y redondear
+      } else {
+        $dias_restantes = 0;
+      }
     } else {
-      $ingreso = "false";
+      $ingreso = false;
     }
 
-    $fecha_final = new DateTime($datosIngreso['hasta']);
-    $hasta = $fecha_final;
-
-    $date1 = new DateTime();
-    $date2 = $hasta;
-
-    $diff = $date1->diff($date2);
-    $dias_restantes = $diff->format('%d');
-
-    if ($dias_restantes <= 0) {
-      // Enviar alerta al usuario
-    }
 
     $stmt = Conexion::conectar()->prepare("UPDATE pagos SET dias_restantes = :dias_restantes WHERE documento = :documento");
 
-    $stmt->bindParam(":documento", $documento, PDO::PARAM_STR);
-    $stmt->bindParam(":dias_restantes", $dias_restantes, PDO::PARAM_STR);
+    $stmt->bindParam(
+      ":documento",
+      $documento,
+      PDO::PARAM_STR
+    );
+    $stmt->bindParam(":dias_restantes", $dias_restantes, PDO::PARAM_INT);
 
     $stmt->execute();
 
-    return  array($stmt, $ingreso, $dias_restantes);
-  }
+    print_r($dias_restantes);
 
+    return [$stmt, $ingreso, $dias_restantes];
+  }
 
   // REGISTRO DE PAGO
   public static function mdlRegistroPagos($tabla, $datos)
   {
     $documento = ($datos["documento"]);
-    $hasta = date($datos["hasta"]);
     $desde = date($datos["desde"]);
-    $fecha_alerta_terminacion =  date("Y-m-d", strtotime($hasta . "- 1 days"));
+    $hasta = date($datos["hasta"]);
+    $fecha_alerta_terminacion =  date("Y-m-d", strtotime($hasta));
 
     // COMPROVACION  SI NO EXIXTE EL CLIENTE NO DEJA REGISTRAR PAGO  
     $comprovacionUsuarios = Conexion::conectar()->prepare("SELECT COUNT(*) FROM usuarios WHERE usu_documento = :ing_idUsuario");
@@ -91,7 +91,6 @@ class ModeloPagos
       return "no";
     }
   }
-
 
   // LISTAR PAGOS
   static public function mdlSeleccionarPagos($tabla)
