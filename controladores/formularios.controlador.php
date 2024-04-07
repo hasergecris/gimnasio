@@ -29,14 +29,14 @@ class ControladorFormularios
     return $respuesta;
   }
 
-  // LISTAR REGISTROS
+  // LISTAR REGISTROS PAGOS
   static public function ctrSeleccinarUsuarioPago($item, $valor)
   {
     $tabla = "pagos";
     $respuesta = ModeloFormularios::mdlSeleccionarUsuarioPago($tabla, $item, $valor);
     return $respuesta;
   }
-  
+
 
   // INGRESO ADMIN
   public function ctrIngreso()
@@ -70,7 +70,7 @@ class ControladorFormularios
       }
     }
   }
-  
+
   // ACTUALIZAR USUARIO
   static public function ctrActualizarRegistro()
   {

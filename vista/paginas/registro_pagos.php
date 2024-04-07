@@ -19,6 +19,12 @@ require("dashboard.php");
   }
 </script>
 
+<?php
+// Limpiar variables de sesión
+unset($_SESSION['usuario_nombre']);
+unset($_SESSION['usuario_documento']);
+?>
+
 <div id="ingreso_cliente">
   <div class="container">
     <div class="row">
@@ -74,7 +80,7 @@ require("dashboard.php");
                       <div class="modal-body">
                         <h5 class="modal-title text-center titulo_modal">Éxito</h5>
                         <div class="icono_check d-flex justify-content-center"><i class="fas fa-check"></i></div>
-                        <div class="texto text-center">SU PAGO HA SIDO REGISTRADO</div>
+                        <div class="texto-danger text-center">SU PAGO HA SIDO REGISTRADO</div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="redireccionar()" data-bs-toggle="modal" data-bs-target="#successModal">Aceptar</button>
@@ -83,14 +89,14 @@ require("dashboard.php");
                   </div>
                 </div>
 
-                <!-- <script>
+                <script>
                   $(document).ready(function() {
                     $("#successModal").modal("show");
                     setTimeout(function() {
                       window.location = "index.php?pagina=login_usuario";
                     }, 5000);
                   });
-                </script> -->
+                </script>
               <?php
               } else if ($usuarios == "no") {
               ?>
