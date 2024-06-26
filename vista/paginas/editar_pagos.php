@@ -2,12 +2,11 @@
 require("dashboard.php");
 
 if (isset($_GET["id"])) {
-
   $item = "id";
   $valor = $_GET["id"];
   $usuario = ControladorFormularios::ctrSeleccinarUsuarioPago($item, $valor);
-  print_r($usuario);
-  echo $usuario[0]["usu_nombre"];
+  // print_r($usuario);
+  // echo $usuario[0]["usu_nombre"];
 }
 ?>
 
@@ -59,7 +58,6 @@ if (isset($_GET["id"])) {
                   $actualizar = ControladorPagos::ctrActualizarPago();
                   print_r($actualizar);
                   if ($actualizar == "ok") {
-
                 ?>
                     <div id="successModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -91,6 +89,8 @@ if (isset($_GET["id"])) {
                 ?>
 
                 <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="<?php echo $usuario[0]["id"] ?>">
+                <!-- Campo oculto para dias_restantes -->
+                <input type="hidden" name="dias_restantes" value="<?php echo $dias_restantes; ?>">
 
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-lg btn-primary boton_general">Actualizar</button>

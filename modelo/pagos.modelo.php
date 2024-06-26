@@ -101,11 +101,10 @@ class ModeloPagos
     return $stmt->fetchAll();
   }
 
-
   // ACTUALIZAR PAGO
   static public function mdlActualizarPago($tabla, $datos)
   {
-    $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET documento = :documento, valor = :valor, usu_nombre = :usu_nombre, duracion = :duracion, desde = :desde, hasta = :hasta WHERE id = :id");
+    $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET documento = :documento, valor = :valor, usu_nombre = :usu_nombre, duracion = :duracion, desde = :desde, hasta = :hasta, dias_restantes = :dias_restantes WHERE id = :id");
 
     $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
     $stmt->bindParam(":valor", $datos["valor"], PDO::PARAM_STR);
@@ -113,7 +112,10 @@ class ModeloPagos
     $stmt->bindParam(":duracion", $datos["duracion"], PDO::PARAM_STR);
     $stmt->bindParam(":desde", $datos["desde"], PDO::PARAM_STR);
     $stmt->bindParam(":hasta", $datos["hasta"], PDO::PARAM_STR);
-    $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+    $stmt->bindParam(":dias_restantes", $datos["dias_restantes"], PDO::PARAM_INT);
+    $stmt->bindParam(":id", $datos["id"],
+      PDO::PARAM_INT
+    );
 
     if ($stmt->execute()) {
       return "ok";
@@ -121,7 +123,7 @@ class ModeloPagos
       print_r(Conexion::conectar()->errorInfo());
     }
   }
-
+  
   // ELIMINAR PAGO
   static public function mdlEliminarPago($tabla, $valor)
   {

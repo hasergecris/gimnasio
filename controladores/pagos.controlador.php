@@ -10,19 +10,16 @@ class ControladorPagos
       $tabla = "ingreso_clientes";
       $documento = $_POST["documento"];
 
-      $modeloPagos = new ModeloPagos(); // Creamos una instancia de ModeloPagos
+      $modeloPagos = new ModeloPagos();
       $respuesta = $modeloPagos->mdlSeleccionarPagosPorDocumento($tabla, $documento);
 
-      // Verificar si la respuesta es un array antes de continuar
       if (is_array($respuesta)) {
         return $respuesta;
       } else {
-        // Manejar el caso en que la respuesta no es un array
-        return false; // O cualquier otro valor apropiado
+        return false;
       }
     }
   }
-
 
   // REGISTRO PAGOS
   public static function ctrRegistroPagos()
@@ -59,6 +56,11 @@ class ControladorPagos
     if (isset($_POST["actualizarDocumento"])) {
       $tabla = "pagos";
 
+      $desde = strtotime($_POST["actualizarDesde"]);
+      $hasta = strtotime($_POST["actualizarHasta"]);
+      $hoy = strtotime(date('Y-m-d'));
+      $dias_restantes = round(($hasta - $hoy) / (60 * 60 * 24));
+
       $datos = array(
         "id" => $_POST["idUsuario"],
         "documento" => $_POST["actualizarDocumento"],
@@ -66,7 +68,8 @@ class ControladorPagos
         "usu_nombre" => $_POST["actualizarNombre"],
         "duracion" => $_POST["actualizarDuracion"],
         "desde" => $_POST["actualizarDesde"],
-        "hasta" => $_POST["actualizarHasta"]
+        "hasta" => $_POST["actualizarHasta"],
+        "dias_restantes" => $dias_restantes
       );
 
       $respuesta = ModeloPagos::mdlActualizarPago($tabla, $datos);
@@ -96,3 +99,4 @@ class ControladorPagos
     }
   }
 }
+

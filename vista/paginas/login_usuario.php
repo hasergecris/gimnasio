@@ -25,7 +25,7 @@ require("dashboard.php");
               <?php
               $respuesta = ControladorPagos::ctrIngresoUsuarios();
 
-              print_r($respuesta);
+              // print_r($respuesta);
 
               if (isset($respuesta[0]) && $respuesta[0] && $respuesta[1] == "true") {
                 $daysRemaining = $respuesta[2];

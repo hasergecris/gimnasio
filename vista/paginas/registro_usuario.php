@@ -56,7 +56,7 @@ if ($registro == "ok" && isset($_POST['registroNombre']) && isset($_POST['regist
               </div>
 
               <div class="col-md-12 mb-3">
-                <label for=correo class="form-label texto">Correo:</label>
+                <label for="correo" class="form-label texto">Correo:</label>
                 <input type="email" class="form-control" id="correo" name="registroCorreo" required>
               </div>
 
@@ -69,9 +69,18 @@ if ($registro == "ok" && isset($_POST['registroNombre']) && isset($_POST['regist
                 </select>
               </div>
 
-              <div class="col-md-6 mb-3" id="admin_contrasenia">
-                <label for="contrasenia" class="form-label texto">Contraseña:</label>
-                <input type="password" class="form-control" id="contrasenia" name="contrasenia">
+              <div class="col-md-12 mb-3 d-none" id="admin_contrasenias">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="contrasenia" class="form-label texto">Contraseña:</label>
+                    <input type="password" class="form-control" id="contrasenia" name="contrasenia">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label for="confirmar_contrasenia" class="form-label texto">Confirmar Contraseña:</label>
+                    <input type="password" class="form-control" id="confirmar_contrasenia" name="confirmar_contrasenia">
+                  </div>
+                </div>
               </div>
 
               <div class="col-12 d-flex justify-content-end">
@@ -93,7 +102,7 @@ if ($registro == "ok" && isset($_POST['registroNombre']) && isset($_POST['regist
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5 class="modal-title text-center titulo_modal ">!!! Éxito !!!</h5>
+        <h5 class="modal-title text-center titulo_modal">!!! Éxito !!!</h5>
         <div class="icono_danger d-flex-justify-content-center"><i class="fas fa-check"></i></div>
         <p class="texto-danger text-center">El usuario ha sido registrado.</p>
       </div>
@@ -103,7 +112,6 @@ if ($registro == "ok" && isset($_POST['registroNombre']) && isset($_POST['regist
     </div>
   </div>
 </div>
-
 
 <!-- Modal Error -->
 <div class="modal fade" id="errorModal" tabindex="1" aria-labelledby="errorModalLabel" aria-hidden="true">
@@ -123,3 +131,15 @@ if ($registro == "ok" && isset($_POST['registroNombre']) && isset($_POST['regist
     </div>
   </div>
 </div>
+
+<script>
+  function cargarRol(rol) {
+    const adminContrasenias = document.getElementById('admin_contrasenias');
+
+    if (rol == '1') { // Administrador
+      adminContrasenias.classList.remove('d-none');
+    } else { // Cliente
+      adminContrasenias.classList.add('d-none');
+    }
+  }
+</script>

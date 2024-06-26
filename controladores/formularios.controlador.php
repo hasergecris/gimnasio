@@ -17,7 +17,11 @@ class ControladorFormularios
 
       $respuesta = ModeloFormularios::mdlRegistroUsuarios($tabla, $datos);
 
-      return $respuesta;
+      if ($respuesta == "ok") {
+        return "ok";
+      } else {
+        return "error";
+      }
     }
   }
 
