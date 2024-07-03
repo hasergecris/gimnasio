@@ -2,7 +2,6 @@
 require("dashboard.php");
 
 $pagos = ControladorPagos::ctrSeleccionarPagos();
-
 ?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css">
@@ -11,7 +10,7 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
 
 <script>
   $(document).ready(function() {
-    $('#lista_pagos').DataTable({
+    var table = $('#lista_pagos').DataTable({
       searching: true,
       ordering: true,
       paging: true,
@@ -23,6 +22,26 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
           previous: '<i class="fas fa-chevron-left"></i>'
         }
       }
+    });
+
+    function attachDeleteEvent() {
+      var formToSubmit;
+      $('.deleteBtn').off('click').on('click', function() {
+        formToSubmit = $(this).closest('form');
+        var username = $(this).data('username');
+        $('#usernameToDelete').text(username);
+        $('#deleteModal').modal('show');
+      });
+
+      $('#confirmDelete').off('click').on('click', function() {
+        formToSubmit.submit();
+      });
+    }
+
+    attachDeleteEvent();
+
+    table.on('draw', function() {
+      attachDeleteEvent();
     });
   });
 </script>
@@ -58,7 +77,6 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
 
               <form method="post">
                 <input type="hidden" name="eliminarPago" value="<?php echo $pago["id"]; ?>">
-                <!-- <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button> -->
                 <button type="button" class="btn btn-danger deleteBtn" data-username="<?php echo $pago['usu_nombre']; ?>"><i class="fas fa-trash-alt"></i></button>
                 <?php
                 $eliminar = new ControladorPagos();
@@ -93,18 +111,3 @@ $pagos = ControladorPagos::ctrSeleccionarPagos();
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function() {
-    var formToSubmit;
-    $('.deleteBtn').on('click', function() {
-      formToSubmit = $(this).closest('form');
-      var username = $(this).data('username');
-      $('#usernameToDelete').text(username);
-      $('#deleteModal').modal('show');
-    });
-
-    $('#confirmDelete').on('click', function() {
-      formToSubmit.submit();
-    });
-  });
-</script>

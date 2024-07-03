@@ -37,8 +37,8 @@ if (isset($_GET["id"])) {
                     <input type="text" class="form-control" placeholder="Escriba su nombre" id="actualizarNombre" name="actualizarNombre" value="<?php echo $usuario[0]["usu_nombre"]; ?>">
                   </div>
                   <div class="col-md-3 mb-3 mx-4">
-                    <label for="desde" class="texto">Duracion:</label>
-                    <input type="text" class="form-control" placeholder="Escriba los dias de duracion del pago" id="actualizarDuracion" name="actualizarDuracion" value="<?php echo $usuario[0]["duracion"] ?>">
+                    <label for="duracion" class="texto">Duracion:</label>
+                    <input type="text" class="form-control" placeholder="Duración en días" id="actualizarDuracion" name="actualizarDuracion" readonly value="<?php echo $usuario[0]["duracion"] ?>">
                   </div>
                 </div>
                 <div class="d-flex">
@@ -104,3 +104,23 @@ if (isset($_GET["id"])) {
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var desdeInput = document.getElementById('actualizarDesde');
+    var hastaInput = document.getElementById('actualizarHasta');
+    var duracionInput = document.getElementById('actualizarDuracion');
+
+    function calcularDuracion() {
+      var fechaDesde = new Date(desdeInput.value);
+      var fechaHasta = new Date(hastaInput.value);
+      if (fechaDesde && fechaHasta) {
+        var duracionDias = Math.floor((fechaHasta - fechaDesde) / (1000 * 60 * 60 * 24));
+        duracionInput.value = duracionDias >= 0 ? duracionDias : 0;
+      }
+    }
+
+    desdeInput.addEventListener('change', calcularDuracion);
+    hastaInput.addEventListener('change', calcularDuracion);
+  });
+</script>

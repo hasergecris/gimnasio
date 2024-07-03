@@ -56,11 +56,6 @@ class ControladorPagos
     if (isset($_POST["actualizarDocumento"])) {
       $tabla = "pagos";
 
-      $desde = strtotime($_POST["actualizarDesde"]);
-      $hasta = strtotime($_POST["actualizarHasta"]);
-      $hoy = strtotime(date('Y-m-d'));
-      $dias_restantes = round(($hasta - $hoy) / (60 * 60 * 24));
-
       $datos = array(
         "id" => $_POST["idUsuario"],
         "documento" => $_POST["actualizarDocumento"],
@@ -68,8 +63,7 @@ class ControladorPagos
         "usu_nombre" => $_POST["actualizarNombre"],
         "duracion" => $_POST["actualizarDuracion"],
         "desde" => $_POST["actualizarDesde"],
-        "hasta" => $_POST["actualizarHasta"],
-        "dias_restantes" => $dias_restantes
+        "hasta" => $_POST["actualizarHasta"]
       );
 
       $respuesta = ModeloPagos::mdlActualizarPago($tabla, $datos);
@@ -79,7 +73,7 @@ class ControladorPagos
   }
 
   // ELIMINAR PAGO
-  public function ctrEliminarPago()
+  static public function ctrEliminarPago()
   {
     if (isset($_POST["eliminarPago"])) {
       $tabla = "pagos";
@@ -88,15 +82,22 @@ class ControladorPagos
       $respuesta = ModeloPagos::mdlEliminarPago($tabla, $valor);
 
       if ($respuesta == "ok") {
-        echo
-        '<script>
-            if(window.history.replaceState) {
-              window.history.replaceState(null, null, window.location.href);
-            }
-            window.location = "index.php?pagina=lista_pagos";
-          </script>';
+        echo '<script>
+					swal({
+						  type: "success",
+						  title: "El pago ha sido borrado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar",
+						  closeOnConfirm: false
+						  }).then(function(result) {
+									if (result.value) {
+									window.location = "pagos";
+									}
+								})
+					</script>';
       }
     }
   }
 }
+
 

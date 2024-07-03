@@ -22,7 +22,7 @@
 
   <script>
     $(document).ready(function() {
-      $('#lista_usuarios').DataTable({
+      var table = $('#lista_usuarios').DataTable({
         searching: true,
         ordering: true,
         paging: true,
@@ -34,6 +34,26 @@
             previous: '<i class="fas fa-chevron-left"></i>'
           }
         }
+      });
+
+      function attachDeleteEvent() {
+        var formToSubmit;
+        $('.deleteBtn').off('click').on('click', function() {
+          formToSubmit = $(this).closest('form');
+          var username = $(this).data('username');
+          $('#usernameToDelete').text(username);
+          $('#deleteModal').modal('show');
+        });
+
+        $('#confirmDelete').off('click').on('click', function() {
+          formToSubmit.submit();
+        });
+      }
+
+      attachDeleteEvent();
+
+      table.on('draw', function() {
+        attachDeleteEvent();
       });
     });
   </script>
@@ -75,7 +95,7 @@
                   <button type="button" class="btn btn-danger deleteBtn" data-username="<?php echo $value['usu_nombre']; ?>"><i class="fas fa-trash-alt"></i></button>
 
                   <?php
-                  $eliminar = new  ControladorFormularios();
+                  $eliminar = new ControladorFormularios();
                   $eliminar->ctrEliminarRegistro();
                   ?>
                 </form>
@@ -108,21 +128,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      var formToSubmit;
-      $('.deleteBtn').on('click', function() {
-        formToSubmit = $(this).closest('form');
-        var username = $(this).data('username');
-        $('#usernameToDelete').text(username);
-        $('#deleteModal').modal('show');
-      });
-
-      $('#confirmDelete').on('click', function() {
-        formToSubmit.submit();
-      });
-    });
-  </script>
 </body>
 
 </html>

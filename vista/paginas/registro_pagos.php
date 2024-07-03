@@ -2,6 +2,9 @@
 $nombreUsuario = isset($_SESSION['usuario_nombre']) ? $_SESSION['usuario_nombre'] : '';
 $documentoUsuario = isset($_SESSION['usuario_documento']) ? $_SESSION['usuario_documento'] : '';
 
+// Obtener la fecha actual
+$fechaActual = date('Y-m-d');
+
 require("dashboard.php");
 ?>
 
@@ -52,13 +55,13 @@ unset($_SESSION['usuario_documento']);
               </div>
 
               <div class="col-md-4">
-                <label for="nombre" class="form-label texto">Duración:</label>
-                <input type="text" class="form-control" id="duracion" name="duracion" required>
+                <label for="duracion" class="form-label texto">Duración:</label>
+                <input type="text" class="form-control" id="duracion" name="duracion" readonly required>
               </div>
 
               <div class="form-group col-md-6">
                 <label for="desde" class="texto">Desde:</label>
-                <input type="date" class="form-control" id="desde" name="desde" required>
+                <input type="date" class="form-control" id="desde" name="desde" value="<?php echo $fechaActual; ?>" required>
               </div>
 
               <div class="form-group col-md-6">
@@ -79,7 +82,7 @@ unset($_SESSION['usuario_documento']);
                       </div>
                       <div class="modal-body">
                         <h5 class="modal-title text-center titulo_modal">Éxito</h5>
-                        <div class="icono_check d-flex justify-content-center"><i class="fas fa-check"></i></div>
+                        <div class="icono_danger d-flex justify-content-center"><i class="fas fa-check"></i></div>
                         <div class="texto-danger text-center">SU PAGO HA SIDO REGISTRADO</div>
                       </div>
                       <div class="modal-footer">
@@ -169,3 +172,23 @@ unset($_SESSION['usuario_documento']);
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var desdeInput = document.getElementById('desde');
+    var hastaInput = document.getElementById('hasta');
+    var duracionInput = document.getElementById('duracion');
+
+    function calcularDuracion() {
+      var fechaDesde = new Date(desdeInput.value);
+      var fechaHasta = new Date(hastaInput.value);
+      if (fechaDesde && fechaHasta) {
+        var duracionDias = Math.floor((fechaHasta - fechaDesde) / (1000 * 60 * 60 * 24));
+        duracionInput.value = duracionDias >= 0 ? duracionDias : 0;
+      }
+    }
+
+    desdeInput.addEventListener('change', calcularDuracion);
+    hastaInput.addEventListener('change', calcularDuracion);
+  });
+</script>
